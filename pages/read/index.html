@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>브리핑 | Global News24</title>
+  <meta name="description" content="브리핑 상세(요약+출처 링크)." />
+  <link rel="stylesheet" href="/gn24/assets/css/style.css" />
+</head>
+<body>
+  <div class="top-mini"><div class="wrap">
+    <div class="mini-left"><span class="badge">Brief</span><span class="muted">요약 + 출처 링크</span></div>
+    <div class="mini-right"><a href="/gn24/">대문</a><span class="dot">•</span><a href="/gn24/pages/newsroom/">뉴스룸</a></div>
+  </div></div>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <div class="brand"><div class="logo-box"></div>
+        <div class="brand-text">
+          <div class="brand-title">브리핑</div>
+          <div class="brand-sub">합법·지속형 운영: 전문 복사 없이 요약+출처로 제공</div>
+        </div>
+      </div>
+      <div class="header-tools">
+        <a class="btn" href="/gn24/pages/newsroom/">뉴스룸 돌아가기</a>
+      </div>
+    </div>
+    <nav class="nav"><div class="wrap nav-inner">
+      <a href="/gn24/" class="nav-link">홈</a>
+      <a href="/gn24/pages/newsroom/" class="nav-link strong">뉴스룸</a>
+      <a href="/gn24/pages/press/" class="nav-link">보도자료</a>
+      <a href="/gn24/pages/archive/" class="nav-link">아카이브</a>
+      <a href="/gn24/pages/policy/" class="nav-link">정책</a>
+      <a href="/gn24/pages/contact/" class="nav-link">문의</a>
+    </div></nav>
+  </header>
+
+  <main class="wrap main">
+    <section class="card" id="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2 id="t">불러오는 중…</h2></div>
+        <div class="muted small" id="meta"></div>
+      </div>
+
+      <div id="thumb" class="adimg placeholder" style="min-height:240px;"></div>
+
+      <div style="margin-top:12px; line-height:1.7;">
+        <p id="sum" class="muted"></p>
+      </div>
+
+      <div class="note" id="note">
+        <div><strong>출처</strong>: <span id="srcName"></span></div>
+        <div style="margin-top:6px;">
+          <a id="srcUrl" class="src" href="#" target="_blank" rel="noopener">원문 보기 →</a>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+        <a class="btn" href="/gn24/pages/newsroom/">뉴스룸</a>
+        <a class="btn" href="/gn24/pages/archive/">아카이브</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap foot">
+    <div><strong>Global News24</strong><div class="muted">© <span id="year"></span></div></div>
+    <div class="foot-links"><a href="/gn24/">대문</a><a href="/gn24/pages/policy/">정책</a></div>
+  </div></footer>
+
+  <script src="/gn24/assets/js/app.js"></script>
+  <script src="/gn24/assets/js/popularity.js"></script>
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const esc=(s="")=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    function getId(){
+      const u=new URL(location.href);
+      return (u.searchParams.get("id")||"").trim();
+    }
+
+    async function init(){
+      const id = getId();
+      if(!id){
+        $("#t").textContent = "잘못된 접근입니다.";
+        $("#sum").textContent = "id 값이 없습니다.";
+        $("#note").style.display = "none";
+        return;
+      }
+
+      const r = await fetch("/gn24/data/briefs.json",{cache:"no-store"});
+      const d = await r.json();
+      const item = (d.briefs||[]).find(x => x.id === id);
+
+      if(!item){
+        $("#t").textContent = "해당 브리핑을 찾을 수 없습니다.";
+        $("#sum").textContent = "데이터에 존재하지 않거나 삭제되었습니다.";
+        $("#note").style.display = "none";
+        return;
+      }
+
+      // 조회수 +1
+      window.GN24Popularity?.bump(item.id, {
+        title: item.title, category: item.category, publish_date: item.publish_date
+      });
+
+      document.title = `${item.title} | Global News24`;
+      $("#t").textContent = item.title || "브리핑";
+      $("#meta").textContent = `${item.category||""} · ${item.publish_date||""}`;
+      $("#sum").textContent = item.summary || "";
+
+      const thumbEl = $("#thumb");
+      if(item.thumb){
+        thumbEl.style.backgroundImage = `url('${esc(item.thumb)}')`;
+        thumbEl.classList.remove("placeholder");
+      } else {
+        thumbEl.classList.add("placeholder");
+      }
+
+      $("#srcName").textContent = item.source_name || "원문";
+      const src = item.source_url || "#";
+      $("#srcUrl").href = src;
+      if(src === "#") $("#srcUrl").style.display = "none";
+    }
+    init();
+  </script>
+</body>
+</html>
