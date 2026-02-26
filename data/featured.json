@@ -1,0 +1,20 @@
+{
+  "featured": [
+    {
+      "title": "Global News24 독립형 본부(허브) 구축 시작",
+      "summary": "공식 보도자료·아카이브·자료실 중심으로 독립형 본부를 구축합니다.",
+      "category": "공지",
+      "publish_date": "2026-02-27",
+      "url": "/gn24/pages/policy/",
+      "image": "https://static.wixstatic.com/media/abf917_32f71f4337204bb9b67b7e4ebf5423bd~mv2.png"
+    },
+    {
+      "title": "안전·구조 캠페인: 생활 안전 브리핑 강화",
+      "summary": "공공기관 자료 기반으로 안전 정보를 요약·정리해 제공합니다.",
+      "category": "안전·구조",
+      "publish_date": "2026-02-27",
+      "url": "/gn24/pages/newsroom/",
+      "image": ""
+    }
+  ]
+}
