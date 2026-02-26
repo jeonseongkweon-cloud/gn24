@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>아카이브 | Global News24</title>
+  <meta name="description" content="연도/월별 자동 아카이브. 브리핑/보도자료 기록." />
+  <link rel="stylesheet" href="/gn24/assets/css/style.css" />
+</head>
+<body>
+  <div class="top-mini"><div class="wrap">
+    <div class="mini-left"><span class="badge">Archive</span><span class="muted">연도/월 자동 그룹핑</span></div>
+    <div class="mini-right"><a href="/gn24/">대문</a><span class="dot">•</span><a href="/gn24/pages/newsroom/">뉴스룸</a></div>
+  </div></div>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <div class="brand"><div class="logo-box"></div>
+        <div class="brand-text">
+          <div class="brand-title">아카이브</div>
+          <div class="brand-sub">기록이 쌓이면 신뢰가 쌓입니다 · 브리핑/보도자료 통합</div>
+        </div>
+      </div>
+      <div class="header-tools" style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="/gn24/pages/newsroom/">뉴스룸</a>
+        <a class="btn" href="/gn24/pages/press/">보도자료</a>
+      </div>
+    </div>
+    <nav class="nav"><div class="wrap nav-inner">
+      <a href="/gn24/" class="nav-link">홈</a>
+      <a href="/gn24/pages/newsroom/" class="nav-link">뉴스룸</a>
+      <a href="/gn24/pages/press/" class="nav-link">보도자료</a>
+      <a href="/gn24/pages/archive/" class="nav-link strong">아카이브</a>
+      <a href="/gn24/pages/policy/" class="nav-link">정책</a>
+      <a href="/gn24/pages/contact/" class="nav-link">문의</a>
+    </div></nav>
+  </header>
+
+  <main class="wrap main">
+    <section class="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2>필터</h2></div>
+        <div class="muted small" id="stat"></div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button id="tabBrief" class="btn-ghost" type="button">브리핑</button>
+        <button id="tabPress" class="btn-ghost" type="button">보도자료</button>
+
+        <select id="cat" class="btn-ghost" style="font-weight:1000;">
+          <option value="">전체 카테고리</option>
+          <option>국제뉴스</option><option>국내소식</option><option>사회</option><option>경제·산업</option>
+          <option>안전·구조</option><option>청소년·문화</option><option>AI·혁신기술</option><option>무도·스포츠</option>
+          <option>공지</option>
+        </select>
+
+        <input id="q" class="btn-ghost" style="min-width:260px; font-weight:900;" placeholder="검색(제목/요약/태그)" />
+        <button id="clear" class="btn-ghost" type="button">초기화</button>
+      </div>
+
+      <div class="note" style="margin-top:12px;">
+        빠른 이동: 아래 “연도/월 목차”에서 원하는 구간으로 바로 점프할 수 있습니다.
+      </div>
+    </section>
+
+    <section class="two-col">
+      <section class="card">
+        <div class="section-head">
+          <div class="section-title"><span class="bar"></span><h2>연도/월 목차</h2></div>
+        </div>
+        <div id="toc" class="list"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div class="section-title"><span class="bar"></span><h2>표시 영역</h2></div>
+        </div>
+        <div id="out" class="list"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap foot">
+    <div><strong>Global News24</strong><div class="muted">© <span id="year"></span></div></div>
+    <div class="foot-links"><a href="/gn24/">대문</a><a href="/gn24/pages/policy/">정책</a></div>
+  </div></footer>
+
+  <script src="/gn24/assets/js/app.js"></script>
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const esc=(s="")=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    const ym = (dateStr="") => {
+      // "YYYY-MM-DD" -> "YYYY-MM"
+      const m = String(dateStr).match(/^(\d{4})-(\d{2})/);
+      return m ? `${m[1]}-${m[2]}` : "unknown";
+    };
+
+    let mode = "brief"; // brief | press
+    let briefs = [];
+    let press = [];
+
+    function rowBrief(b){
+      const link = `/gn24/pages/read/?id=${encodeURIComponent(b.id)}`;
+      const thumb = b.thumb ? `<div class="thumb" style="background-image:url('${esc(b.thumb)}')"></div>` : `<div class="thumb placeholder"></div>`;
+      return `
+        <div class="row" style="grid-template-columns:110px 1fr;">
+          ${thumb}
+          <div class="row-body">
+            <div class="row-meta"><span class="badge">${esc(b.category||"브리핑")}</span><span class="muted">${esc(b.publish_date||"")}</span></div>
+            <a class="row-title link" href="${link}">${esc(b.title||"")}</a>
+            <div class="row-sum muted">${esc(b.summary||"")}</div>
+            ${b.source_url?`<div class="row-links"><a class="src" href="${esc(b.source_url)}" target="_blank" rel="noopener">출처: ${esc(b.source_name||"원문")}</a></div>`:""}
+          </div>
+        </div>`;
+    }
+
+    function rowPress(p){
+      return `
+        <div class="row" style="grid-template-columns:110px 1fr;">
+          <div class="thumb placeholder"></div>
+          <div class="row-body">
+            <div class="row-meta"><span class="badge">보도자료</span><span class="muted">${esc(p.publish_date||"")}</span></div>
+            <a class="row-title link" href="${esc(p.url||'/gn24/pages/press/')}">${esc(p.title||"")}</a>
+            ${p.subtitle?`<div class="row-sum muted">${esc(p.subtitle)}</div>`:""}
+            <div class="row-sum muted">${esc(p.summary||"")}</div>
+          </div>
+        </div>`;
+    }
+
+    function groupByYM(items, dateKey){
+      const map = new Map();
+      for(const it of items){
+        const ymk = ym(it[dateKey] || "");
+        if(!map.has(ymk)) map.set(ymk, []);
+        map.get(ymk).push(it);
+      }
+      // sort keys desc
+      const keys = Array.from(map.keys()).sort((a,b)=> b.localeCompare(a));
+      // sort inside groups by date desc
+      for(const k of keys){
+        map.get(k).sort((a,b)=> String(b[dateKey]||"").localeCompare(String(a[dateKey]||"")));
+      }
+      return { keys, map };
+    }
+
+    function apply(){
+      const cat = ($("#cat").value||"").trim();
+      const q = ($("#q").value||"").trim().toLowerCase();
+
+      let items = mode==="brief" ? briefs.slice() : press.slice();
+
+      if(mode==="brief"){
+        if(cat) items = items.filter(x => (x.category||"")===cat);
+        if(q){
+          items = items.filter(x => [x.title,x.summary,(x.tags||[]).join(" "),x.category,x.source_name].filter(Boolean).join(" ").toLowerCase().includes(q));
+        }
+      } else {
+        // press
+        if(q){
+          items = items.filter(x => [x.title,x.subtitle,x.summary,x.organization].filter(Boolean).join(" ").toLowerCase().includes(q));
+        }
+        // cat는 press에는 적용 안 함(원하면 organization/카테고리 추가 가능)
+      }
+
+      const dateKey = mode==="brief" ? "publish_date" : "publish_date";
+      const g = groupByYM(items, dateKey);
+
+      // STAT
+      $("#stat").textContent = `${mode==="brief" ? "브리핑" : "보도자료"} ${items.length}건 · 그룹 ${g.keys.length}개`;
+
+      // TOC
+      $("#toc").innerHTML = g.keys.map(k=>{
+        const count = g.map.get(k).length;
+        const id = `sec-${mode}-${k}`;
+        return `
+          <div class="row" style="grid-template-columns:1fr;">
+            <div class="row-body">
+              <a class="row-title link" href="#${id}">${esc(k)} <span class="muted small">(${count})</span></a>
+            </div>
+          </div>`;
+      }).join("") || `<div class="muted">표시할 목차가 없습니다.</div>`;
+
+      // OUT
+      $("#out").innerHTML = g.keys.map(k=>{
+        const id = `sec-${mode}-${k}`;
+        const list = g.map.get(k);
+        const html = list.map(it => mode==="brief" ? rowBrief(it) : rowPress(it)).join("");
+        return `
+          <section class="card" id="${id}" style="padding:12px; margin-bottom:12px;">
+            <div class="section-head" style="margin-bottom:10px;">
+              <div class="section-title"><span class="bar"></span><h2>${esc(k)}</h2></div>
+              <a class="more" href="#top">위로 ↑</a>
+            </div>
+            <div class="list">${html}</div>
+          </section>`;
+      }).join("") || `<div class="muted">표시할 항목이 없습니다.</div>`;
+    }
+
+    function setMode(next){
+      mode = next;
+      // press에서는 cat 필터 의미가 약하므로 비활성
+      $("#cat").disabled = (mode==="press");
+      $("#tabBrief").style.borderColor = (mode==="brief") ? "#cfd6e6" : "var(--line)";
+      $("#tabPress").style.borderColor = (mode==="press") ? "#cfd6e6" : "var(--line)";
+      apply();
+    }
+
+    async function init(){
+      const br = await fetch("/gn24/data/briefs.json",{cache:"no-store"});
+      const bd = await br.json();
+      briefs = (bd.briefs||[]).slice().sort((a,b)=> String(b.publish_date||"").localeCompare(String(a.publish_date||"")));
+
+      const pr = await fetch("/gn24/data/press.json",{cache:"no-store"});
+      const pd = await pr.json();
+      press = (pd.press||[]).slice().sort((a,b)=> String(b.publish_date||"").localeCompare(String(a.publish_date||"")));
+
+      $("#tabBrief").addEventListener("click", ()=> setMode("brief"));
+      $("#tabPress").addEventListener("click", ()=> setMode("press"));
+      $("#cat").addEventListener("change", apply);
+      $("#q").addEventListener("input", apply);
+      $("#clear").addEventListener("click", ()=>{
+        $("#cat").value = "";
+        $("#q").value = "";
+        setMode(mode);
+      });
+
+      setMode("brief");
+    }
+    init();
+  </script>
+</body>
+</html>
