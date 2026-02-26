@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>뉴스룸 | Global News24</title>
+  <meta name="description" content="브리핑형 뉴스(요약+출처) 목록. 카테고리/검색 지원." />
+  <link rel="stylesheet" href="/gn24/assets/css/style.css" />
+</head>
+<body>
+  <div class="top-mini"><div class="wrap">
+    <div class="mini-left"><span class="badge">Newsroom</span><span class="muted">/gn24</span></div>
+    <div class="mini-right"><a href="/gn24/">대문</a><span class="dot">•</span><a href="/gn24/pages/press/">보도자료</a></div>
+  </div></div>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <div class="brand"><div class="logo-box"></div>
+        <div class="brand-text">
+          <div class="brand-title">뉴스룸</div>
+          <div class="brand-sub">브리핑형 뉴스(요약+출처 링크) · 카테고리/검색</div>
+        </div>
+      </div>
+      <div class="header-tools">
+        <form class="search" id="form">
+          <input id="q" name="q" type="search" placeholder="검색어를 입력하세요" />
+          <button type="submit">🔎</button>
+        </form>
+      </div>
+    </div>
+    <nav class="nav"><div class="wrap nav-inner">
+      <a href="/gn24/" class="nav-link">홈</a>
+      <a href="/gn24/pages/newsroom/" class="nav-link strong">뉴스룸</a>
+      <a href="/gn24/pages/press/" class="nav-link">보도자료</a>
+      <a href="/gn24/pages/archive/" class="nav-link">아카이브</a>
+      <a href="/gn24/pages/policy/" class="nav-link">정책</a>
+      <a href="/gn24/pages/contact/" class="nav-link">문의</a>
+    </div></nav>
+  </header>
+
+  <main class="wrap main">
+    <section class="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2>브리핑 목록</h2></div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px;">
+        <select id="cat" class="btn-ghost" style="font-weight:1000;">
+          <option value="">전체 카테고리</option>
+          <option>국제뉴스</option><option>국내소식</option><option>사회</option><option>경제·산업</option>
+          <option>안전·구조</option><option>청소년·문화</option><option>AI·혁신기술</option><option>무도·스포츠</option>
+        </select>
+        <button id="clear" class="btn-ghost" type="button">초기화</button>
+      </div>
+
+      <div id="out" class="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap foot">
+    <div><strong>Global News24</strong><div class="muted">© <span id="year"></span></div></div>
+    <div class="foot-links"><a href="/gn24/">대문</a><a href="/gn24/pages/archive/">아카이브</a></div>
+  </div></footer>
+
+  <script src="/gn24/assets/js/app.js"></script>
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const esc=(s="")=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    const row=(b)=> {
+      const thumb = b.thumb ? `<div class="thumb" style="background-image:url('${esc(b.thumb)}')"></div>` : `<div class="thumb placeholder"></div>`;
+      const src = b.source_url ? `<a class="src" href="${esc(b.source_url)}" target="_blank" rel="noopener">출처: ${esc(b.source_name||"원문")}</a>` : `<span class="src">출처: ${esc(b.source_name||"")}</span>`;
+      return `
+        <div class="row" style="grid-template-columns:110px 1fr;">
+          ${thumb}
+          <div class="row-body">
+            <div class="row-meta"><span class="badge">${esc(b.category||"브리핑")}</span><span class="muted">${esc(b.publish_date||"")}</span></div>
+            <div class="row-title">${esc(b.title||"")}</div>
+            <div class="row-sum muted">${esc(b.summary||"")}</div>
+            <div class="row-links">${src}</div>
+          </div>
+        </div>`;
+    };
+
+    let all=[];
+    function params(){
+      const u=new URL(location.href);
+      return { q:(u.searchParams.get("q")||"").trim(), cat:(u.searchParams.get("cat")||"").trim() };
+    }
+    function apply(){
+      const q = ($("#q").value||"").trim().toLowerCase();
+      const cat = ($("#cat").value||"").trim();
+      let items = all.slice();
+      if(cat) items = items.filter(x => (x.category||"")===cat);
+      if(q){
+        items = items.filter(x => [x.title,x.summary,(x.tags||[]).join(" "),x.category,x.source_name].filter(Boolean).join(" ").toLowerCase().includes(q));
+      }
+      $("#out").innerHTML = items.map(row).join("") || `<div class="muted">표시할 항목이 없습니다.</div>`;
+    }
+
+    async function init(){
+      const p = params();
+      $("#q").value = p.q;
+      $("#cat").value = p.cat;
+
+      const r = await fetch("/gn24/data/briefs.json", { cache:"no-store" });
+      const d = await r.json();
+      all = (d.briefs||[]).slice().sort((a,b)=> (b.publish_date||"").localeCompare(a.publish_date||""));
+      apply();
+
+      $("#cat").addEventListener("change", apply);
+      $("#q").addEventListener("input", apply);
+      $("#clear").addEventListener("click", ()=>{ $("#q").value=""; $("#cat").value=""; apply(); history.replaceState(null,"","/gn24/pages/newsroom/"); });
+      $("#form").addEventListener("submit", (e)=>{ e.preventDefault(); apply(); });
+    }
+    init();
+  </script>
+</body>
+</html>
