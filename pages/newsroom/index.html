@@ -51,6 +51,10 @@
           <option>안전·구조</option><option>청소년·문화</option><option>AI·혁신기술</option><option>무도·스포츠</option>
         </select>
         <button id="clear" class="btn-ghost" type="button">초기화</button>
+
+        <div class="note" style="margin:0; flex: 1 1 320px;">
+          제목 클릭 시 상세 페이지로 이동하며, 해당 브리핑의 “많이 본 뉴스” 집계가 자동 누적됩니다.
+        </div>
       </div>
 
       <div id="out" class="list"></div>
@@ -66,6 +70,8 @@
   <script>
     const $ = (s)=>document.querySelector(s);
     const esc=(s="")=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    const linkToRead = (id)=> `/gn24/pages/read/?id=${encodeURIComponent(id)}`;
+
     const row=(b)=> {
       const thumb = b.thumb ? `<div class="thumb" style="background-image:url('${esc(b.thumb)}')"></div>` : `<div class="thumb placeholder"></div>`;
       const src = b.source_url ? `<a class="src" href="${esc(b.source_url)}" target="_blank" rel="noopener">출처: ${esc(b.source_name||"원문")}</a>` : `<span class="src">출처: ${esc(b.source_name||"")}</span>`;
@@ -74,7 +80,7 @@
           ${thumb}
           <div class="row-body">
             <div class="row-meta"><span class="badge">${esc(b.category||"브리핑")}</span><span class="muted">${esc(b.publish_date||"")}</span></div>
-            <div class="row-title">${esc(b.title||"")}</div>
+            <a class="row-title link" href="${linkToRead(b.id)}">${esc(b.title||"")}</a>
             <div class="row-sum muted">${esc(b.summary||"")}</div>
             <div class="row-links">${src}</div>
           </div>
@@ -109,7 +115,12 @@
 
       $("#cat").addEventListener("change", apply);
       $("#q").addEventListener("input", apply);
-      $("#clear").addEventListener("click", ()=>{ $("#q").value=""; $("#cat").value=""; apply(); history.replaceState(null,"","/gn24/pages/newsroom/"); });
+      $("#clear").addEventListener("click", ()=>{
+        $("#q").value="";
+        $("#cat").value="";
+        apply();
+        history.replaceState(null,"","/gn24/pages/newsroom/");
+      });
       $("#form").addEventListener("submit", (e)=>{ e.preventDefault(); apply(); });
     }
     init();
