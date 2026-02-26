@@ -187,7 +187,9 @@
             <div class="section-title"><span class="bar"></span><h2>많이 본 뉴스</h2></div>
           </div>
           <ol id="popular" class="rank"></ol>
-          <div class="note">초기에는 수동 Top7(briefs 최신/중요 기사)로 운영 → 나중에 자동화 가능</div>
+          <div class="note">
+            자동화: 브리핑 제목 클릭 → 상세페이지 진입 시 조회수 누적 → TOP7 자동 집계 (브라우저 저장 기반)
+          </div>
         </section>
 
         <section class="card">
@@ -208,7 +210,7 @@
             <div class="section-title"><span class="bar"></span><h2>배너</h2></div>
           </div>
           <div class="adbox">
-            <div class="muted">Wix에 올린 배너 이미지 URL을 여기서 불러오면 됩니다.</div>
+            <div class="muted">Wix에 올린 배너 이미지 URL을 home.js의 adUrl에 넣어 불러오세요.</div>
             <div class="adimg" id="adImg"></div>
             <a class="more" href="/gn24/pages/contact/">제휴/배너 문의 →</a>
           </div>
@@ -233,7 +235,9 @@
     </div>
   </footer>
 
+  <!-- ✅ 스크립트 순서(중요): app → popularity → home -->
   <script src="/gn24/assets/js/app.js"></script>
+  <script src="/gn24/assets/js/popularity.js"></script>
   <script src="/gn24/assets/js/home.js"></script>
 </body>
 </html>
