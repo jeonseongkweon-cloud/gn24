@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>보도자료 | Global News24</title>
+  <meta name="description" content="Global News24 공식 보도자료." />
+  <link rel="stylesheet" href="/gn24/assets/css/style.css" />
+</head>
+<body>
+  <div class="top-mini"><div class="wrap">
+    <div class="mini-left"><span class="badge">Press</span><span class="muted">공식 보도자료</span></div>
+    <div class="mini-right"><a href="/gn24/">대문</a><span class="dot">•</span><a href="/gn24/pages/archive/">아카이브</a></div>
+  </div></div>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <div class="brand"><div class="logo-box"></div>
+        <div class="brand-text">
+          <div class="brand-title">보도자료</div>
+          <div class="brand-sub">공식 배포 문서 · 정정/정책과 연동</div>
+        </div>
+      </div>
+    </div>
+    <nav class="nav"><div class="wrap nav-inner">
+      <a href="/gn24/" class="nav-link">홈</a>
+      <a href="/gn24/pages/newsroom/" class="nav-link">뉴스룸</a>
+      <a href="/gn24/pages/press/" class="nav-link strong">보도자료</a>
+      <a href="/gn24/pages/archive/" class="nav-link">아카이브</a>
+      <a href="/gn24/pages/policy/" class="nav-link">정책</a>
+      <a href="/gn24/pages/contact/" class="nav-link">문의</a>
+    </div></nav>
+  </header>
+
+  <main class="wrap main">
+    <section class="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2>목록</h2></div>
+      </div>
+      <div id="out" class="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap foot">
+    <div><strong>Global News24</strong><div class="muted">© <span id="year"></span></div></div>
+    <div class="foot-links"><a href="/gn24/">대문</a><a href="/gn24/pages/policy/">정책</a></div>
+  </div></footer>
+
+  <script src="/gn24/assets/js/app.js"></script>
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const esc=(s="")=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    const row=(p)=>`
+      <div class="row" style="grid-template-columns:110px 1fr;">
+        <div class="thumb placeholder"></div>
+        <div class="row-body">
+          <div class="row-meta"><span class="badge">보도자료</span><span class="muted">${esc(p.publish_date||"")}</span></div>
+          <a class="row-title link" href="${esc(p.url||'#')}">${esc(p.title||"")}</a>
+          ${p.subtitle?`<div class="row-sum muted">${esc(p.subtitle)}</div>`:""}
+          <div class="row-sum muted">${esc(p.summary||"")}</div>
+        </div>
+      </div>`;
+    async function init(){
+      const r=await fetch("/gn24/data/press.json",{cache:"no-store"});
+      const d=await r.json();
+      const items=(d.press||[]).slice().sort((a,b)=>(b.publish_date||"").localeCompare(a.publish_date||""));
+      $("#out").innerHTML = items.map(row).join("") || `<div class="muted">보도자료 준비중</div>`;
+    }
+    init();
+  </script>
+</body>
+</html>
