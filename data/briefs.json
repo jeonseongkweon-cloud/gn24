@@ -1,0 +1,37 @@
+{
+  "briefs": [
+    {
+      "id": "2026-02-27-korea-001",
+      "title": "정부, 청년일자리 지원 확대 방안 발표",
+      "summary": "관계부처는 청년 고용 지원을 강화하는 방안을 발표했다. 지원 대상과 신청 절차는 각 부처 안내에 따른다.",
+      "category": "국내소식",
+      "publish_date": "2026-02-27",
+      "source_name": "공식 발표/브리핑",
+      "source_url": "https://example.com",
+      "thumb": "https://static.wixstatic.com/media/abf917_32f71f4337204bb9b67b7e4ebf5423bd~mv2.png",
+      "tags": ["정책", "청년", "고용"]
+    },
+    {
+      "id": "2026-02-27-world-001",
+      "title": "국제 동향: 주요국 에너지 정책 변화",
+      "summary": "주요국의 에너지 정책이 전환 국면에 들어서며 시장 변동성이 확대되는 흐름이 관측된다.",
+      "category": "국제뉴스",
+      "publish_date": "2026-02-27",
+      "source_name": "공공자료 요약",
+      "source_url": "https://example.com",
+      "thumb": "",
+      "tags": ["국제", "에너지"]
+    },
+    {
+      "id": "2026-02-27-ai-001",
+      "title": "AI 혁신기술: 현장 적용 사례 확산",
+      "summary": "AI 기반 자동화·분석 솔루션의 현장 적용 사례가 늘고 있다. 핵심은 데이터 품질과 운영 체계다.",
+      "category": "AI·혁신기술",
+      "publish_date": "2026-02-27",
+      "source_name": "자료 요약",
+      "source_url": "https://example.com",
+      "thumb": "",
+      "tags": ["AI", "혁신"]
+    }
+  ]
+}
