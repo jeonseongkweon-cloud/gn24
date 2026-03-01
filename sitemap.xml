@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ipma.kr/gn24/</loc></url>
-  <url><loc>https://ipma.kr/gn24/pages/newsroom/</loc></url>
-  <url><loc>https://ipma.kr/gn24/pages/press/</loc></url>
-  <url><loc>https://ipma.kr/gn24/pages/archive/</loc></url>
-  <url><loc>https://ipma.kr/gn24/pages/policy/</loc></url>
-  <url><loc>https://ipma.kr/gn24/pages/contact/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/pages/newsroom/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/pages/press/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/pages/archive/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/pages/policy/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/pages/contact/</loc></url>
+  <url><loc>https://YOUR_GITHUB_PAGES_DOMAIN/gn24/pages/manual/</loc></url>
 </urlset>
