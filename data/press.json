@@ -1,12 +1,45 @@
-{
-  "press": [
-    {
-      "title": "Global News24 운영 체계(브리핑+공식자료) 도입",
-      "subtitle": "기자 인력 한계를 넘어서는 합법·지속형 편집 구조",
-      "summary": "브리핑형 뉴스와 공공기관 자료 기반 정리 시스템을 도입해 종합 뉴스 체계를 강화합니다.",
-      "organization": "Global News24",
-      "publish_date": "2026-02-27",
-      "url": "/gn24/pages/press/"
-    }
-  ]
-}
+[
+  {
+    "id": "2026-03-02-gn24-branch-recruit",
+    "title": "Global News24 국내 17개 시·도 지부 모집 공고",
+    "date": "2026-03-02",
+    "author": "편집부",
+    "summary": "지역 뉴스룸 구축을 위한 지부 모집을 시작합니다. 신청 요건 및 절차를 안내합니다.",
+    "image": "https://static.wixstatic.com/media/PUT_PRESS_1.jpg",
+    "body": [
+      "모집 대상: 지역 뉴스룸 운영 가능 단체/개인",
+      "주요 역할: 지역 브리핑 송출, 공익 캠페인 보도 협력",
+      "신청: 기자 송출 폼(구글폼) 또는 문의 페이지"
+    ],
+    "sourceLabel": "공식 보도자료",
+    "sourceUrl": ""
+  },
+  {
+    "id": "2026-03-01-press-safety-partner",
+    "title": "공익 안전 캠페인 파트너십 협약 안내",
+    "date": "2026-03-01",
+    "author": "편집부",
+    "summary": "생활안전/청소년 안전 프로그램 확산을 위한 파트너십 협약을 진행합니다.",
+    "image": "https://static.wixstatic.com/media/PUT_PRESS_2.jpg",
+    "body": [
+      "협약 분야: 안전 교육, 자료 제작, 현장 캠페인",
+      "문의: contact 페이지"
+    ],
+    "sourceLabel": "공식 보도자료",
+    "sourceUrl": ""
+  },
+  {
+    "id": "2026-02-25-press-editorial-policy",
+    "title": "브리핑형 뉴스 운영 원칙(요약+출처) 공지",
+    "date": "2026-02-25",
+    "author": "편집부",
+    "summary": "GN24는 외부 기사 전문을 복제하지 않고 요약+출처 링크 방식으로 운영합니다.",
+    "image": "https://static.wixstatic.com/media/PUT_PRESS_3.jpg",
+    "body": [
+      "목적: 합법성과 지속성 확보",
+      "방식: 요약(2~6문단) + 출처 링크 + 내부 관점 1~2문장"
+    ],
+    "sourceLabel": "공식 보도자료",
+    "sourceUrl": ""
+  }
+]
