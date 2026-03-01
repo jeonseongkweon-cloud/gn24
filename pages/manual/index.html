@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>운영메뉴얼 | Global News24</title>
+  <meta name="theme-color" content="#0b0f19" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+  <div class="top-mini">
+    <div class="wrap mini-row">
+      <div class="mini-left">
+        <a class="pill" href="../../">← 홈</a>
+        <span class="badge">MANUAL</span>
+        <span class="muted">Update <strong id="today"></strong></span>
+      </div>
+      <div class="mini-right">
+        <a href="../newsroom/">뉴스룸</a><span class="dot">•</span>
+        <a href="../press/">보도자료</a><span class="dot">•</span>
+        <a href="../policy/">정책</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap main">
+    <div class="page-head">
+      <div>
+        <h1>운영메뉴얼</h1>
+        <div class="muted">기자/지부/파트너가 간편하게 본부로 송출하는 절차</div>
+      </div>
+      <div class="filters">
+        <a class="btn" href="https://forms.gle/PUT_YOUR_REPORTER_FORM" target="_blank" rel="noopener">기자 송출(구글폼)</a>
+        <a class="btn btn-outline" href="https://forms.gle/PUT_YOUR_TIP_FORM" target="_blank" rel="noopener">제보하기(구글폼)</a>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2>기자 송출 기본 원칙</h2></div>
+      </div>
+      <ol class="muted">
+        <li><strong>전문 복사 금지</strong> (외부 기사/자료는 요약 + 출처 링크)</li>
+        <li>제목은 40자 내외, 요약은 2~3문장 권장</li>
+        <li>이미지는 Wix에 업로드 후 URL 첨부</li>
+        <li>카테고리/작성자/날짜는 반드시 입력</li>
+      </ol>
+
+      <div class="note">
+        본부 편집 기준: 종합지 균형 유지 + 공익성 강화(안전·구조/청소년·교육).<br/>
+        무도 전문 프레임 참고: <strong>구조 &gt;&gt; 교차원리, 교차원리 기반 무도</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2>구글폼(기자 송출) 권장 항목</h2></div>
+      </div>
+      <p class="muted">전총재님이 폼 만들 때 아래 항목을 넣으면, 운영이 매우 편해집니다.</p>
+      <ul class="muted">
+        <li>작성자(기자명) / 소속(지부)</li>
+        <li>카테고리(드롭다운)</li>
+        <li>제목 / 요약(2~3문장)</li>
+        <li>대표 이미지 URL(Wix)</li>
+        <li>본문(선택: 문단 3~6개)</li>
+        <li>출처 라벨 / 출처 URL</li>
+        <li>키워드(쉼표 구분)</li>
+        <li>중요기사 체크(important=true)</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div class="section-title"><span class="bar"></span><h2>본부 반영 방식(초간단)</h2></div>
+      </div>
+      <p class="muted">
+        송출된 내용은 편집부가 확인 후 <code>data/briefs.json</code> 또는 <code>data/press.json</code>에 1줄 추가하면,
+        홈/뉴스룸/상세가 자동으로 갱신됩니다.
+      </p>
+    </section>
+  </main>
+
+  <button id="toTop" class="to-top" type="button" aria-label="Top">Top</button>
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>
