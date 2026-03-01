@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>기사 | Global News24</title>
+  <meta name="description" content="Global News24 기사 상세" />
+  <meta name="theme-color" content="#0b0f19" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+  <div class="top-mini">
+    <div class="wrap mini-row">
+      <div class="mini-left">
+        <a class="pill" href="../../">← 홈</a>
+        <a class="pill" href="../newsroom/">뉴스룸</a>
+        <span class="badge">ARTICLE</span>
+        <span class="muted">Update <strong id="today"></strong></span>
+      </div>
+      <div class="mini-right">
+        <a href="../press/">보도자료</a><span class="dot">•</span>
+        <a href="../archive/">아카이브</a><span class="dot">•</span>
+        <a href="../manual/">운영메뉴얼</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap main">
+    <section class="article">
+      <section class="card article-main">
+        <div class="article-meta">
+          <span class="badge" id="cat">카테고리</span>
+          <span id="date"></span>
+          <span class="dot">•</span>
+          <span id="author"></span>
+          <span class="dot">•</span>
+          <span id="views"></span>
+        </div>
+
+        <h1 id="title">제목</h1>
+        <div class="muted" id="summary"></div>
+
+        <div class="cover" id="cover"></div>
+
+        <div class="article-body" id="body"></div>
+
+        <div class="source" id="sourceBox"></div>
+
+        <div class="note">
+          안내: 외부 기사는 전문을 복제하지 않고, 요약 + 출처 링크 형태로 제공합니다.
+        </div>
+      </section>
+
+      <aside class="right">
+        <section class="card side-box">
+          <div class="section-head">
+            <div class="section-title"><span class="bar"></span><h2>바로가기</h2></div>
+          </div>
+          <div class="quick">
+            <a class="qbtn" href="https://forms.gle/PUT_YOUR_TIP_FORM" target="_blank" rel="noopener">제보하기</a>
+            <a class="qbtn" href="https://forms.gle/PUT_YOUR_REPORTER_FORM" target="_blank" rel="noopener">기자 송출</a>
+            <a class="qbtn" href="../newsroom/?mode=author">기자검색</a>
+            <a class="qbtn" href="../policy/">편집정책</a>
+          </div>
+          <div class="muted" style="margin-top:10px">
+            (참고 프레임) <strong>구조 &gt;&gt; 교차원리, 교차원리 기반 무도</strong>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div class="section-title"><span class="bar"></span><h2>관련 기사</h2></div>
+          </div>
+          <div id="related" class="list"></div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <button id="toTop" class="to-top" type="button" aria-label="Top">Top</button>
+
+  <footer class="footer-lite">
+    <div class="wrap foot-lite">
+      <div class="foot-logo">
+        <div class="foot-mark" aria-hidden="true"></div>
+        <div class="foot-brand"><div class="foot-title">Global NEWS24</div></div>
+      </div>
+      <div class="foot-main">
+        <nav class="foot-nav">
+          <a href="../archive/">회사소개</a>
+          <a href="https://forms.gle/PUT_YOUR_REPORTER_FORM" target="_blank" rel="noopener">기사제보</a>
+          <a href="../contact/">광고 및 제휴문의</a>
+          <a href="../policy/#privacy">개인정보취급방침</a>
+          <a href="../policy/#youth">청소년보호정책</a>
+          <a href="../policy/#mail">메일수집거부</a>
+        </nav>
+        <div class="foot-info">
+          글로벌뉴스24 © <span id="year"></span> www.news24.ai.kr All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js"></script>
+  <script src="../../assets/js/popularity.js"></script>
+  <script src="../../assets/js/article.js"></script>
+</body>
+</html>
