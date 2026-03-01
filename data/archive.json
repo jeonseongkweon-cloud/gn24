@@ -1,0 +1,20 @@
+[
+  {
+    "title": "GN24 운영 철학 및 편집 정책",
+    "tag": "정책",
+    "date": "2026-03",
+    "summary": "브리핑형 뉴스(요약+출처) 운영 원칙과 편집 기준",
+    "image": "https://static.wixstatic.com/media/PUT_ARCH_1.jpg",
+    "link": "../policy/",
+    "external": false
+  },
+  {
+    "title": "운영메뉴얼(기자 송출 가이드)",
+    "tag": "운영",
+    "date": "2026-03",
+    "summary": "기자/지부가 본부로 간편 송출하는 절차",
+    "image": "https://static.wixstatic.com/media/PUT_ARCH_2.jpg",
+    "link": "../manual/",
+    "external": false
+  }
+]
