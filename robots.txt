@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ipma.kr/gn24/sitemap.xml
+Sitemap: https://YOUR_GITHUB_PAGES_DOMAIN/gn24/sitemap.xml
