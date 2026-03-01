@@ -22,52 +22,54 @@
 </head>
 
 <body>
-  <!-- ✅ 상단 미니바 완전 제거 (요청사항) -->
+  <!-- ✅ 상단 미니바는 제거됨 -->
 
-  <!-- 헤더 (신문사 느낌) -->
   <header class="site-header">
-    <div class="wrap header-inner">
+    <div class="wrap header-wrap">
+      <!-- 브랜드 -->
       <a class="brand" href="/gn24/" aria-label="GN24 홈">
-        <img class="brand-logo" src="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png" alt="Global News24 로고" />
-        <div class="brand-text">
+        <img class="brand-logo"
+             src="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png"
+             alt="Global News24 로고" />
+        <div class="brand-txt">
           <div class="brand-title">Global News24</div>
-          <div class="brand-sub">종합 뉴스 본부(허브) · 브리핑/공식자료 기반</div>
+          <div class="brand-meta">
+            <span class="meta-badge">Internet Newspaper</span>
+            <span class="meta-dot">•</span>
+            <span class="meta-update">Update <strong id="today">—</strong></span>
+          </div>
+          <div class="brand-sub">종합 뉴스 본부 · 브리핑/공식자료 기반</div>
         </div>
       </a>
 
-      <div class="header-right">
-        <div class="update-pill" title="업데이트 일자">
-          <span class="dot"></span>
-          <span class="label">Update</span>
-          <strong id="today">—</strong>
-        </div>
-
+      <!-- 도구(검색+햄버거) -->
+      <div class="tools">
         <form class="search" action="/gn24/pages/newsroom/" method="get">
           <input name="q" type="search" placeholder="기사검색 / 기자검색" />
           <button type="submit" aria-label="검색">🔎</button>
         </form>
 
-        <!-- ✅ 햄버거 버튼: 보조(옵션) -->
-        <button id="menuBtn" class="icon-btn" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <!-- ✅ 햄버거(보조) -->
+        <button id="menuBtn" class="hamburger" type="button" aria-label="메뉴" aria-expanded="false">
           ☰
         </button>
       </div>
     </div>
 
-    <!-- ✅ 보조 메뉴 패널(햄버거로 열림) -->
+    <!-- ✅ 햄버거 보조 패널 -->
     <div id="menuPanel" class="menu-panel" hidden>
       <div class="wrap menu-panel-inner">
-        <a href="/gn24/pages/policy/" class="mp-link">편집정책</a>
-        <a href="/gn24/pages/manual/" class="mp-link">운영매뉴얼</a>
-        <a href="/gn24/pages/contact/" class="mp-link">문의</a>
+        <a class="mp" href="/gn24/pages/policy/">편집정책</a>
+        <a class="mp" href="/gn24/pages/manual/">운영매뉴얼</a>
+        <a class="mp" href="/gn24/pages/contact/">문의</a>
         <span class="mp-sep"></span>
-        <a href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener" class="mp-link strong">📝 제보하기</a>
-        <a href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener" class="mp-link strong">📰 기자송출</a>
+        <a class="mp mp-strong" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">📝 제보하기</a>
+        <a class="mp mp-strong" href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener">📰 기자송출</a>
       </div>
     </div>
 
-    <!-- ✅ 카테고리 메뉴: 모바일에서도 항상 노출 -->
-    <nav class="nav">
+    <!-- ✅ 카테고리 메뉴(모바일에서도 항상 보임) -->
+    <nav class="nav" aria-label="카테고리">
       <div class="wrap nav-inner">
         <a href="/gn24/pages/newsroom/" class="nav-link">전체</a>
         <a href="/gn24/pages/newsroom/?cat=국제뉴스" class="nav-link">국제뉴스</a>
@@ -78,9 +80,8 @@
         <a href="/gn24/pages/newsroom/?cat=청소년·문화" class="nav-link">청소년·문화</a>
         <a href="/gn24/pages/newsroom/?cat=AI·혁신기술" class="nav-link">AI·혁신기술</a>
         <a href="/gn24/pages/newsroom/?cat=무도·스포츠" class="nav-link">무도·스포츠</a>
-        <a href="/gn24/pages/press/" class="nav-link strong">보도자료</a>
+        <a href="/gn24/pages/press/" class="nav-link nav-strong">보도자료</a>
         <a href="/gn24/pages/archive/" class="nav-link">아카이브</a>
-        <a href="/gn24/pages/manual/" class="nav-link">운영매뉴얼</a>
       </div>
     </nav>
   </header>
@@ -89,7 +90,8 @@
     <section class="grid">
       <!-- LEFT -->
       <section class="left">
-        <section class="headline card">
+        <!-- 헤드라인 -->
+        <section class="card headline">
           <div class="headline-top">
             <div class="section-title">
               <span class="bar"></span>
@@ -117,6 +119,7 @@
           <div id="ticker" class="ticker muted"></div>
         </section>
 
+        <!-- 최신 브리핑 -->
         <section class="card">
           <div class="section-head">
             <div class="section-title">
@@ -126,9 +129,7 @@
             <a class="more" href="/gn24/pages/newsroom/">전체 보기 →</a>
           </div>
           <div id="latestBriefs" class="list"></div>
-          <div class="note">
-            운영 원칙: 기사 전문 복사 대신 <strong>요약+출처 링크</strong>로 제공하여 합법성과 지속성을 확보합니다.
-          </div>
+          <div class="note">운영 원칙: 기사 전문 복사 대신 <strong>요약+출처 링크</strong>로 제공</div>
         </section>
       </section>
 
@@ -139,16 +140,13 @@
             <div class="section-title"><span class="bar"></span><h2>많이 본 뉴스</h2></div>
           </div>
           <ol id="popular" class="rank"></ol>
-          <div class="note">
-            자동화: 상세 진입 시 조회수 누적 → TOP7 집계 (브라우저 저장 기반)
-          </div>
+          <div class="note">상세 진입 시 조회수 누적 → TOP7 (브라우저 저장 기반)</div>
         </section>
 
         <section class="card">
           <div class="section-head">
             <div class="section-title"><span class="bar"></span><h2>빠른 메뉴</h2></div>
           </div>
-
           <div class="quick">
             <a class="qbtn" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">📝 제보하기</a>
             <a class="qbtn" href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener">📰 기자송출</a>
@@ -160,40 +158,40 @@
     </section>
   </main>
 
-  <!-- 플로팅 버튼(모바일 편의) -->
+  <!-- 플로팅 -->
   <div class="floating">
     <a class="float-btn tip" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">📝 제보</a>
     <a class="float-btn report" href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener">📰 기자</a>
     <button class="float-btn top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
   </div>
 
-  <!-- 푸터(첨부 내용 기반) -->
+  <!-- ✅ 푸터(간략/깔끔) -->
   <footer class="footer">
     <div class="wrap foot">
       <div class="foot-links">
         <a href="#">회사소개</a>
-        <a href="#">기사제보</a>
-        <a href="#">광고 및 제휴문의</a>
+        <a href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">기사제보</a>
+        <a href="#">광고·제휴</a>
         <a href="#">개인정보처리방침</a>
         <a href="#">청소년보호정책</a>
         <a href="#">메일수집거부</a>
       </div>
 
       <div class="foot-meta">
-        글로벌뉴스24 등록번호 울산 아 01159 사업자번호 631-18-02336 등록일 2025-11-14 발행일자 2026-03-02 발행인 전성권 편집인 전성권<br>
-        청소년보호책임자 이은종 연락처 02-822-1822 / 052-260-4499 이메일 tk7890@hanmail.net 주소 울산 남구 중앙로 290번길 53 상가 204호<br>
-        글로벌뉴스24 © www.news24.ai.kr All rights reserved. 모든 콘텐츠(기사 등)는 저작권법의 보호를 받으며 무단 전재, 복사, 배포 등을 금합니다.
+        등록번호: 울산 아 01159 · 사업자번호: 631-18-02336 · 등록일: 2025-11-14 · 발행일자: 2026-03-02<br>
+        발행인/편집인: 전성권 · 청소년보호책임자: 이은종 · 연락처: 02-822-1822 / 052-260-4499 · 이메일: tk7890@hanmail.net<br>
+        주소: 울산 남구 중앙로 290번길 53 상가 204호 · © Global News24 (www.news24.ai.kr) All rights reserved.
       </div>
     </div>
   </footer>
 
-  <!-- ✅ 스크립트 순서 -->
-  <script src="/gn24/assets/js/app.js"></script>
-  <script src="/gn24/assets/js/popularity.js"></script>
-  <script src="/gn24/assets/js/home.js"></script>
+  <!-- ✅ 스크립트: DOM 이후 실행되게 defer 사용 -->
+  <script defer src="/gn24/assets/js/app.js"></script>
+  <script defer src="/gn24/assets/js/popularity.js"></script>
+  <script defer src="/gn24/assets/js/home.js"></script>
 
   <script>
-    // Update 날짜(로고 옆)
+    // Update 날짜
     const d = new Date();
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth()+1).padStart(2,'0');
