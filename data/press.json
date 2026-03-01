@@ -1,45 +1,19 @@
 [
   {
-    "id": "2026-03-02-gn24-branch-recruit",
-    "title": "Global News24 국내 17개 시·도 지부 모집 공고",
+    "id": "press-20260302-001",
+    "cat": "보도자료",
+    "title": "Global News24 전국 지부 모집 안내",
+    "summary": "지역 기반 뉴스 생산 체계를 구축하기 위해 GN24는 시·도 지부를 모집합니다. (요약+출처 기반 운영)",
+    "author": "편집본부",
     "date": "2026-03-02",
-    "author": "편집부",
-    "summary": "지역 뉴스룸 구축을 위한 지부 모집을 시작합니다. 신청 요건 및 절차를 안내합니다.",
-    "image": "https://static.wixstatic.com/media/PUT_PRESS_1.jpg",
+    "image": "https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png",
+    "tags": ["지부모집", "보도자료"],
+    "sourceLabel": "문의: 광고 및 제휴문의 페이지",
+    "sourceUrl": "/gn24/pages/partners/",
     "body": [
-      "모집 대상: 지역 뉴스룸 운영 가능 단체/개인",
-      "주요 역할: 지역 브리핑 송출, 공익 캠페인 보도 협력",
-      "신청: 기자 송출 폼(구글폼) 또는 문의 페이지"
-    ],
-    "sourceLabel": "공식 보도자료",
-    "sourceUrl": ""
-  },
-  {
-    "id": "2026-03-01-press-safety-partner",
-    "title": "공익 안전 캠페인 파트너십 협약 안내",
-    "date": "2026-03-01",
-    "author": "편집부",
-    "summary": "생활안전/청소년 안전 프로그램 확산을 위한 파트너십 협약을 진행합니다.",
-    "image": "https://static.wixstatic.com/media/PUT_PRESS_2.jpg",
-    "body": [
-      "협약 분야: 안전 교육, 자료 제작, 현장 캠페인",
-      "문의: contact 페이지"
-    ],
-    "sourceLabel": "공식 보도자료",
-    "sourceUrl": ""
-  },
-  {
-    "id": "2026-02-25-press-editorial-policy",
-    "title": "브리핑형 뉴스 운영 원칙(요약+출처) 공지",
-    "date": "2026-02-25",
-    "author": "편집부",
-    "summary": "GN24는 외부 기사 전문을 복제하지 않고 요약+출처 링크 방식으로 운영합니다.",
-    "image": "https://static.wixstatic.com/media/PUT_PRESS_3.jpg",
-    "body": [
-      "목적: 합법성과 지속성 확보",
-      "방식: 요약(2~6문단) + 출처 링크 + 내부 관점 1~2문장"
-    ],
-    "sourceLabel": "공식 보도자료",
-    "sourceUrl": ""
+      "모집 대상: 시·도 단위 운영자/협력기관",
+      "운영 방식: 브리핑형(요약+출처) + 공공자료 기반",
+      "신청/문의: 페이지 하단 문의 또는 제휴문의 페이지 이용"
+    ]
   }
 ]
