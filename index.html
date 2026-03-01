@@ -7,36 +7,37 @@
   <meta name="description" content="Global News24 종합 뉴스 본부(허브). 브리핑형 뉴스와 공공자료 기반 보도 체계." />
   <meta name="theme-color" content="#0b0f19" />
 
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Global News24 | 종합 뉴스 본부" />
   <meta property="og:description" content="전통 신문형 레이아웃 · 브리핑형 뉴스 · 공식 보도자료 · 아카이브" />
-  <meta property="og:image" content="./assets/images/og.jpg" />
+  <meta property="og:image" content="/gn24/assets/images/og.jpg" />
 
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="/gn24/assets/css/style.css" />
 </head>
 <body>
-  <!-- 상단 미니바 -->
+  <!-- TOP MINI -->
   <div class="top-mini">
-    <div class="wrap mini-row">
-      <div class="mini-left">
+    <div class="wrap row between center">
+      <div class="row gap10 center">
         <span class="badge">Internet Newspaper</span>
         <span class="muted">Update <strong id="today"></strong></span>
       </div>
-      <div class="mini-right">
-        <a href="./pages/policy/">편집정책</a>
+      <div class="row gap12 center mini-links">
+        <a href="/gn24/pages/about/">회사소개</a>
         <span class="dot">•</span>
-        <a href="./pages/contact/">문의</a>
+        <a class="accent" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">기사제보</a>
         <span class="dot">•</span>
-        <a class="pill" href="./pages/manual/">운영메뉴얼</a>
+        <a href="/gn24/pages/partners/">광고 및 제휴문의</a>
       </div>
     </div>
   </div>
 
-  <!-- 헤더 -->
+  <!-- HEADER -->
   <header class="header">
     <div class="wrap header-inner">
-      <a class="brand" href="./">
-        <div class="logo-box" aria-hidden="true"></div>
+      <a class="brand" href="/gn24/">
+        <img class="logo" alt="Global News24" src="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png" />
         <div class="brand-text">
           <div class="brand-title">Global News24</div>
           <div class="brand-sub">종합 뉴스 본부(허브) · 브리핑/공식자료 기반</div>
@@ -44,68 +45,56 @@
       </a>
 
       <div class="header-tools">
-        <form class="search" action="./pages/newsroom/" method="get">
-          <input name="q" type="search" placeholder="기사검색 (제목/요약/키워드)" />
+        <form class="search" action="/gn24/pages/newsroom/" method="get">
+          <input name="q" type="search" placeholder="기사 검색 (제목/요약/키워드)" />
           <button type="submit" aria-label="검색">🔎</button>
         </form>
 
-        <a class="btn btn-outline" href="https://forms.gle/PUT_YOUR_TIP_FORM" target="_blank" rel="noopener">
-          제보하기
-        </a>
-        <a class="btn" href="https://forms.gle/PUT_YOUR_REPORTER_FORM" target="_blank" rel="noopener">
-          기자 송출
-        </a>
+        <button class="hamburger" id="navToggle" type="button" aria-label="메뉴">☰</button>
       </div>
     </div>
 
-    <!-- 강한 네비 -->
-    <nav class="nav">
+    <!-- NAV -->
+    <nav class="nav" id="nav">
       <div class="wrap nav-inner">
-        <a href="./pages/newsroom/" class="nav-link">전체</a>
-        <a href="./pages/newsroom/?cat=국제뉴스" class="nav-link">국제뉴스</a>
-        <a href="./pages/newsroom/?cat=국내소식" class="nav-link">국내소식</a>
-        <a href="./pages/newsroom/?cat=사회" class="nav-link">사회</a>
-        <a href="./pages/newsroom/?cat=경제·산업" class="nav-link">경제·산업</a>
-        <a href="./pages/newsroom/?cat=안전·구조" class="nav-link">안전·구조</a>
-        <a href="./pages/newsroom/?cat=청소년·문화" class="nav-link">청소년·문화</a>
-        <a href="./pages/newsroom/?cat=AI·혁신기술" class="nav-link">AI·혁신기술</a>
-        <a href="./pages/newsroom/?cat=무도·스포츠" class="nav-link">무도·스포츠</a>
-        <a href="./pages/press/" class="nav-link strong">보도자료</a>
-        <a href="./pages/archive/" class="nav-link">아카이브</a>
+        <a href="/gn24/pages/newsroom/" class="nav-link">전체</a>
+        <a href="/gn24/pages/newsroom/?cat=국제뉴스" class="nav-link">국제뉴스</a>
+        <a href="/gn24/pages/newsroom/?cat=국내소식" class="nav-link">국내소식</a>
+        <a href="/gn24/pages/newsroom/?cat=사회" class="nav-link">사회</a>
+        <a href="/gn24/pages/newsroom/?cat=경제·산업" class="nav-link">경제·산업</a>
+        <a href="/gn24/pages/newsroom/?cat=안전·구조" class="nav-link">안전·구조</a>
+        <a href="/gn24/pages/newsroom/?cat=청소년·문화" class="nav-link">청소년·문화</a>
+        <a href="/gn24/pages/newsroom/?cat=AI·혁신기술" class="nav-link">AI·혁신기술</a>
+        <a href="/gn24/pages/newsroom/?cat=무도·스포츠" class="nav-link">무도·스포츠</a>
+        <a href="/gn24/pages/press/" class="nav-link strong">보도자료</a>
+        <a href="/gn24/pages/archive/" class="nav-link">아카이브</a>
+        <a href="/gn24/pages/manual/" class="nav-link">운영매뉴얼</a>
       </div>
     </nav>
   </header>
+
+  <!-- FLOATING ACTIONS -->
+  <div class="float-actions">
+    <a class="fab fab-red" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener" title="기사 제보하기">
+      <span>제보</span>
+    </a>
+    <a class="fab fab-blue" href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener" title="기자 송출(본부 제출)">
+      <span>기자</span>
+    </a>
+    <button class="fab fab-gray" id="toTop" type="button" title="맨 위로">
+      <span>Top</span>
+    </button>
+  </div>
 
   <main class="wrap main">
     <section class="grid">
       <!-- LEFT -->
       <section class="left">
-
-        <!-- 중요기사: 세로 자동 스크롤(위로) -->
-        <section class="card important">
+        <!-- HEADLINE -->
+        <section class="card headline">
           <div class="section-head">
-            <div class="section-title">
-              <span class="bar"></span>
-              <h2>최근 중요기사</h2>
-            </div>
-            <div class="tiny">
-              자동 스크롤 · 클릭 시 상세로 이동
-            </div>
-          </div>
-
-          <div class="vscroll" aria-label="최근 중요기사 자동 스크롤">
-            <div id="importantTrack" class="vscroll-track"></div>
-          </div>
-        </section>
-
-        <!-- 헤드라인 슬라이더 -->
-        <section class="headline card">
-          <div class="headline-top">
-            <div class="section-title">
-              <span class="bar"></span>
-              <h2>헤드라인</h2>
-            </div>
-            <div class="headline-controls">
+            <div class="section-title"><span class="bar"></span><h2>헤드라인</h2></div>
+            <div class="row gap8">
               <button id="prev" class="btn-ghost" type="button">‹</button>
               <button id="next" class="btn-ghost" type="button">›</button>
             </div>
@@ -126,32 +115,47 @@
             </div>
           </a>
 
-          <div id="ticker" class="ticker muted"></div>
+          <!-- 중요기사 세로 티커(위로 흐름) -->
+          <div class="ticker-wrap">
+            <div class="ticker-title">최근 중요기사</div>
+            <div class="vticker" aria-label="최근 중요기사">
+              <div id="vtickerTrack" class="vticker-track"></div>
+            </div>
+          </div>
         </section>
 
-        <!-- 최신 브리핑 -->
+        <!-- LATEST -->
         <section class="card">
           <div class="section-head">
-            <div class="section-title">
-              <span class="bar"></span>
-              <h2>최신 브리핑</h2>
+            <div class="section-title"><span class="bar"></span><h2>최신 브리핑</h2></div>
+            <a class="more" href="/gn24/pages/newsroom/">전체 보기 →</a>
+          </div>
+
+          <div class="filters">
+            <div class="filter">
+              <label class="muted" for="homeQ">기사검색</label>
+              <input id="homeQ" type="search" placeholder="제목/요약/키워드" />
             </div>
-            <a class="more" href="./pages/newsroom/">전체 보기 →</a>
+            <div class="filter">
+              <label class="muted" for="homeAuthor">기자검색</label>
+              <input id="homeAuthor" type="search" placeholder="기자명" />
+            </div>
+            <button class="btn" id="homeSearchBtn" type="button">검색</button>
+            <button class="btn-ghost" id="homeResetBtn" type="button">초기화</button>
           </div>
 
           <div id="latestBriefs" class="list"></div>
-
           <div class="note">
-            운영 원칙: 기사 전문 복사 대신 <strong>요약 + 출처 링크</strong>로 제공합니다.
+            운영 원칙: 기사 전문 복사 대신 <strong>요약 + 출처 링크</strong>로 제공하여 합법성과 지속성을 확보합니다.
           </div>
         </section>
 
-        <!-- 카테고리 블록(신문형 2단) -->
+        <!-- CATEGORY 2-COL -->
         <section class="two-col">
           <section class="card">
             <div class="section-head">
               <div class="section-title"><span class="bar"></span><h2>국내소식</h2></div>
-              <a class="more" href="./pages/newsroom/?cat=국내소식">더보기 →</a>
+              <a class="more" href="/gn24/pages/newsroom/?cat=국내소식">더보기 →</a>
             </div>
             <div id="catDomestic" class="list"></div>
           </section>
@@ -159,7 +163,7 @@
           <section class="card">
             <div class="section-head">
               <div class="section-title"><span class="bar"></span><h2>국제뉴스</h2></div>
-              <a class="more" href="./pages/newsroom/?cat=국제뉴스">더보기 →</a>
+              <a class="more" href="/gn24/pages/newsroom/?cat=국제뉴스">더보기 →</a>
             </div>
             <div id="catWorld" class="list"></div>
           </section>
@@ -169,46 +173,45 @@
           <section class="card">
             <div class="section-head">
               <div class="section-title"><span class="bar"></span><h2>안전·구조</h2></div>
-              <a class="more" href="./pages/newsroom/?cat=안전·구조">더보기 →</a>
+              <a class="more" href="/gn24/pages/newsroom/?cat=안전·구조">더보기 →</a>
             </div>
             <div id="catSafety" class="list"></div>
           </section>
 
           <section class="card">
             <div class="section-head">
-              <div class="section-title"><span class="bar"></span><h2>AI·혁신기술</h2></div>
-              <a class="more" href="./pages/newsroom/?cat=AI·혁신기술">더보기 →</a>
+              <div class="section-title"><span class="bar"></span><h2>무도·스포츠</h2></div>
+              <a class="more" href="/gn24/pages/newsroom/?cat=무도·스포츠">더보기 →</a>
             </div>
-            <div id="catAI" class="list"></div>
+            <div id="catMartial" class="list"></div>
           </section>
         </section>
 
-        <!-- 공식 보도자료 -->
+        <!-- PRESS -->
         <section class="card">
           <div class="section-head">
             <div class="section-title"><span class="bar"></span><h2>공식 보도자료</h2></div>
-            <a class="more" href="./pages/press/">전체 보기 →</a>
+            <a class="more" href="/gn24/pages/press/">전체 보기 →</a>
           </div>
           <div id="pressList" class="list"></div>
         </section>
 
-        <!-- 운영 철학 -->
+        <!-- PHILOSOPHY -->
         <section class="card">
           <div class="section-head">
             <div class="section-title"><span class="bar"></span><h2>운영 철학</h2></div>
-            <a class="more" href="./pages/policy/">편집정책 →</a>
+            <a class="more" href="/gn24/pages/policy/">편집정책 →</a>
           </div>
           <p class="muted">
             Global News24는 특정 분야에 편중되지 않는 <strong>종합 뉴스 체계</strong>를 지향합니다.
-            공익 가치가 큰 안전·구조, 교육·청소년 분야를 강화하며,
+            공익 가치가 큰 안전·구조, 청소년·교육을 강화하며,
             무도·스포츠는 종합지의 한 섹션으로 균형 있게 다룹니다.
           </p>
-          <p class="muted" style="margin-top:8px;">
-            (참고 프레임) <strong>구조 &gt;&gt; 교차원리, 교차원리 기반 무도</strong>는
-            무도 영역의 전문 프레임으로, GN24의 종합 편집 체계 안에서 <em>전문 분야</em>로 적용됩니다.
+          <p class="muted" style="margin-top:10px;">
+            (전문 프레임) <strong>구조 &gt;&gt; 교차원리, 교차원리 기반 무도</strong>는
+            GN24 편집 체계 안에서 <em>전문 분야</em>로 적용됩니다.
           </p>
         </section>
-
       </section>
 
       <!-- RIGHT -->
@@ -219,29 +222,19 @@
           </div>
           <ol id="popular" class="rank"></ol>
           <div class="note">
-            자동화: 기사 클릭 시 조회수 누적 → TOP7 자동 집계 (브라우저 저장 기반)
+            자동화: 상세페이지 진입 시 조회수 누적 → TOP7 자동 집계 (브라우저 저장 기반)
           </div>
         </section>
 
         <section class="card">
           <div class="section-head">
-            <div class="section-title"><span class="bar"></span><h2>빠른 메뉴</h2></div>
+            <div class="section-title"><span class="bar"></span><h2>바로가기</h2></div>
           </div>
-
           <div class="quick">
-            <a class="qbtn" href="./pages/newsroom/?cat=안전·구조">안전·구조</a>
-            <a class="qbtn" href="./pages/newsroom/?cat=무도·스포츠">무도·스포츠</a>
-            <a class="qbtn" href="./pages/press/">보도자료</a>
-            <a class="qbtn" href="./pages/archive/">아카이브</a>
-            <a class="qbtn" href="./pages/newsroom/?mode=author">기자검색</a>
-            <a class="qbtn" href="./pages/manual/">운영메뉴얼</a>
-          </div>
-
-          <div class="mini-callout">
-            <div class="badge">Notice</div>
-            <p class="muted" style="margin:8px 0 0;">
-              GN24는 브리핑형(요약+출처)과 공식 자료 기반 보도 체계로 운영됩니다.
-            </p>
+            <a class="btn btn-full" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">🟥 기사 제보하기</a>
+            <a class="btn btn-full" href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener">🟦 기자 송출(본부 제출)</a>
+            <a class="btn-ghost btn-full" href="/gn24/pages/manual/">🗂 운영매뉴얼</a>
+            <a class="btn-ghost btn-full" href="/gn24/pages/policy/">📌 편집정책</a>
           </div>
         </section>
 
@@ -250,54 +243,72 @@
             <div class="section-title"><span class="bar"></span><h2>배너</h2></div>
           </div>
           <div class="adbox">
-            <div class="muted">Wix 배너 이미지 URL을 <strong>home.js</strong>의 <code>adUrl</code>에 넣어 불러오세요.</div>
+            <div class="muted">배너 이미지는 Wix URL로 연결하세요.</div>
             <div class="adimg" id="adImg"></div>
-            <a class="more" href="./pages/contact/">제휴/배너 문의 →</a>
+            <a class="more" href="/gn24/pages/partners/">제휴/배너 문의 →</a>
           </div>
         </section>
       </aside>
     </section>
   </main>
 
-  <button id="toTop" class="to-top" type="button" aria-label="Top">Top</button>
+  <!-- FOOTER (첨부 레이아웃 반영) -->
+  <footer class="footer">
+    <div class="wrap footer-toplinks">
+      <a href="/gn24/pages/about/">회사소개</a>
+      <a href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">기사제보</a>
+      <a href="/gn24/pages/partners/">광고 및 제휴문의</a>
+      <a href="/gn24/pages/privacy/">개인정보취급방침</a>
+      <a href="/gn24/pages/youth/">청소년보호정책</a>
+      <a href="/gn24/pages/reject-email/">메일수집거부</a>
+    </div>
 
-  <!-- 푸터(첨부 이미지 스타일) -->
-  <footer class="footer-lite">
-    <div class="wrap foot-lite">
-      <div class="foot-logo">
-        <div class="foot-mark" aria-hidden="true"></div>
-        <div class="foot-brand">
-          <div class="foot-title">Global NEWS24</div>
+    <div class="wrap footer-body">
+      <div class="footer-brand">
+        <img class="footer-logo" alt="GN24" src="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png" />
+      </div>
+
+      <div class="footer-info">
+        <div class="muted">
+          글로벌뉴스24 등록번호 울산 아 01159
+          <span class="dot">•</span> 사업자번호 631-18-02336
+          <span class="dot">•</span> 등록일 2025-11-14
+          <span class="dot">•</span> 발행일자 <span id="pubDate"></span>
+          <span class="dot">•</span> 발행인 전성권
+          <span class="dot">•</span> 편집인 전성권
+        </div>
+        <div class="muted" style="margin-top:6px;">
+          청소년보호책임자 이은정
+          <span class="dot">•</span> 연락처 02-822-1822 / 052-260-4499
+          <span class="dot">•</span> 이메일 tk7890@hanmail.net
+          <span class="dot">•</span> 주소 울산 남구 중앙로 290번길 53 상가 204호
+        </div>
+
+        <div class="muted" style="margin-top:10px;">
+          글로벌뉴스24 © www.news24.ai.kr All rights reserved.
+          <span class="dot">•</span>
+          <a class="rss" href="/gn24/pages/newsroom/">RSS</a>
+        </div>
+
+        <div class="muted" style="margin-top:6px;">
+          글로벌뉴스24의 모든 콘텐츠(기사 등)는 저작권법의 보호를 받으며,
+          무단 전재, 복사, 배포 등을 금합니다.
         </div>
       </div>
 
-      <div class="foot-main">
-        <nav class="foot-nav">
-          <a href="./pages/archive/">회사소개</a>
-          <a href="https://forms.gle/PUT_YOUR_REPORTER_FORM" target="_blank" rel="noopener">기사제보</a>
-          <a href="./pages/contact/">광고 및 제휴문의</a>
-          <a href="./pages/policy/#privacy">개인정보취급방침</a>
-          <a href="./pages/policy/#youth">청소년보호정책</a>
-          <a href="./pages/policy/#mail">메일수집거부</a>
-        </nav>
-
-        <div class="foot-info">
-          글로벌뉴스24 &nbsp; 등록번호 울산 아 01159 &nbsp; 사업자번호 631-18-02336 &nbsp; 등록일 2025-11-14
-          &nbsp; 발행일자 <span id="pubDate"></span> &nbsp; 발행인 전성권 &nbsp; 편집인 전성권<br/>
-          청소년보호책임자 이은정 &nbsp; 연락처 02-822-1822 / 052-260-4499 &nbsp; 이메일 tk7890@hanmail.net
-          &nbsp; 주소 울산 남구 중앙로 290번길 53 상가 204호<br/>
-          글로벌뉴스24 © <span id="year"></span> www.news24.ai.kr All rights reserved.
-          <span class="rss">RSS</span>
-          <span class="powered">POWERED BY DadaMedia</span><br/>
-          글로벌뉴스24의 모든 콘텐츠(기사 등)는 저작권법의 보호를 받으며, 무단 전재, 복사, 배포 등을 금합니다.
-        </div>
+      <div class="footer-powered">
+        <div class="muted">POWERED BY</div>
+        <div class="power">DadaMedia</div>
       </div>
+    </div>
+
+    <div class="wrap footer-bottom">
+      <div class="muted">© <span id="year"></span> Global News24 · /gn24 독립형</div>
     </div>
   </footer>
 
-  <!-- ✅ 스크립트 순서 -->
-  <script src="./assets/js/app.js"></script>
-  <script src="./assets/js/popularity.js"></script>
-  <script src="./assets/js/home.js"></script>
+  <script src="/gn24/assets/js/app.js"></script>
+  <script src="/gn24/assets/js/popularity.js"></script>
+  <script src="/gn24/assets/js/home.js"></script>
 </body>
 </html>
