@@ -1,37 +1,101 @@
-{
-  "briefs": [
-    {
-      "id": "2026-02-27-korea-001",
-      "title": "정부, 청년일자리 지원 확대 방안 발표",
-      "summary": "관계부처는 청년 고용 지원을 강화하는 방안을 발표했다. 지원 대상과 신청 절차는 각 부처 안내에 따른다.",
-      "category": "국내소식",
-      "publish_date": "2026-02-27",
-      "source_name": "공식 발표/브리핑",
-      "source_url": "https://example.com",
-      "thumb": "https://static.wixstatic.com/media/abf917_32f71f4337204bb9b67b7e4ebf5423bd~mv2.png",
-      "tags": ["정책", "청년", "고용"]
-    },
-    {
-      "id": "2026-02-27-world-001",
-      "title": "국제 동향: 주요국 에너지 정책 변화",
-      "summary": "주요국의 에너지 정책이 전환 국면에 들어서며 시장 변동성이 확대되는 흐름이 관측된다.",
-      "category": "국제뉴스",
-      "publish_date": "2026-02-27",
-      "source_name": "공공자료 요약",
-      "source_url": "https://example.com",
-      "thumb": "",
-      "tags": ["국제", "에너지"]
-    },
-    {
-      "id": "2026-02-27-ai-001",
-      "title": "AI 혁신기술: 현장 적용 사례 확산",
-      "summary": "AI 기반 자동화·분석 솔루션의 현장 적용 사례가 늘고 있다. 핵심은 데이터 품질과 운영 체계다.",
-      "category": "AI·혁신기술",
-      "publish_date": "2026-02-27",
-      "source_name": "자료 요약",
-      "source_url": "https://example.com",
-      "thumb": "",
-      "tags": ["AI", "혁신"]
-    }
-  ]
-}
+[
+  {
+    "id": "2026-03-02-safety-qr-launch",
+    "title": "전국민 생활안전 캠페인 본격 출범",
+    "cat": "안전·구조",
+    "date": "2026-03-02",
+    "author": "김영준",
+    "important": true,
+    "summary": "생활안전 QR 기반 캠페인이 본격화되며, 현장 적용과 민관 협력 모델이 확대될 전망이다.",
+    "image": "https://static.wixstatic.com/media/PUT_IMAGE_1.jpg",
+    "body": [
+      "GN24는 생활안전 인식 개선을 위한 캠페인 확산 흐름을 브리핑한다.",
+      "현장 적용 사례와 공공자료 기반의 체크리스트가 함께 확산될 것으로 예상된다."
+    ],
+    "sourceLabel": "출처: 공공기관 보도자료",
+    "sourceUrl": "https://example.com/source1",
+    "keywords": ["생활안전", "QR", "캠페인"]
+  },
+  {
+    "id": "2026-03-02-ai-public-sector",
+    "title": "공공현장에 AI 도입 가속… 민원·안전 분야 확대",
+    "cat": "AI·혁신기술",
+    "date": "2026-03-02",
+    "author": "편집부",
+    "important": true,
+    "summary": "AI 기반 자동화가 민원 응대, 시설 점검, 위험 탐지 영역으로 확대되는 흐름이다.",
+    "image": "https://static.wixstatic.com/media/PUT_IMAGE_2.jpg",
+    "body": [
+      "AI 도입은 현장 인력의 부담을 줄이고 대응 속도를 높이는 방향으로 진행된다.",
+      "다만 데이터 품질, 책임 소재, 개인정보 이슈에 대한 정책 정비가 병행돼야 한다."
+    ],
+    "sourceLabel": "출처: 관련 공개자료",
+    "sourceUrl": "https://example.com/source2",
+    "keywords": ["AI", "공공", "안전"]
+  },
+  {
+    "id": "2026-03-01-domestic-brief-1",
+    "title": "지역 생활정보: 봄철 안전수칙과 점검 포인트",
+    "cat": "국내소식",
+    "date": "2026-03-01",
+    "author": "편집부",
+    "important": false,
+    "summary": "계절 전환기에는 시설·교통·생활안전 점검이 중요하다. 핵심 포인트를 정리한다.",
+    "image": "https://static.wixstatic.com/media/PUT_IMAGE_3.jpg",
+    "body": [
+      "학교/학원 이동 동선 점검, 야외활동 안전수칙, 응급 연락체계 준비가 권장된다."
+    ],
+    "sourceLabel": "출처: 공개 안전 가이드",
+    "sourceUrl": "https://example.com/source3",
+    "keywords": ["봄철", "안전수칙"]
+  },
+  {
+    "id": "2026-02-28-world-brief-1",
+    "title": "국제뉴스 브리핑: 재난 대응 체계 강화 움직임",
+    "cat": "국제뉴스",
+    "date": "2026-02-28",
+    "author": "편집부",
+    "important": false,
+    "summary": "각국이 재난 대응 훈련과 경보 시스템 고도화를 추진하는 흐름이 관측된다.",
+    "image": "https://static.wixstatic.com/media/PUT_IMAGE_4.jpg",
+    "body": [
+      "경보 정확도 개선, 대피 안내 표준화, 교육 강화가 핵심 과제로 꼽힌다."
+    ],
+    "sourceLabel": "출처: 공개 기사/보고서",
+    "sourceUrl": "https://example.com/source4",
+    "keywords": ["재난", "경보", "대피"]
+  },
+  {
+    "id": "2026-02-25-sports-mudo-1",
+    "title": "무도·스포츠: 안전 중심 훈련 문화 확산",
+    "cat": "무도·스포츠",
+    "date": "2026-02-25",
+    "author": "전성권",
+    "important": false,
+    "summary": "훈련 현장에서 안전 가이드와 단계별 교육이 강화되는 추세다.",
+    "image": "https://static.wixstatic.com/media/PUT_IMAGE_5.jpg",
+    "body": [
+      "훈련은 체계화된 커리큘럼과 단계별 안전 기준이 있을 때 지속가능해진다.",
+      "참고 프레임: 구조 >> 교차원리, 교차원리 기반 무도"
+    ],
+    "sourceLabel": "출처: GN24 편집",
+    "sourceUrl": "",
+    "keywords": ["무도", "안전", "교차원리"]
+  },
+  {
+    "id": "2026-02-20-culture-youth-1",
+    "title": "청소년·문화: 디지털 리터러시 교육 강화 필요",
+    "cat": "청소년·문화",
+    "date": "2026-02-20",
+    "author": "편집부",
+    "important": false,
+    "summary": "청소년 대상 디지털 안전 교육과 미디어 이해 교육이 중요해지고 있다.",
+    "image": "https://static.wixstatic.com/media/PUT_IMAGE_6.jpg",
+    "body": [
+      "학교·가정·지역 커뮤니티가 함께하는 교육 모델이 효과적이라는 분석이 있다."
+    ],
+    "sourceLabel": "출처: 공개 교육자료",
+    "sourceUrl": "https://example.com/source6",
+    "keywords": ["청소년", "디지털", "교육"]
+  }
+]
