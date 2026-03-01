@@ -1,138 +1,195 @@
-// /gn24/assets/js/home.js
-const $ = (s) => document.querySelector(s);
-const esc = (s="") => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+(async () => {
+  const $ = (s, r=document) => r.querySelector(s);
 
-function briefLink(id){
-  return `/gn24/pages/read/?id=${encodeURIComponent(id)}`;
-}
+  const el = {
+    heroLink: $('#heroLink'),
+    heroImg: $('#heroImg'),
+    heroCat: $('#heroCat'),
+    heroDate: $('#heroDate'),
+    heroAuthor: $('#heroAuthor'),
+    heroTitle: $('#heroTitle'),
+    heroSummary: $('#heroSummary'),
+    ticker: $('#ticker'),
+    latest: $('#latestBriefs'),
+    domestic: $('#catDomestic'),
+    world: $('#catWorld'),
+    safety: $('#catSafety'),
+    ai: $('#catAI'),
+    press: $('#pressList'),
+    popular: $('#popular'),
+    prev: $('#prev'),
+    next: $('#next'),
+    importantTrack: $('#importantTrack'),
+    adImg: $('#adImg'),
+  };
 
-function itemRow(b){
-  const thumb = b.thumb ? `<div class="thumb" style="background-image:url('${esc(b.thumb)}')"></div>` : `<div class="thumb placeholder"></div>`;
-  const src = b.source_url ? `<a class="src" href="${esc(b.source_url)}" target="_blank" rel="noopener">출처: ${esc(b.source_name||"원문")}</a>` : ``;
-  return `
-    <div class="row" style="grid-template-columns:110px 1fr;">
-      ${thumb}
-      <div class="row-body">
-        <div class="row-meta">
-          <span class="badge">${esc(b.category||"브리핑")}</span>
-          <span class="muted">${esc(b.publish_date||"")}</span>
-        </div>
-        <a class="row-title link" href="${briefLink(b.id)}">${esc(b.title||"")}</a>
-        <div class="row-sum muted">${esc(b.summary||"")}</div>
-        <div class="row-links">${src}</div>
-      </div>
-    </div>
-  `;
-}
+  // ✅ Wix 배너 URL 넣는 곳
+  const adUrl = "https://static.wixstatic.com/media/PUT_YOUR_BANNER.jpg";
 
-function pressRow(p){
-  return `
-    <div class="row" style="grid-template-columns:110px 1fr;">
-      <div class="thumb placeholder"></div>
-      <div class="row-body">
-        <div class="row-meta">
-          <span class="badge">보도자료</span>
-          <span class="muted">${esc(p.publish_date||"")}</span>
-        </div>
-        <a class="row-title link" href="${esc(p.url||'/gn24/pages/press/')}">${esc(p.title||"")}</a>
-        ${p.subtitle ? `<div class="row-sum muted">${esc(p.subtitle)}</div>` : ``}
-        <div class="row-sum muted">${esc(p.summary||"")}</div>
-      </div>
-    </div>
-  `;
-}
-
-let featured = [];
-let heroIdx = 0;
-
-function renderHero(){
-  const it = featured[heroIdx];
-  if(!it) return;
-
-  $("#heroLink").href = it.url || "#";
-  $("#heroCat").textContent = it.category || "공지";
-  $("#heroDate").textContent = it.publish_date || "";
-  $("#heroTitle").textContent = it.title || "";
-  $("#heroSummary").textContent = it.summary || "";
-
-  const heroImg = $("#heroImg");
-  const img = it.image && it.image.trim() ? `url('${it.image}')` : "";
-  heroImg.style.backgroundImage = img || "";
-  heroImg.classList.toggle("placeholder", !img);
-
-  const tick = featured.map((x,i)=> `${i===heroIdx ? "●" : "○"} ${esc(x.title)}`).join("  ·  ");
-  $("#ticker").innerHTML = tick;
-}
-
-async function init(){
-  // Featured
-  try{
-    const fr = await fetch("/gn24/data/featured.json", { cache:"no-store" });
-    const fd = await fr.json();
-    featured = fd.featured || [];
-    if(featured.length){
-      renderHero();
-      $("#prev").addEventListener("click", () => { heroIdx = (heroIdx - 1 + featured.length) % featured.length; renderHero(); });
-      $("#next").addEventListener("click", () => { heroIdx = (heroIdx + 1) % featured.length; renderHero(); });
-      setInterval(() => { heroIdx = (heroIdx + 1) % featured.length; renderHero(); }, 7000);
+  try {
+    if (el.adImg && adUrl && !adUrl.includes("PUT_YOUR_BANNER")) {
+      el.adImg.style.backgroundImage = `url('${adUrl}')`;
     }
-  }catch(e){ /* ignore */ }
 
-  // Briefs
-  let briefs = [];
-  try{
-    const br = await fetch("/gn24/data/briefs.json", { cache:"no-store" });
-    const bd = await br.json();
-    briefs = (bd.briefs || []).slice()
-      .sort((a,b)=> (b.publish_date||"").localeCompare(a.publish_date||""));
-  }catch(e){ briefs = []; }
+    const briefs = await GN24.fetchJSON('./data/briefs.json');
+    const press = await GN24.fetchJSON('./data/press.json');
 
-  // Latest briefs
-  const latest = briefs.slice(0,5);
-  $("#latestBriefs").innerHTML = latest.map(itemRow).join("") || `<div class="muted">표시할 브리핑이 없습니다.</div>`;
+    // 최신순 정렬
+    briefs.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+    press.sort((a,b) => (b.date||'').localeCompare(a.date||''));
 
-  // Category blocks
-  const pick = (cat) => briefs.filter(x => (x.category||"") === cat).slice(0,4);
-  $("#catDomestic").innerHTML = pick("국내소식").map(itemRow).join("") || `<div class="muted">데이터 준비중</div>`;
-  $("#catWorld").innerHTML = pick("국제뉴스").map(itemRow).join("") || `<div class="muted">데이터 준비중</div>`;
-  $("#catSafety").innerHTML = pick("안전·구조").map(itemRow).join("") || `<div class="muted">데이터 준비중</div>`;
-  $("#catAI").innerHTML = pick("AI·혁신기술").map(itemRow).join("") || `<div class="muted">데이터 준비중</div>`;
+    // 중요기사: important: true인 것 우선, 없으면 최신 상위로
+    const important = briefs.filter(x => x.important).slice(0,6);
+    const fallback = briefs.slice(0,6);
+    const importantList = important.length ? important : fallback;
 
-  // ✅ Popular 자동화: localStorage 클릭 기반 TOP7
-  const top = window.GN24Popularity?.topItems(briefs, 7) || briefs.slice(0,7);
-  $("#popular").innerHTML = top.map((b,i)=> `
-    <li>
-      <span class="rank-n">${i+1}</span>
-      <div class="rank-body">
-        <a class="rank-title" href="${briefLink(b.id)}">${esc(b.title||"")}</a>
-        <div class="muted small">${esc(b.category||"")} · ${esc(b.publish_date||"")}
-          <span class="dot">•</span> 조회 ${b._views ?? 0}
-        </div>
-      </div>
-    </li>
-  `).join("") || `<li class="muted">데이터 준비중</li>`;
+    // 세로 스크롤: 2배로 복제(무한처럼)
+    if (el.importantTrack) {
+      const mk = (x) => {
+        const url = `./pages/article/?id=${encodeURIComponent(x.id)}`;
+        return `
+          <a class="vline" href="${url}" data-id="${GN24.escape(x.id)}" data-title="${GN24.escape(x.title)}" data-cat="${GN24.escape(x.cat)}">
+            <div class="vtitle">${GN24.escape(x.title)}</div>
+            <div class="vmeta">${GN24.escape(x.cat)} · ${GN24.escape(GN24.formatDate(x.date))}</div>
+          </a>
+        `;
+      };
+      el.importantTrack.innerHTML = importantList.map(mk).join('') + importantList.map(mk).join('');
+      el.importantTrack.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-id]');
+        if (!a) return;
+        GN24.popularity?.bump(a.dataset.id, a.dataset.title, a.dataset.cat);
+      });
+    }
 
-  // Press
-  try{
-    const pr = await fetch("/gn24/data/press.json", { cache:"no-store" });
-    const pd = await pr.json();
-    const press = (pd.press || []).slice()
-      .sort((a,b)=> (b.publish_date||"").localeCompare(a.publish_date||""))
-      .slice(0,3);
-    $("#pressList").innerHTML = press.map(pressRow).join("") || `<div class="muted">보도자료 준비중</div>`;
-  }catch(e){
-    $("#pressList").innerHTML = `<div class="muted">보도자료 준비중</div>`;
+    // 헤드라인: 상위 5개
+    const heroItems = briefs.slice(0,5);
+    let idx = 0;
+
+    const renderHero = () => {
+      const x = heroItems[idx] || heroItems[0];
+      if (!x) return;
+      const url = `./pages/article/?id=${encodeURIComponent(x.id)}`;
+
+      el.heroLink.href = url;
+      el.heroLink.dataset.id = x.id;
+      el.heroLink.dataset.title = x.title;
+      el.heroLink.dataset.cat = x.cat;
+
+      if (el.heroImg) el.heroImg.style.backgroundImage = `url('${x.image || ''}')`;
+      if (el.heroCat) el.heroCat.textContent = x.cat || '브리핑';
+      if (el.heroDate) el.heroDate.textContent = GN24.formatDate(x.date) || '';
+      if (el.heroAuthor) el.heroAuthor.textContent = x.author ? `기자 ${x.author}` : '편집부';
+      if (el.heroTitle) el.heroTitle.textContent = x.title || '';
+      if (el.heroSummary) el.heroSummary.textContent = x.summary || '';
+
+      // 티커(한 줄)
+      if (el.ticker) {
+        const line = briefs.slice(0,10).map(b => `• ${b.title}`).join('  ');
+        el.ticker.textContent = line;
+      }
+    };
+
+    const go = (d) => {
+      idx = (idx + d + heroItems.length) % heroItems.length;
+      renderHero();
+    };
+
+    if (el.prev) el.prev.addEventListener('click', ()=>go(-1));
+    if (el.next) el.next.addEventListener('click', ()=>go(1));
+    renderHero();
+
+    // 자동 슬라이드(6초)
+    setInterval(() => go(1), 6000);
+
+    // 클릭 시 조회수 반영
+    if (el.heroLink) {
+      el.heroLink.addEventListener('click', () => {
+        const id = el.heroLink.dataset.id;
+        const title = el.heroLink.dataset.title;
+        const cat = el.heroLink.dataset.cat;
+        GN24.popularity?.bump(id, title, cat);
+      });
+    }
+
+    // 리스트 렌더 헬퍼
+    const renderList = (container, items, limit=6) => {
+      if (!container) return;
+      const pick = items.slice(0,limit);
+      container.innerHTML = pick.map(x => {
+        const url = `./pages/article/?id=${encodeURIComponent(x.id)}`;
+        const img = x.image || '';
+        return `
+          <a class="item" href="${url}" data-id="${GN24.escape(x.id)}" data-title="${GN24.escape(x.title)}" data-cat="${GN24.escape(x.cat)}">
+            <div class="thumb" style="background-image:url('${img}')"></div>
+            <div>
+              <h4>${GN24.escape(x.title)}</h4>
+              <div class="meta">
+                <span>${GN24.escape(x.cat || '')}</span>
+                <span>${GN24.escape(GN24.formatDate(x.date) || '')}</span>
+                <span>${GN24.escape(x.author ? `기자 ${x.author}` : '편집부')}</span>
+              </div>
+              <div class="sum">${GN24.escape(x.summary || '')}</div>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      container.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-id]');
+        if (!a) return;
+        GN24.popularity?.bump(a.dataset.id, a.dataset.title, a.dataset.cat);
+      }, { once:true });
+    };
+
+    // 홈 섹션들
+    renderList(el.latest, briefs, 8);
+    renderList(el.domestic, briefs.filter(x=>x.cat==='국내소식'), 5);
+    renderList(el.world, briefs.filter(x=>x.cat==='국제뉴스'), 5);
+    renderList(el.safety, briefs.filter(x=>x.cat==='안전·구조'), 5);
+    renderList(el.ai, briefs.filter(x=>x.cat==='AI·혁신기술'), 5);
+
+    // 보도자료
+    if (el.press) {
+      const items = press.slice(0,6);
+      el.press.innerHTML = items.map(x => {
+        const url = `./pages/article/?id=${encodeURIComponent(x.id)}`;
+        return `
+          <a class="item" href="${url}" data-id="${GN24.escape(x.id)}" data-title="${GN24.escape(x.title)}" data-cat="보도자료">
+            <div class="thumb" style="background-image:url('${x.image || ''}')"></div>
+            <div>
+              <h4>${GN24.escape(x.title)}</h4>
+              <div class="meta">
+                <span>보도자료</span>
+                <span>${GN24.escape(GN24.formatDate(x.date) || '')}</span>
+                <span>${GN24.escape(x.author ? `기자 ${x.author}` : '편집부')}</span>
+              </div>
+              <div class="sum">${GN24.escape(x.summary || '')}</div>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      el.press.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-id]');
+        if (!a) return;
+        GN24.popularity?.bump(a.dataset.id, a.dataset.title, '보도자료');
+      });
+    }
+
+    // 많이 본 뉴스
+    if (el.popular && GN24.popularity) {
+      const top = GN24.popularity.topN(7);
+      el.popular.innerHTML = top.length ? top.map((x, i) => `
+        <li>
+          <a href="./pages/article/?id=${encodeURIComponent(x.id)}">${i+1}. ${GN24.escape(x.title || x.id)}</a>
+          <span class="rmeta">${GN24.escape(x.cat || '')} · 조회 ${x.views}</span>
+        </li>
+      `).join('') : `<li class="muted">아직 집계된 데이터가 없습니다.</li>`;
+    }
+
+  } catch (err) {
+    console.error(err);
+    if (el.latest) el.latest.innerHTML = `<div class="muted">데이터를 불러오지 못했습니다. (data/briefs.json 확인)</div>`;
   }
-
-  // Sidebar ad image (Wix URL 넣으면 됨)
-  const ad = $("#adImg");
-  const adUrl = ""; // 예: "https://static.wixstatic.com/media/....png"
-  if(adUrl){
-    ad.style.backgroundImage = `url('${adUrl}')`;
-    ad.classList.remove("placeholder");
-  }else{
-    ad.classList.add("placeholder");
-  }
-}
-
-init();
+})();
