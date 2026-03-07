@@ -3,92 +3,657 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>뉴스룸 | Global News24</title>
-  <meta name="description" content="Global News24 뉴스룸. 기사검색/기자검색/카테고리 필터." />
-  <meta name="theme-color" content="#0b0f19" />
-  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <title>GN24 Newsroom | 최신 기사와 카테고리 브리핑</title>
+  <meta name="description" content="GN24 뉴스룸. 최신 기사, 카테고리별 브리핑, 검색과 필터를 통해 GN24 뉴스 아카이브를 확인할 수 있습니다." />
+  <meta name="theme-color" content="#070a12" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GN24 Newsroom | 최신 기사와 카테고리 브리핑" />
+  <meta property="og:description" content="공익·안전·교육·AI·무도 중심 GN24 뉴스룸" />
+  <meta property="og:url" content="https://ipma1822-png.github.io/gn24/pages/newsroom/" />
+  <meta property="og:image" content="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="/gn24/assets/css/style.css" />
+
+  <style>
+    .newsroom-hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      margin:18px 0 16px;
+      padding:24px;
+    }
+    .newsroom-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(201,162,39,.30);
+      background:rgba(201,162,39,.10);
+      color:#f4dd96;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.3px;
+    }
+    .newsroom-hero h1{
+      margin:12px 0 10px;
+      font-size:34px;
+      line-height:1.18;
+    }
+    .newsroom-hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+    .newsroom-side{
+      display:grid;
+      gap:12px;
+    }
+    .newsroom-side-box{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+    }
+    .newsroom-side-box strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:15px;
+    }
+    .toolbar{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:center;
+      margin:0 0 16px;
+    }
+    .toolbar-search{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 14px;
+      border:1px solid var(--chipLine);
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+    }
+    .toolbar-search input{
+      flex:1;
+      background:transparent;
+      border:0;
+      outline:0;
+      color:var(--text);
+      font-size:14px;
+    }
+    .toolbar-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .toolbar-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 14px;
+      border-radius:14px;
+      border:1px solid var(--chipLine);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+    }
+    .toolbar-btn.primary{
+      border-color:rgba(59,130,246,.28);
+      background:rgba(59,130,246,.10);
+    }
+    .filter-bar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .filter-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--chipLine);
+      background:rgba(255,255,255,.04);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .filter-chip:hover,
+    .filter-chip.active{
+      border-color:rgba(59,130,246,.34);
+      background:rgba(59,130,246,.12);
+    }
+    .news-layout{
+      display:grid;
+      grid-template-columns:1fr 330px;
+      gap:16px;
+    }
+    .news-feed{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .news-card{
+      overflow:hidden;
+      padding:0;
+    }
+    .news-card-link{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      gap:0;
+      min-height:220px;
+    }
+    .news-card-media{
+      min-height:100%;
+      background-size:cover;
+      background-position:center;
+      border-right:1px solid var(--line);
+      background-color:rgba(255,255,255,.04);
+    }
+    .news-card-body{
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .news-card-top{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .news-card-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .news-card-title{
+      margin:0;
+      font-size:24px;
+      line-height:1.3;
+      letter-spacing:-0.02em;
+    }
+    .news-card-summary{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.75;
+    }
+    .news-card-bottom{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .meta-inline{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .source-link{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      color:rgba(96,165,250,.95);
+      font-weight:900;
+      font-size:13px;
+    }
+    .read-more{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(201,162,39,.28);
+      background:rgba(201,162,39,.08);
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .news-empty{
+      padding:26px 20px;
+      text-align:center;
+      color:var(--muted);
+      line-height:1.7;
+    }
+    .sidebar-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .mini-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .mini-item{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .mini-item strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      line-height:1.5;
+    }
+    .mini-item span{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .status-line{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:8px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .count-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(59,130,246,.10);
+      border:1px solid rgba(59,130,246,.25);
+      color:var(--text);
+      font-weight:900;
+      font-size:12px;
+    }
+
+    @media (max-width: 980px){
+      .newsroom-hero,
+      .news-layout{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 860px){
+      .toolbar{
+        grid-template-columns:1fr;
+      }
+      .news-card-link{
+        grid-template-columns:1fr;
+      }
+      .news-card-media{
+        min-height:220px;
+        border-right:0;
+        border-bottom:1px solid var(--line);
+      }
+      .newsroom-hero h1{
+        font-size:28px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .toolbar-actions{
+        width:100%;
+      }
+      .toolbar-btn{
+        flex:1 1 auto;
+      }
+      .news-card-title{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="top-mini">
-    <div class="wrap mini-row">
-      <div class="mini-left">
-        <a class="pill" href="../../">← 홈</a>
-        <span class="badge">NEWSROOM</span>
-        <span class="muted">Update <strong id="today"></strong></span>
-      </div>
-      <div class="mini-right">
-        <a href="../manual/">운영메뉴얼</a><span class="dot">•</span>
-        <a href="../press/">보도자료</a><span class="dot">•</span>
-        <a href="../archive/">아카이브</a>
+  <header class="site-header">
+    <div class="wrap header-wrap">
+      <a class="brand" href="/gn24/" aria-label="GN24 홈">
+        <img class="brand-logo"
+             src="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png"
+             alt="GN24 로고" />
+        <div class="brand-txt">
+          <div class="brand-title">GN24 Newsroom</div>
+          <div class="brand-meta">
+            <span class="meta-badge">Global News24</span>
+            <span class="meta-dot">•</span>
+            <span class="meta-update">Update <strong id="today">—</strong></span>
+          </div>
+          <div class="brand-sub">최신 기사 · 카테고리 브리핑 · 독립 뉴스 아카이브</div>
+        </div>
+      </a>
+
+      <div class="tools">
+        <form class="search" action="/gn24/pages/newsroom/" method="get">
+          <input name="q" type="search" placeholder="기사 검색 / 키워드 검색" />
+          <button type="submit" aria-label="검색">🔎</button>
+        </form>
+
+        <button id="menuBtn" class="hamburger" type="button" aria-label="메뉴" aria-expanded="false">
+          ☰
+        </button>
       </div>
     </div>
-  </div>
+
+    <div id="menuPanel" class="menu-panel" hidden>
+      <div class="wrap menu-panel-inner">
+        <a class="mp" href="/gn24/">홈</a>
+        <a class="mp" href="/gn24/pages/policy/">편집정책</a>
+        <a class="mp" href="/gn24/pages/manual/">운영매뉴얼</a>
+        <a class="mp" href="/gn24/pages/contact/">문의</a>
+        <a class="mp" href="/gn24/pages/archive/">아카이브</a>
+        <span class="mp-sep"></span>
+        <a class="mp mp-strong" href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">📝 제보하기</a>
+        <a class="mp mp-strong" href="https://forms.gle/CYitNRwT313NBgBo8" target="_blank" rel="noopener">📰 기자송출</a>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="카테고리">
+      <div class="wrap nav-inner">
+        <a href="/gn24/pages/newsroom/" class="nav-link">전체</a>
+        <a href="/gn24/pages/newsroom/?cat=국제뉴스" class="nav-link">국제뉴스</a>
+        <a href="/gn24/pages/newsroom/?cat=국내소식" class="nav-link">국내소식</a>
+        <a href="/gn24/pages/newsroom/?cat=사회" class="nav-link">사회</a>
+        <a href="/gn24/pages/newsroom/?cat=경제" class="nav-link">경제</a>
+        <a href="/gn24/pages/newsroom/?cat=안전·구조" class="nav-link">안전·구조</a>
+        <a href="/gn24/pages/newsroom/?cat=청소년·문화" class="nav-link">청소년·문화</a>
+        <a href="/gn24/pages/newsroom/?cat=AI·혁신기술" class="nav-link">AI·혁신기술</a>
+        <a href="/gn24/pages/newsroom/?cat=무도·스포츠" class="nav-link">무도·스포츠</a>
+        <a href="/gn24/pages/press/" class="nav-link nav-strong">보도자료</a>
+        <a href="/gn24/pages/archive/" class="nav-link">아카이브</a>
+      </div>
+    </nav>
+  </header>
 
   <main class="wrap main">
-    <div class="page-head">
+    <section class="card newsroom-hero">
       <div>
-        <h1>뉴스룸</h1>
-        <div class="muted">기사검색(제목/요약/키워드) · 기자검색(작성자)</div>
+        <span class="newsroom-kicker">GN24 NEWSROOM</span>
+        <h1>최신 기사와 카테고리 브리핑을 <br>한 화면에서 정리합니다</h1>
+        <p>
+          GN24 뉴스룸은 기사 검색, 카테고리 필터, 최신 브리핑 목록을 통해
+          독립 뉴스 플랫폼의 흐름을 한눈에 파악할 수 있도록 구성됩니다.
+          기존 콘텐츠는 단순 복사가 아니라 핵심 요약과 재작성, 출처 표기를 원칙으로 정리됩니다.
+        </p>
       </div>
 
-      <div class="filters">
-        <select id="cat" class="select" aria-label="카테고리">
-          <option value="">전체</option>
-          <option>국제뉴스</option>
-          <option>국내소식</option>
-          <option>사회</option>
-          <option>경제·산업</option>
-          <option>안전·구조</option>
-          <option>청소년·문화</option>
-          <option>AI·혁신기술</option>
-          <option>무도·스포츠</option>
-          <option>보도자료</option>
-        </select>
-
-        <input id="q" class="input" placeholder="기사검색: 제목/요약/키워드" />
-        <input id="author" class="input" placeholder="기자검색: 작성자(예: 전성권)" />
-        <button id="clear" class="btn-ghost" type="button" title="지우기">✕</button>
-
-        <span class="kbd">팁: q=검색어, author=기자, cat=카테고리</span>
+      <div class="newsroom-side">
+        <div class="newsroom-side-box">
+          <strong>핵심 운영 원칙</strong>
+          <div class="muted">핵심 요약 · 재정리 · 출처 표기 · 분야별 구조화</div>
+        </div>
+        <div class="newsroom-side-box">
+          <strong>중점 분야</strong>
+          <div class="muted">생활 안전 · 청소년 교육 · AI·혁신기술 · 무도·스포츠</div>
+        </div>
+        <div class="newsroom-side-box">
+          <strong>초기 목표</strong>
+          <div class="muted">카테고리별 기사 5건 이상 확보 및 아카이브 정착</div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <section class="card">
-      <div class="section-head">
-        <div class="section-title"><span class="bar"></span><h2>기사 목록</h2></div>
-        <div class="tiny" id="count"></div>
+    <section class="toolbar">
+      <form class="toolbar-search card" action="/gn24/pages/newsroom/" method="get">
+        <input id="toolbarKeyword" name="q" type="search" placeholder="기사 제목, 요약, 출처명 검색" />
+        <button class="toolbar-btn primary" type="submit">검색</button>
+      </form>
+
+      <div class="toolbar-actions">
+        <a class="toolbar-btn" href="/gn24/">홈으로</a>
+        <a class="toolbar-btn" href="/gn24/pages/press/">보도자료</a>
+        <a class="toolbar-btn" href="/gn24/pages/archive/">아카이브</a>
       </div>
+    </section>
 
-      <div id="list" class="list"></div>
+    <div id="categoryFilters" class="filter-bar"></div>
+
+    <section class="news-layout">
+      <section class="news-feed-area">
+        <div class="status-line">
+          <span id="currentFilterLabel">전체 기사</span>
+          <span class="count-badge" id="resultCount">0건</span>
+        </div>
+
+        <div id="newsFeed" class="news-feed"></div>
+      </section>
+
+      <aside class="sidebar-stack">
+        <section class="card">
+          <div class="section-head">
+            <div class="section-title">
+              <span class="bar"></span>
+              <h2>뉴스룸 안내</h2>
+            </div>
+          </div>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>카테고리별 탐색</strong>
+              <span>상단 네비와 필터 칩으로 분야별 기사만 빠르게 볼 수 있습니다.</span>
+            </div>
+            <div class="mini-item">
+              <strong>검색 기능</strong>
+              <span>기사 제목, 요약, 출처명을 기준으로 간단 검색이 가능합니다.</span>
+            </div>
+            <div class="mini-item">
+              <strong>출처 원칙</strong>
+              <span>기사마다 출처명을 함께 표기해 신뢰성과 정리 기준을 유지합니다.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div class="section-title">
+              <span class="bar"></span>
+              <h2>중점 카테고리</h2>
+            </div>
+          </div>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>안전·구조</strong>
+              <span>GN24의 핵심 공익 분야로 우선 확장됩니다.</span>
+            </div>
+            <div class="mini-item">
+              <strong>청소년·문화</strong>
+              <span>교육, 보호, 성장 이슈를 중심으로 정리됩니다.</span>
+            </div>
+            <div class="mini-item">
+              <strong>AI·혁신기술</strong>
+              <span>복잡한 흐름을 브리핑형 기사로 쉽게 전달합니다.</span>
+            </div>
+            <div class="mini-item">
+              <strong>무도·스포츠</strong>
+              <span>GN24만의 차별화된 전문 분야로 발전시킵니다.</span>
+            </div>
+          </div>
+        </section>
+      </aside>
     </section>
   </main>
 
-  <button id="toTop" class="to-top" type="button" aria-label="Top">Top</button>
-
-  <footer class="footer-lite">
-    <div class="wrap foot-lite">
-      <div class="foot-logo">
-        <div class="foot-mark" aria-hidden="true"></div>
-        <div class="foot-brand"><div class="foot-title">Global NEWS24</div></div>
+  <footer class="footer">
+    <div class="wrap foot">
+      <div class="foot-links">
+        <a href="/gn24/">홈</a>
+        <a href="https://forms.gle/n7nrskXQY5AQ7Yvt6" target="_blank" rel="noopener">기사제보</a>
+        <a href="/gn24/pages/policy/">편집정책</a>
+        <a href="/gn24/pages/manual/">운영매뉴얼</a>
+        <a href="/gn24/pages/contact/">문의</a>
       </div>
-      <div class="foot-main">
-        <nav class="foot-nav">
-          <a href="../archive/">회사소개</a>
-          <a href="https://forms.gle/PUT_YOUR_REPORTER_FORM" target="_blank" rel="noopener">기사제보</a>
-          <a href="../contact/">광고 및 제휴문의</a>
-          <a href="../policy/#privacy">개인정보취급방침</a>
-          <a href="../policy/#youth">청소년보호정책</a>
-          <a href="../policy/#mail">메일수집거부</a>
-        </nav>
-        <div class="foot-info">
-          글로벌뉴스24 © <span id="year"></span> www.news24.ai.kr All rights reserved.
-        </div>
+
+      <div class="foot-meta">
+        등록번호: 울산 아 01159 · 사업자번호: 631-18-02336 · 등록일: 2025-11-14 · 발행일자: 2026-03-02<br>
+        발행인/편집인: 전성권 · 청소년보호책임자: 이은종 · 연락처: 02-822-1822 / 052-260-4499 · 이메일: tk7890@hanmail.net<br>
+        주소: 울산 남구 중앙로 290번길 53 상가 204호 · © GN24 / Global News24 All rights reserved.
       </div>
     </div>
   </footer>
 
-  <script src="../../assets/js/app.js"></script>
-  <script src="../../assets/js/popularity.js"></script>
-  <script src="../../assets/js/newsroom.js"></script>
+  <script defer src="/gn24/assets/js/app.js"></script>
+  <script>
+    (async function () {
+      "use strict";
+
+      const feedEl = document.getElementById("newsFeed");
+      const resultCountEl = document.getElementById("resultCount");
+      const currentFilterLabelEl = document.getElementById("currentFilterLabel");
+      const categoryFiltersEl = document.getElementById("categoryFilters");
+      const toolbarKeywordEl = document.getElementById("toolbarKeyword");
+
+      const qs = new URLSearchParams(window.location.search);
+      const q = (qs.get("q") || "").trim();
+      const cat = (qs.get("cat") || "").trim();
+
+      if (toolbarKeywordEl) {
+        toolbarKeywordEl.value = q;
+      }
+
+      function normalizeText(value) {
+        return String(value || "").toLowerCase().trim();
+      }
+
+      function makePlaceholderStyle() {
+        return "";
+      }
+
+      function buildSourceHtml(item) {
+        if (item.sourceUrl) {
+          return `<a class="source-link" href="${item.sourceUrl}" target="_blank" rel="noopener">출처 · ${window.GN24.escapeHtml(item.sourceName || "바로가기")}</a>`;
+        }
+        if (item.sourceName) {
+          return `<span class="source-link">출처 · ${window.GN24.escapeHtml(item.sourceName)}</span>`;
+        }
+        return `<span class="source-link">출처 준비중</span>`;
+      }
+
+      function renderCard(item) {
+        const imageStyle = item.image
+          ? `style="background-image:url('${item.image.replace(/'/g, "%27")}')"`
+          : makePlaceholderStyle();
+
+        return `
+          <article class="card news-card">
+            <a class="news-card-link" href="${item.href || '#'}">
+              <div class="news-card-media placeholder" ${imageStyle}></div>
+              <div class="news-card-body">
+                <div class="news-card-top">
+                  <div class="news-card-meta">
+                    <span class="badge">${window.GN24.escapeHtml(item.category || "뉴스")}</span>
+                    <span class="muted">${window.GN24.formatDate(item.date)}</span>
+                    <span class="muted">${item.type === "featured" ? "FEATURED" : "BRIEF"}</span>
+                  </div>
+                  <h2 class="news-card-title">${window.GN24.escapeHtml(item.title)}</h2>
+                  <p class="news-card-summary">${window.GN24.escapeHtml(item.summary)}</p>
+                </div>
+
+                <div class="news-card-bottom">
+                  <div class="meta-inline">
+                    ${buildSourceHtml(item)}
+                  </div>
+                  <span class="read-more">자세히 보기 →</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        `;
+      }
+
+      function renderEmpty() {
+        feedEl.innerHTML = `
+          <div class="card news-empty">
+            현재 조건에 맞는 기사가 없습니다.<br>
+            다른 카테고리를 선택하거나 검색어를 다시 확인해 주세요.
+          </div>
+        `;
+      }
+
+      function renderFilters(categories) {
+        const current = cat || "전체";
+
+        const html = categories.map((item) => {
+          const active = (item.name === current) || (!cat && item.name === "전체");
+          return `
+            <a class="filter-chip ${active ? "active" : ""}" href="${item.href}">
+              ${window.GN24.escapeHtml(item.name)}
+            </a>
+          `;
+        }).join("");
+
+        categoryFiltersEl.innerHTML = html;
+      }
+
+      try {
+        const [categories, featured, briefs] = await Promise.all([
+          window.GN24.fetchJSON("/gn24/data/categories.json"),
+          window.GN24.fetchJSON("/gn24/data/featured.json"),
+          window.GN24.fetchJSON("/gn24/data/briefs.json")
+        ]);
+
+        renderFilters(categories);
+
+        let items = [...featured, ...briefs];
+
+        items.sort((a, b) => {
+          const dateA = new Date(a.date || "2000-01-01").getTime();
+          const dateB = new Date(b.date || "2000-01-01").getTime();
+          return dateB - dateA;
+        });
+
+        if (cat) {
+          items = items.filter((item) => item.category === cat);
+          currentFilterLabelEl.textContent = `${cat} 기사`;
+        } else {
+          currentFilterLabelEl.textContent = "전체 기사";
+        }
+
+        if (q) {
+          const keyword = normalizeText(q);
+          items = items.filter((item) => {
+            const haystack = [
+              item.title,
+              item.summary,
+              item.category,
+              item.sourceName
+            ].map(normalizeText).join(" ");
+            return haystack.includes(keyword);
+          });
+
+          currentFilterLabelEl.textContent += ` · 검색어 "${q}"`;
+        }
+
+        resultCountEl.textContent = `${items.length}건`;
+
+        if (!items.length) {
+          renderEmpty();
+          return;
+        }
+
+        feedEl.innerHTML = items.map(renderCard).join("");
+      } catch (error) {
+        console.error(error);
+        feedEl.innerHTML = `
+          <div class="card news-empty">
+            뉴스 데이터를 불러오는 중 문제가 발생했습니다.<br>
+            파일 경로와 JSON 문법을 다시 확인해 주세요.
+          </div>
+        `;
+        resultCountEl.textContent = "오류";
+        currentFilterLabelEl.textContent = "데이터 로드 실패";
+      }
+    })();
+  </script>
 </body>
 </html>
