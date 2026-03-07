@@ -336,17 +336,18 @@
     <section class="hero-box">
       <div>
         <span class="kicker">GN24 NEWSROOM</span>
-        <h1>기사 데이터를 추가하면 <br>목록과 상세가 자동으로 연결됩니다</h1>
+        <h1>기사 목록과 상세가 <br>새 구조로 자동 연결됩니다</h1>
         <p>
-          GN24는 data/news.json에 기사 데이터를 누적하는 방식으로 운영됩니다.
-          이미지 업로드와 기사 데이터 추가만으로 뉴스룸 목록과 상세 페이지가 자동 구성되도록 설계했습니다.
+          GN24는 news-index.json에서 목록을 관리하고,
+          기사 본문은 data/articles/news 폴더의 개별 JSON 파일로 불러오는 구조입니다.
+          기존 news.json 기사도 함께 호환되도록 설계했습니다.
         </p>
       </div>
 
       <div class="hero-panel">
         <div class="hero-stat">
           <strong>운영 방식</strong>
-          <div class="muted">이미지 업로드 → news.json 추가 → 자동 목록/상세 출력</div>
+          <div class="muted">이미지 업로드 → news-index.json 추가 → 필요 시 articles/news 본문 파일 생성</div>
         </div>
         <div class="hero-stat">
           <strong>중점 분야</strong>
@@ -354,7 +355,7 @@
         </div>
         <div class="hero-stat">
           <strong>핵심 장점</strong>
-          <div class="muted">기사마다 HTML 새로 만들지 않고 데이터만 누적</div>
+          <div class="muted">기사가 많아져도 목록과 본문을 분리해 관리할 수 있음</div>
         </div>
       </div>
     </section>
@@ -391,7 +392,7 @@
           <div class="side-list">
             <div class="side-item">
               <strong>기사 추가</strong>
-              <span>news.json에 새 객체 1개를 추가하면 됩니다.</span>
+              <span>news-index.json에 새 객체 1개를 추가하고, 필요하면 articles/news에 본문 파일을 생성합니다.</span>
             </div>
             <div class="side-item">
               <strong>이미지 연결</strong>
@@ -399,7 +400,7 @@
             </div>
             <div class="side-item">
               <strong>상세 출력</strong>
-              <span>article/index.html이 id 값을 읽어 자동으로 기사 본문을 출력합니다.</span>
+              <span>article/index.html이 id 값을 읽어 개별 본문 파일 또는 기존 기사 데이터를 자동으로 출력합니다.</span>
             </div>
           </div>
         </section>
@@ -484,12 +485,40 @@
         return String(value || '').replaceAll('-', '.');
       }
 
-      try {
-        const res = await fetch('/gn24/data/news.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('news.json load failed');
-        let items = await res.json();
+      function getCategory(item) {
+        return item?.category || item?.cat || '뉴스';
+      }
 
-        items.sort((a, b) => new Date(b.date) - new Date(a.date));
+      async function fetchJsonSafe(url) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) return null;
+          return await res.json();
+        } catch {
+          return null;
+        }
+      }
+
+      try {
+        const newsIndex = await fetchJsonSafe('/gn24/data/news-index.json');
+        const legacyNews = await fetchJsonSafe('/gn24/data/news.json');
+
+        const indexItems = Array.isArray(newsIndex) ? newsIndex : [];
+        const legacyItems = Array.isArray(legacyNews) ? legacyNews : [];
+
+        const mergedMap = new Map();
+        [...indexItems, ...legacyItems].forEach(item => {
+          if (item && item.id) mergedMap.set(item.id, item);
+        });
+
+        let items = Array.from(mergedMap.values());
+
+        items = items.map(item => ({
+          ...item,
+          category: getCategory(item)
+        }));
+
+        items.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
 
         const categories = ['전체', ...new Set(items.map(item => item.category).filter(Boolean))];
 
@@ -540,7 +569,7 @@
 
         feed.innerHTML = items.map(item => {
           const imageStyle = item.image
-            ? `style="background-image:url('${item.image.replace(/'/g, "%27")}')"`
+            ? `style="background-image:url('${String(item.image).replace(/'/g, "%27")}')"`
             : '';
 
           return `
@@ -582,8 +611,8 @@
         console.error(err);
         feed.innerHTML = `
           <div class="empty">
-            news.json을 불러오는 중 문제가 발생했습니다.<br>
-            파일 경로와 JSON 문법을 확인해 주세요.
+            기사 목록을 불러오는 중 문제가 발생했습니다.<br>
+            news-index.json, news.json 파일 경로와 JSON 문법을 확인해 주세요.
           </div>
         `;
       }
