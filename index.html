@@ -4,50 +4,355 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <title>GN24 | 공익·안전·교육 중심 뉴스 플랫폼</title>
-  <meta name="description" content="GN24 독립 뉴스 플랫폼. 생활 안전, 청소년 교육, AI·혁신기술, 무도·스포츠 중심의 브리핑형 뉴스." />
+  <title>Global News24 | 공익·안전·교육 중심 뉴스 플랫폼</title>
+  <meta name="description" content="Global News24 독립 뉴스 플랫폼. 생활 안전, 청소년 교육, AI·혁신기술, 무도·스포츠 중심의 브리핑형 뉴스." />
   <meta name="theme-color" content="#070a12" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="GN24 | 공익·안전·교육 중심 뉴스 플랫폼" />
+  <meta property="og:title" content="Global News24 | 공익·안전·교육 중심 뉴스 플랫폼" />
   <meta property="og:description" content="생활 안전 · 청소년 교육 · AI·혁신기술 · 무도·스포츠 중심 브리핑 뉴스" />
-  <meta property="og:url" content="https://ipma1822-png.github.io/gn24/" />
-  <meta property="og:image" content="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://news24.ai.kr/" />
+  <meta property="og:image" content="https://ipma1822-png.github.io/gn24/assets/images/logos/global-news24-header.jpg" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="200" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="stylesheet" href="/gn24/assets/css/style.css" />
+
+  <style>
+    .top-banner{
+      width:100%;
+      background:#05070d;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .top-banner .wrap{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0;
+    }
+
+    .top-banner-link{
+      display:block;
+      width:100%;
+      line-height:0;
+    }
+
+    .top-banner-img{
+      width:100%;
+      display:block;
+      height:auto;
+      max-height:180px;
+      object-fit:cover;
+      object-position:center center;
+    }
+
+    .header-tools-row{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(10,16,30,.96), rgba(7,10,18,.98));
+    }
+
+    .header-tools-row .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 18px;
+    }
+
+    .header-identity{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .header-identity-mark{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      object-fit:cover;
+      display:block;
+      box-shadow:0 8px 24px rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.1);
+      background:#0a0f1c;
+    }
+
+    .header-identity-text{
+      min-width:0;
+    }
+
+    .header-identity-title{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:800;
+      letter-spacing:.02em;
+      color:#f4f7ff;
+      line-height:1.1;
+    }
+
+    .header-identity-sub{
+      margin-top:3px;
+      font-size:.82rem;
+      color:rgba(255,255,255,.72);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .tools{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex:1;
+      justify-content:flex-end;
+    }
+
+    .search{
+      display:flex;
+      align-items:center;
+      gap:0;
+      width:min(560px, 100%);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      overflow:hidden;
+      backdrop-filter:blur(8px);
+    }
+
+    .search input{
+      flex:1;
+      min-width:0;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:#eef3ff;
+      padding:14px 16px;
+      font-size:.98rem;
+    }
+
+    .search input::placeholder{
+      color:rgba(255,255,255,.5);
+    }
+
+    .search button{
+      border:0;
+      background:transparent;
+      color:#dfe8ff;
+      padding:0 16px;
+      font-size:1.05rem;
+      cursor:pointer;
+    }
+
+    .hamburger{
+      flex:0 0 auto;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:#edf3ff;
+      min-width:54px;
+      height:54px;
+      border-radius:16px;
+      font-size:1.25rem;
+      cursor:pointer;
+    }
+
+    .menu-panel{
+      background:rgba(7,10,18,.98);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .menu-panel-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 12px;
+      padding:14px 18px 18px;
+    }
+
+    .mp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#ecf2ff;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .mp:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    .mp-strong{
+      border-color:rgba(246,211,107,.28);
+      box-shadow:0 0 0 1px rgba(246,211,107,.08) inset;
+    }
+
+    .mp-sep{
+      width:1px;
+      min-height:40px;
+      background:rgba(255,255,255,.08);
+      margin:0 2px;
+    }
+
+    .nav{
+      background:linear-gradient(180deg, rgba(6,11,22,.98), rgba(5,8,16,.99));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:14px 18px;
+    }
+
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#eef3ff;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+
+    .nav-link:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .nav-strong{
+      border-color:rgba(246,211,107,.25);
+      color:#ffe69a;
+    }
+
+    @media (max-width: 980px){
+      .header-tools-row .wrap{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .tools{
+        width:100%;
+      }
+
+      .search{
+        width:100%;
+      }
+
+      .hamburger{
+        min-width:56px;
+      }
+    }
+
+    @media (max-width: 768px){
+      .top-banner-img{
+        max-height:120px;
+      }
+
+      .header-identity-mark{
+        width:36px;
+        height:36px;
+        border-radius:10px;
+      }
+
+      .header-identity-title{
+        font-size:.98rem;
+      }
+
+      .header-identity-sub{
+        font-size:.76rem;
+      }
+
+      .header-tools-row .wrap,
+      .menu-panel-inner,
+      .nav-inner{
+        padding-left:14px;
+        padding-right:14px;
+      }
+
+      .search input{
+        padding:13px 14px;
+        font-size:.95rem;
+      }
+
+      .hamburger{
+        width:54px;
+        height:50px;
+        border-radius:14px;
+      }
+
+      .nav-inner{
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+      }
+
+      .nav-inner::-webkit-scrollbar{
+        display:none;
+      }
+
+      .nav-link{
+        flex:0 0 auto;
+      }
+
+      .mp-sep{
+        display:none;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="wrap header-wrap">
-      <a class="brand" href="/gn24/" aria-label="GN24 홈">
-        <img
-          class="brand-logo"
-          src="https://static.wixstatic.com/media/abf917_3bb2924110444b7fbdfd8925e324aa1e~mv2.png"
-          alt="GN24 로고" />
-        <div class="brand-txt">
-          <div class="brand-title">GN24</div>
-          <div class="brand-meta">
-            <span class="meta-badge">Global News24</span>
-          </div>
-        </div>
-      </a>
-
-      <div class="tools">
-        <form class="search" action="/gn24/pages/newsroom/" method="get">
-          <input name="q" type="search" placeholder="기사 검색 / 키워드 검색" />
-          <button type="submit" aria-label="검색">🔎</button>
-        </form>
-
-        <button id="menuBtn" class="hamburger" type="button" aria-label="메뉴" aria-expanded="false">
-          ☰
-        </button>
+    <!-- 상단 가로 배너 로고 -->
+    <div class="top-banner">
+      <div class="wrap">
+        <a class="top-banner-link" href="/gn24/" aria-label="Global News24 홈">
+          <img
+            class="top-banner-img"
+            src="/gn24/assets/images/logos/global-news24-header.jpg"
+            alt="Global News24 헤더 로고" />
+        </a>
       </div>
     </div>
 
+    <!-- 검색 + 메뉴 -->
+    <div class="header-tools-row">
+      <div class="wrap">
+        <a class="header-identity" href="/gn24/" aria-label="Global News24 홈">
+          <img
+            class="header-identity-mark"
+            src="/gn24/assets/images/logos/global-news24-header.jpg"
+            alt="Global News24 마크" />
+          <div class="header-identity-text">
+            <h1 class="header-identity-title">Global News24</h1>
+            <div class="header-identity-sub">Public · Safety · Education · AI · Martial Arts</div>
+          </div>
+        </a>
+
+        <div class="tools">
+          <form class="search" action="/gn24/pages/newsroom/" method="get">
+            <input name="q" type="search" placeholder="기사 검색 / 키워드 검색" />
+            <button type="submit" aria-label="검색">🔎</button>
+          </form>
+
+          <button id="menuBtn" class="hamburger" type="button" aria-label="메뉴" aria-expanded="false">
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 펼침 메뉴 -->
     <div id="menuPanel" class="menu-panel" hidden>
       <div class="wrap menu-panel-inner">
         <a class="mp" href="/gn24/pages/policy/">편집정책</a>
@@ -60,6 +365,7 @@
       </div>
     </div>
 
+    <!-- 카테고리 -->
     <nav class="nav" aria-label="카테고리">
       <div class="wrap nav-inner">
         <a href="/gn24/pages/newsroom/" class="nav-link">전체</a>
@@ -80,10 +386,10 @@
   <main class="wrap main">
     <section class="hero-intro card">
       <div class="hero-intro-copy">
-        <div class="eyebrow">GN24 NEWS PLATFORM</div>
+        <div class="eyebrow">GLOBAL NEWS24</div>
         <h1>공익·안전·교육 중심의 <br />독립 뉴스 플랫폼</h1>
         <p>
-          GN24는 생활 안전, 청소년 교육, AI·혁신기술, 무도·스포츠 분야를 중심으로
+          Global News24는 생활 안전, 청소년 교육, AI·혁신기술, 무도·스포츠 분야를 중심으로
           핵심 내용을 빠르게 파악할 수 있는 브리핑형 뉴스 플랫폼을 지향합니다.
         </p>
         <div class="hero-intro-actions">
@@ -129,9 +435,9 @@
                 <span id="heroCat" class="badge">주요뉴스</span>
                 <span id="heroDate" class="muted"></span>
               </div>
-              <h3 id="heroTitle">GN24 독립 뉴스 플랫폼 구축 준비</h3>
+              <h3 id="heroTitle">Global News24 독립 뉴스 플랫폼 구축 준비</h3>
               <p id="heroSummary" class="muted">
-                GN24는 기존 콘텐츠를 단순 복사하지 않고 핵심 요약과 재정리를 바탕으로
+                Global News24는 기존 콘텐츠를 단순 복사하지 않고 핵심 요약과 재정리를 바탕으로
                 독립적인 뉴스 플랫폼 구조를 구축합니다.
               </p>
               <div class="hero-cta">자세히 보기 →</div>
@@ -201,9 +507,9 @@
                     <span class="badge">준비중</span>
                     <span class="muted">2026.03.07</span>
                   </div>
-                  <h3 class="brief-title">GN24 뉴스 아카이브 구조 정비 시작</h3>
+                  <h3 class="brief-title">Global News24 뉴스 아카이브 구조 정비 시작</h3>
                   <p class="brief-summary">
-                    GN24 독립 뉴스 사이트 구축을 위해 카테고리 구조, 기사 템플릿,
+                    Global News24 독립 뉴스 사이트 구축을 위해 카테고리 구조, 기사 템플릿,
                     기사 목록 페이지와 아카이브 시스템을 단계적으로 정비합니다.
                   </p>
                 </div>
@@ -255,7 +561,7 @@
           <div class="section-head">
             <div class="section-title">
               <span class="bar"></span>
-              <h2>GN24 운영 방향</h2>
+              <h2>Global News24 운영 방향</h2>
             </div>
           </div>
 
@@ -289,7 +595,7 @@
             </div>
           </div>
           <ol id="popular" class="rank">
-            <li><a href="/gn24/pages/newsroom/">GN24 독립 뉴스 플랫폼 구축 준비</a></li>
+            <li><a href="/gn24/pages/newsroom/">Global News24 독립 뉴스 플랫폼 구축 준비</a></li>
             <li><a href="/gn24/pages/press/">공식 자료 기반 기사 운영 원칙 수립</a></li>
             <li><a href="/gn24/pages/archive/">분야별 초기 기사 아카이브 준비</a></li>
             <li><a href="/gn24/pages/newsroom/?cat=안전·구조">안전·구조 분야 특화 콘텐츠 확장</a></li>
@@ -318,7 +624,7 @@
           <div class="section-head">
             <div class="section-title">
               <span class="bar"></span>
-              <h2>GN24 플랫폼 메모</h2>
+              <h2>플랫폼 메모</h2>
             </div>
           </div>
           <div class="side-list">
