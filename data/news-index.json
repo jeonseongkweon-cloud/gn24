@@ -1,1 +1,71 @@
+[
+{
+"id":"gn24-005",
+"title":"🔥 국제경찰무도연합회·세계안전미래재단, 9종 국가등록 민간자격증·70종 국제 교육과정 본격 운영",
+"subtitle":"🗡️🛡️ 국가 민간 자격 기반 + 블록체인 5.0 인증",
+"date":"2025-11-30",
+"category":"교육",
+"summary":"국제경찰무도연합회와 세계안전미래재단이 국가등록 민간자격증 9종과 70종의 국제 교육과정을 기반으로 글로벌 자격 인증 시스템을 본격 운영한다.",
+"image":"/gn24/assets/images/news/gn24-005.jpg",
+"author":"GN24",
+"sourceName":"ICA 국제자격관리본부",
+"sourceUrl":"https://www.atic.ai.kr",
+"tags":["자격증","교육","블록체인","ICA"]
+},
 
+{
+"id":"gn24-004",
+"title":"DOUBLE CROSS KOREA 공식 프로그램 발표",
+"subtitle":"교차원리 기반 무도 프로그램",
+"date":"2026-02-20",
+"category":"무도·스포츠",
+"summary":"DOUBLE CROSS KOREA가 교차원리 기반 무도 프로그램을 공식 발표하며 새로운 무도 교육 체계를 제시했다.",
+"image":"/gn24/assets/images/news/gn24-004.jpg",
+"author":"GN24",
+"sourceName":"DOUBLE CROSS KOREA",
+"sourceUrl":"https://doublecross.kr",
+"tags":["더블크로스","무도","교육"]
+},
+
+{
+"id":"gn24-003",
+"title":"세계 안전 교육 프로그램 확대",
+"subtitle":"국제 협력 교육 체계 구축",
+"date":"2026-02-19",
+"category":"교육",
+"summary":"세계 안전 교육 프로그램이 확대되며 국제 협력 기반의 교육 체계가 구축되고 있다.",
+"image":"/gn24/assets/images/news/gn24-003.jpg",
+"author":"GN24",
+"sourceName":"GN24",
+"sourceUrl":"",
+"tags":["안전","교육"]
+},
+
+{
+"id":"gn24-002",
+"title":"글로벌 무도 네트워크 확장",
+"subtitle":"51개국 협력 네트워크 구축",
+"date":"2026-02-18",
+"category":"무도·스포츠",
+"summary":"글로벌 무도 네트워크가 확대되며 국제 협력 기반의 교육 및 교류가 활성화되고 있다.",
+"image":"/gn24/assets/images/news/gn24-002.jpg",
+"author":"GN24",
+"sourceName":"GN24",
+"sourceUrl":"",
+"tags":["무도","국제"]
+},
+
+{
+"id":"gn24-001",
+"title":"DOUBLE CROSS KOREA 제1기 공식지정도장 모집",
+"subtitle":"누구에게나 허락되지 않는다",
+"date":"2026-02-18",
+"category":"무도·스포츠",
+"summary":"DOUBLE CROSS KOREA가 2026년 상반기 제1기 공식지정도장 50개를 한정 선발한다고 공식 발표했다.",
+"image":"/gn24/assets/images/news/double-cross-class01.jpg",
+"author":"GN24",
+"sourceName":"DOUBLE CROSS KOREA",
+"sourceUrl":"https://doublecross.kr",
+"tags":["더블크로스","공식지정도장","교차원리"]
+}
+]
