@@ -1,40 +1,91 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("menuBtn");
-  const panel = document.getElementById("menuPanel");
+(function () {
+  "use strict";
 
-  if (!btn || !panel) return;
+  const menuBtn = document.getElementById("menuBtn");
+  const menuPanel = document.getElementById("menuPanel");
+  const todayEl = document.getElementById("today");
 
-  const close = () => {
-    panel.hidden = true;
-    btn.setAttribute("aria-expanded", "false");
+  // 오늘 날짜 표시
+  if (todayEl) {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    todayEl.textContent = `${yyyy}.${mm}.${dd}`;
+  }
+
+  // 햄버거 메뉴
+  if (menuBtn && menuPanel) {
+    menuBtn.addEventListener("click", function () {
+      const isHidden = menuPanel.hasAttribute("hidden");
+
+      if (isHidden) {
+        menuPanel.removeAttribute("hidden");
+        menuBtn.setAttribute("aria-expanded", "true");
+      } else {
+        menuPanel.setAttribute("hidden", "");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      const clickedInsideMenu = menuPanel.contains(e.target);
+      const clickedButton = menuBtn.contains(e.target);
+
+      if (!clickedInsideMenu && !clickedButton && !menuPanel.hasAttribute("hidden")) {
+        menuPanel.setAttribute("hidden", "");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  // 현재 경로 기준 네비 활성화
+  const navLinks = document.querySelectorAll(".nav-link");
+  const currentUrl = new URL(window.location.href);
+  const currentPath = currentUrl.pathname;
+  const currentCat = currentUrl.searchParams.get("cat");
+
+  navLinks.forEach((link) => {
+    try {
+      const linkUrl = new URL(link.href, window.location.origin);
+      const linkPath = linkUrl.pathname;
+      const linkCat = linkUrl.searchParams.get("cat");
+
+      if (currentPath === linkPath) {
+        if (!currentCat && !linkCat) {
+          link.classList.add("is-active");
+        }
+        if (currentCat && linkCat && currentCat === linkCat) {
+          link.classList.add("is-active");
+        }
+      }
+    } catch (err) {
+      console.warn("nav parse error:", err);
+    }
+  });
+
+  // 안전한 JSON fetch helper
+  window.GN24 = window.GN24 || {};
+
+  window.GN24.fetchJSON = async function (path) {
+    const res = await fetch(path, { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`데이터를 불러오지 못했습니다: ${path}`);
+    }
+    return res.json();
   };
 
-  const open = () => {
-    panel.hidden = false;
-    btn.setAttribute("aria-expanded", "true");
+  window.GN24.escapeHtml = function (str) {
+    return String(str ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   };
 
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (panel.hidden) open();
-    else close();
-  });
-
-  // 바깥 클릭 닫기
-  document.addEventListener("click", (e) => {
-    if (panel.hidden) return;
-    const t = e.target;
-    if (t === btn || btn.contains(t) || panel.contains(t)) return;
-    close();
-  });
-
-  // ESC 닫기
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
-
-  // 화면이 커지면 보조패널은 정리 차원에서 닫기
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 860) close();
-  });
-});
+  window.GN24.formatDate = function (value) {
+    if (!value) return "";
+    return String(value).replaceAll("-", ".");
+  };
+})();
