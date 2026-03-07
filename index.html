@@ -32,10 +32,7 @@
           <div class="brand-title">GN24</div>
           <div class="brand-meta">
             <span class="meta-badge">Global News24</span>
-            <span class="meta-dot">•</span>
-            <span class="meta-update">Update <strong id="today">—</strong></span>
           </div>
-          <div class="brand-sub">공익 · 안전 · 교육 · AI · 무도 중심 독립 뉴스 플랫폼</div>
         </div>
       </a>
 
@@ -81,7 +78,6 @@
   </header>
 
   <main class="wrap main">
-    <!-- Hero Intro -->
     <section class="hero-intro card">
       <div class="hero-intro-copy">
         <div class="eyebrow">GN24 NEWS PLATFORM</div>
@@ -113,9 +109,7 @@
     </section>
 
     <section class="grid">
-      <!-- LEFT -->
       <section class="left">
-        <!-- 헤드라인 -->
         <section class="card headline">
           <div class="headline-top">
             <div class="section-title">
@@ -143,13 +137,8 @@
               <div class="hero-cta">자세히 보기 →</div>
             </div>
           </a>
-
-          <div id="ticker" class="ticker muted">
-            GN24 구축 진행 중 · 카테고리 구조 확정 · 기사 템플릿 설계 · 독립 뉴스 아카이브 준비
-          </div>
         </section>
 
-        <!-- 카테고리 바로가기 -->
         <section class="card">
           <div class="section-head">
             <div class="section-title">
@@ -194,7 +183,6 @@
           </div>
         </section>
 
-        <!-- 최신 브리핑 -->
         <section class="card">
           <div class="section-head">
             <div class="section-title">
@@ -263,7 +251,6 @@
           </div>
         </section>
 
-        <!-- 운영 방향 -->
         <section class="card">
           <div class="section-head">
             <div class="section-title">
@@ -293,7 +280,6 @@
         </section>
       </section>
 
-      <!-- RIGHT -->
       <aside class="right">
         <section class="card">
           <div class="section-head">
@@ -311,7 +297,6 @@
             <li><a href="/gn24/pages/newsroom/?cat=청소년·문화">청소년·문화 공익 기사 준비</a></li>
             <li><a href="/gn24/pages/newsroom/?cat=무도·스포츠">무도·스포츠 전문 영역 구축</a></li>
           </ol>
-          <div class="note">추후 popularity.js와 연결하면 자동 누적형으로 확장할 수 있습니다.</div>
         </section>
 
         <section class="card">
@@ -366,26 +351,14 @@
       </div>
 
       <div class="foot-meta">
-        등록번호: 울산 아 01159 · 사업자번호: 631-18-02336 · 등록일: 2025-11-14 · 발행일자: 2026-03-02<br>
-        발행인/편집인: 전성권 · 청소년보호책임자: 이은종 · 연락처: 02-822-1822 / 052-260-4499 · 이메일: tk7890@hanmail.net<br>
-        주소: 울산 남구 중앙로 290번길 53 상가 204호 · © GN24 / Global News24 All rights reserved.
+        등록번호: 울산 아 01159 · 사업자번호: 631-18-02336 · 등록일: 2025-11-14 · 발행일자: 2025-11-14<br>
+        발행인/편집인: 전성권 · 청소년보호책임자: 이은정 · 연락처: 02-822-1822 / 052-260-4499 · 이메일: tk7890@hanmail.net<br>
+        주소: 울산 남구 중앙로 290번길 53 상가 204호 · © 글로벌뉴스24 / Global News24 All rights reserved.
       </div>
     </div>
   </footer>
 
   <script>
-    // 오늘 날짜 표시
-    (function () {
-      const el = document.getElementById('today');
-      if (!el) return;
-      const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const dd = String(d.getDate()).padStart(2, '0');
-      el.textContent = `${yyyy}.${mm}.${dd}`;
-    })();
-
-    // 햄버거 패널
     (function () {
       const btn = document.getElementById('menuBtn');
       const panel = document.getElementById('menuPanel');
@@ -403,12 +376,5 @@
       });
     })();
   </script>
-
-  <!-- 기존 js가 있으면 나중에 연결 -->
-  <!--
-  <script defer src="/gn24/assets/js/app.js"></script>
-  <script defer src="/gn24/assets/js/popularity.js"></script>
-  <script defer src="/gn24/assets/js/home.js"></script>
-  -->
 </body>
 </html>
