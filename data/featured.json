@@ -1,6 +1,43 @@
 {
   "featured": [
-    {
+    {[
+  {
+    "id": "gn24-featured-001",
+    "type": "featured",
+    "title": "GN24 독립 뉴스 플랫폼 구축 본격화",
+    "date": "2026-03-07",
+    "category": "공지",
+    "summary": "GN24는 기존 Global News24 콘텐츠를 기반으로, 핵심 요약과 재정리를 거쳐 독립적인 뉴스 플랫폼 구조를 단계적으로 구축한다.",
+    "image": "",
+    "href": "/gn24/pages/newsroom/",
+    "sourceName": "GN24 내부 기획",
+    "sourceUrl": ""
+  },
+  {
+    "id": "gn24-featured-002",
+    "type": "featured",
+    "title": "생활 안전·청소년 교육·AI·무도 중심 편집 방향 설정",
+    "date": "2026-03-07",
+    "category": "편집방향",
+    "summary": "GN24는 일반 종합 뉴스보다 생활 안전, 청소년 교육, AI 및 미래기술, 무도·스포츠 분야를 중점적으로 다루는 플랫폼으로 운영 방향을 정리하고 있다.",
+    "image": "",
+    "href": "/gn24/pages/newsroom/?cat=안전·구조",
+    "sourceName": "GN24 운영 방향",
+    "sourceUrl": ""
+  },
+  {
+    "id": "gn24-featured-003",
+    "type": "featured",
+    "title": "기존 기사 복사 대신 요약·재작성·출처 표기 원칙 확정",
+    "date": "2026-03-07",
+    "category": "운영원칙",
+    "summary": "기존 콘텐츠를 그대로 복사하지 않고, 핵심 내용을 정리해 새 기사 형식으로 재작성하고 출처를 명확히 표기하는 원칙을 적용한다.",
+    "image": "",
+    "href": "/gn24/pages/press/",
+    "sourceName": "GN24 기사 운영 원칙",
+    "sourceUrl": ""
+  }
+]
       "title": "Global News24 독립형 본부(허브) 구축 시작",
       "summary": "공식 보도자료·아카이브·자료실 중심으로 독립형 본부를 구축합니다.",
       "category": "공지",
