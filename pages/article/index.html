@@ -281,6 +281,31 @@
         return String(value || '').replaceAll('-', '.');
       }
 
+      function normalizeCategory(item) {
+        return item?.category || item?.cat || '뉴스';
+      }
+
+      function normalizeTags(item) {
+        return Array.isArray(item?.tags) ? item.tags : [];
+      }
+
+      function estimateReadMinutes(content) {
+        const text = Array.isArray(content) ? content.join(' ') : String(content || '');
+        const len = text.replace(/\s+/g, '').length;
+        const mins = Math.max(1, Math.ceil(len / 450));
+        return `${mins}분 읽기`;
+      }
+
+      async function fetchJsonSafe(url) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) return null;
+          return await res.json();
+        } catch {
+          return null;
+        }
+      }
+
       if (!id) {
         app.innerHTML = `
           <div class="empty-state">
@@ -292,11 +317,25 @@
       }
 
       try {
-        const res = await fetch('/gn24/data/news.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('news.json load failed');
-        const items = await res.json();
+        const newsIndex = await fetchJsonSafe('/gn24/data/news-index.json');
+        const legacyNews = await fetchJsonSafe('/gn24/data/news.json');
 
-        const article = items.find(item => item.id === id);
+        const indexItems = Array.isArray(newsIndex) ? newsIndex : [];
+        const legacyItems = Array.isArray(legacyNews) ? legacyNews : [];
+
+        const indexArticle = indexItems.find(item => item.id === id);
+        const legacyArticle = legacyItems.find(item => item.id === id);
+
+        let article = null;
+
+        const articleJson = await fetchJsonSafe(`/gn24/data/articles/news/${encodeURIComponent(id)}.json`);
+        if (articleJson) {
+          article = articleJson;
+        } else if (legacyArticle) {
+          article = legacyArticle;
+        } else if (indexArticle) {
+          article = indexArticle;
+        }
 
         if (!article) {
           app.innerHTML = `
@@ -308,17 +347,58 @@
           return;
         }
 
-        document.title = `${article.title} | GN24`;
+        const category = normalizeCategory(article);
+        const title = article.title || '';
+        const subtitle = article.subtitle || '';
+        const date = article.date || '';
+        const author = article.author || 'GN24';
+        const summary = article.summary || '';
+        const image = article.image || '';
+        const sourceName = article.sourceName || '';
+        const sourceUrl = article.sourceUrl || '';
+        const tags = normalizeTags(article);
 
-        const related = items
-          .filter(item => item.id !== article.id && item.category === article.category)
+        const content = Array.isArray(article.content)
+          ? article.content
+          : Array.isArray(article.body)
+            ? article.body
+            : article.content
+              ? [article.content]
+              : article.body
+                ? [article.body]
+                : [];
+
+        document.title = `${title} | GN24`;
+
+        const mergedPoolMap = new Map();
+        [...indexItems, ...legacyItems].forEach(item => {
+          if (item && item.id) mergedPoolMap.set(item.id, item);
+        });
+        const mergedPool = Array.from(mergedPoolMap.values());
+
+        const currentTags = tags.map(tag => String(tag).toLowerCase());
+        const related = mergedPool
+          .filter(item => item.id !== article.id)
+          .map(item => {
+            const itemCat = normalizeCategory(item);
+            const itemTags = normalizeTags(item).map(tag => String(tag).toLowerCase());
+            const tagMatches = itemTags.filter(tag => currentTags.includes(tag)).length;
+            const sameCategory = itemCat === category ? 1 : 0;
+            const score = (sameCategory * 10) + tagMatches;
+            return { ...item, _score: score };
+          })
+          .filter(item => item._score > 0 || normalizeCategory(item) === category)
+          .sort((a, b) => {
+            if (b._score !== a._score) return b._score - a._score;
+            return String(b.date || '').localeCompare(String(a.date || ''));
+          })
           .slice(0, 4);
 
-        const contentHtml = (article.content || [])
-          .map(p => `<p>${escapeHtml(p)}</p>`)
-          .join('');
+        const contentHtml = content.length
+          ? content.map(p => `<p>${escapeHtml(p)}</p>`).join('')
+          : `<p>본문이 준비 중입니다.</p>`;
 
-        const tagsHtml = (article.tags || [])
+        const tagsHtml = tags
           .map(tag => `<span class="tag-chip">#${escapeHtml(tag)}</span>`)
           .join('');
 
@@ -334,8 +414,8 @@
               <div class="related-grid">
                 ${related.map(item => `
                   <a class="related-card" href="/gn24/pages/article/?id=${encodeURIComponent(item.id)}">
-                    <span class="cat">${escapeHtml(item.category || '뉴스')}</span>
-                    <h3>${escapeHtml(item.title)}</h3>
+                    <span class="cat">${escapeHtml(normalizeCategory(item))}</span>
+                    <h3>${escapeHtml(item.title || '')}</h3>
                     <p>${escapeHtml(item.summary || '')}</p>
                   </a>
                 `).join('')}
@@ -352,7 +432,7 @@
                 <span>›</span>
                 <a href="/gn24/pages/newsroom/">뉴스룸</a>
                 <span>›</span>
-                <a href="/gn24/pages/newsroom/?cat=${encodeURIComponent(article.category || '')}">${escapeHtml(article.category || '뉴스')}</a>
+                <a href="/gn24/pages/newsroom/?cat=${encodeURIComponent(category)}">${escapeHtml(category)}</a>
               </div>
               <a class="more" href="/gn24/pages/newsroom/">목록으로 →</a>
             </div>
@@ -360,39 +440,40 @@
             <article class="article-card">
               <header class="article-head">
                 <div class="article-meta">
-                  <span class="badge">${escapeHtml(article.category || '뉴스')}</span>
-                  <span class="muted">${formatDate(article.date)}</span>
+                  <span class="badge">${escapeHtml(category)}</span>
+                  <span class="muted">${formatDate(date)}</span>
                 </div>
 
-                <h1 class="article-title">${escapeHtml(article.title)}</h1>
-                ${article.subtitle ? `<p class="article-subtitle">${escapeHtml(article.subtitle)}</p>` : ''}
+                <h1 class="article-title">${escapeHtml(title)}</h1>
+                ${subtitle ? `<p class="article-subtitle">${escapeHtml(subtitle)}</p>` : ''}
 
                 <div class="article-info">
-                  <span>작성: ${escapeHtml(article.author || 'GN24')}</span>
-                  ${article.sourceName ? `<span>출처: ${escapeHtml(article.sourceName)}</span>` : ''}
+                  <span>작성: ${escapeHtml(author)}</span>
+                  <span>${escapeHtml(estimateReadMinutes(content))}</span>
+                  ${sourceName ? `<span>출처: ${escapeHtml(sourceName)}</span>` : ''}
                 </div>
               </header>
 
-              ${article.image ? `
+              ${image ? `
                 <div class="article-hero">
-                  <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.title)}">
+                  <img src="${escapeHtml(image)}" alt="${escapeHtml(title)}">
                 </div>
               ` : ''}
 
               <div class="article-body">
-                ${article.summary ? `
+                ${summary ? `
                   <div class="summary-box">
                     <strong>핵심 요약</strong>
-                    <p>${escapeHtml(article.summary)}</p>
+                    <p>${escapeHtml(summary)}</p>
                   </div>
                 ` : ''}
 
                 ${contentHtml}
 
-                ${article.linkUrl ? `
+                ${sourceUrl ? `
                   <div class="article-linkbox">
-                    <strong>${escapeHtml(article.linkLabel || '관련 링크')}</strong>
-                    <a href="${escapeHtml(article.linkUrl)}" target="_blank" rel="noopener">${escapeHtml(article.linkUrl)}</a>
+                    <strong>${escapeHtml(sourceName || '관련 링크')}</strong>
+                    <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(sourceUrl)}</a>
                   </div>
                 ` : ''}
 
@@ -408,7 +489,7 @@
         app.innerHTML = `
           <div class="empty-state">
             기사 데이터를 불러오는 중 문제가 발생했습니다.<br>
-            data/news.json 파일 경로와 JSON 문법을 확인해 주세요.
+            news-index.json, articles/news, news.json 경로를 확인해 주세요.
           </div>
         `;
       }
