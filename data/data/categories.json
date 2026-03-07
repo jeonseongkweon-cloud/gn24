@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "all",
+    "name": "전체",
+    "description": "GN24 전체 기사 모아보기",
+    "href": "/gn24/pages/newsroom/"
+  },
+  {
+    "slug": "international",
+    "name": "국제뉴스",
+    "description": "세계 정세와 국제 주요 이슈",
+    "href": "/gn24/pages/newsroom/?cat=국제뉴스"
+  },
+  {
+    "slug": "korea",
+    "name": "국내소식",
+    "description": "국내 정책, 행정, 지역 주요 소식",
+    "href": "/gn24/pages/newsroom/?cat=국내소식"
+  },
+  {
+    "slug": "society",
+    "name": "사회",
+    "description": "생활 이슈, 공공 관심 뉴스",
+    "href": "/gn24/pages/newsroom/?cat=사회"
+  },
+  {
+    "slug": "economy",
+    "name": "경제",
+    "description": "산업, 시장, 실물경제 흐름",
+    "href": "/gn24/pages/newsroom/?cat=경제"
+  },
+  {
+    "slug": "safety",
+    "name": "안전·구조",
+    "description": "재난, 구조, 치안, 공공안전",
+    "href": "/gn24/pages/newsroom/?cat=안전·구조"
+  },
+  {
+    "slug": "youth",
+    "name": "청소년·문화",
+    "description": "교육, 성장, 문화, 청소년 이슈",
+    "href": "/gn24/pages/newsroom/?cat=청소년·문화"
+  },
+  {
+    "slug": "ai",
+    "name": "AI·혁신기술",
+    "description": "AI, 디지털, 미래기술 동향",
+    "href": "/gn24/pages/newsroom/?cat=AI·혁신기술"
+  },
+  {
+    "slug": "martial",
+    "name": "무도·스포츠",
+    "description": "무도, 체육, 스포츠, 행사",
+    "href": "/gn24/pages/newsroom/?cat=무도·스포츠"
+  }
+]
