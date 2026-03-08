@@ -4,8 +4,42 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>정책 | Global News24</title>
+  <meta name="description" content="Global News24 편집정책, 개인정보, 청소년보호정책, 메일수집거부 안내." />
   <meta name="theme-color" content="#0b0f19" />
   <link rel="stylesheet" href="../../assets/css/style.css" />
+  <style>
+    .policy-hero{
+      position:relative; overflow:hidden; margin-bottom:18px; border-radius:28px; padding:30px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(900px 320px at 100% 0%, rgba(96,165,250,.16), transparent 58%),
+        radial-gradient(800px 300px at 0% 100%, rgba(246,211,107,.10), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:0 24px 60px rgba(0,0,0,.28);
+    }
+    .policy-hero h1{
+      margin:0; font-size:clamp(2rem,4.2vw,3rem); letter-spacing:-.03em;
+    }
+    .policy-hero p{
+      margin:12px 0 0; color:rgba(255,255,255,.74); line-height:1.75; max-width:860px;
+    }
+    .policy-nav{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;
+    }
+    .policy-nav a{
+      padding:10px 14px; border-radius:999px; text-decoration:none;
+      border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03);
+    }
+    .policy-card{
+      scroll-margin-top:90px;
+    }
+    .policy-card p, .policy-card li{
+      color:rgba(255,255,255,.76); line-height:1.8;
+    }
+    .policy-card ul{
+      margin:10px 0 0; padding-left:18px;
+    }
+  </style>
 </head>
 <body>
   <div class="top-mini">
@@ -24,49 +58,78 @@
   </div>
 
   <main class="wrap main">
-    <div class="page-head">
-      <div>
-        <h1>정책</h1>
-        <div class="muted">편집정책 · 개인정보 · 청소년보호 · 메일수집거부</div>
+    <section class="policy-hero">
+      <div class="badge" style="display:inline-flex;">GN24 POLICY FRAME</div>
+      <h1>정책</h1>
+      <p>
+        Global News24는 공익성, 구조성, 사실성, 지속가능성을 바탕으로 운영됩니다.
+        아래 정책은 뉴스 운영, 사용자 보호, 정보 활용 원칙의 기본 기준입니다.
+      </p>
+      <div class="policy-nav">
+        <a href="#editorial">편집정책</a>
+        <a href="#privacy">개인정보취급방침</a>
+        <a href="#youth">청소년보호정책</a>
+        <a href="#mail">메일수집거부</a>
       </div>
-    </div>
+    </section>
 
-    <section class="card">
+    <section class="card policy-card" id="editorial">
       <div class="section-head">
         <div class="section-title"><span class="bar"></span><h2>편집정책</h2></div>
       </div>
-      <p class="muted">
-        GN24는 종합지로서 다양한 분야를 균형 있게 다루며, 공익성(안전·구조/청소년·교육)을 강화합니다.
-        외부 기사는 전문을 복제하지 않고 <strong>요약 + 출처 링크</strong> 형태로 제공합니다.
+      <p>
+        GN24는 종합 뉴스 플랫폼으로서 다양한 분야를 균형 있게 다루며,
+        특히 안전, 구조, 청소년, 교육, 무도·스포츠 분야의 공익성을 강화합니다.
       </p>
+      <ul>
+        <li>사실 확인이 가능한 정보와 공식 자료를 우선 반영합니다.</li>
+        <li>외부 언론 기사 전문은 복제하지 않고, <strong>요약 + 출처 링크</strong> 방식으로 제공합니다.</li>
+        <li>공식 발표, 내부 문서, 검증 가능한 제보를 구분하여 표시합니다.</li>
+        <li>무도·스포츠 섹션에서는 <strong>구조 &gt;&gt; 교차원리, 교차원리 기반 무도</strong> 프레임을 일관되게 활용할 수 있습니다.</li>
+      </ul>
     </section>
 
-    <section class="card" id="privacy">
+    <section class="card policy-card" id="privacy">
       <div class="section-head">
         <div class="section-title"><span class="bar"></span><h2>개인정보취급방침</h2></div>
       </div>
-      <p class="muted">
-        이용자의 개인정보는 문의/제보/기사 송출 폼 등을 통해 수집될 수 있으며, 목적 범위 내에서만 사용합니다.
-        (추후 운영 형태에 맞춰 상세 조항을 업데이트하세요.)
+      <p>
+        이용자의 개인정보는 문의, 제보, 기사 송출, 협업 요청 등의 과정에서 수집될 수 있으며,
+        접수 및 회신, 검토, 협업 진행 등 목적 범위 내에서만 사용합니다.
       </p>
+      <ul>
+        <li>수집 가능한 항목: 이름, 연락처, 이메일, 소속, 접수 내용 등</li>
+        <li>수집 목적: 문의 응답, 제보 검토, 기사 송출 검토, 협업 진행</li>
+        <li>보관 원칙: 목적 달성 후 관련 법령 및 운영상 필요한 범위 내 보관 또는 파기</li>
+        <li>향후 실제 운영 형태에 맞게 상세 조항을 추가 업데이트할 수 있습니다.</li>
+      </ul>
     </section>
 
-    <section class="card" id="youth">
+    <section class="card policy-card" id="youth">
       <div class="section-head">
         <div class="section-title"><span class="bar"></span><h2>청소년보호정책</h2></div>
       </div>
-      <p class="muted">
-        청소년 유해 정보로부터 보호하기 위해 모니터링 및 신고 대응 절차를 운영합니다.
+      <p>
+        GN24는 청소년 유해 정보로부터 이용자를 보호하기 위해 게시물 모니터링, 신고 대응, 검토 절차를 운영합니다.
       </p>
+      <ul>
+        <li>청소년에게 부적절한 표현이나 정보를 지양합니다.</li>
+        <li>신고 접수 시 검토 후 필요한 조치를 진행합니다.</li>
+        <li>교육·안전·공익 중심의 콘텐츠 환경을 지향합니다.</li>
+      </ul>
     </section>
 
-    <section class="card" id="mail">
+    <section class="card policy-card" id="mail">
       <div class="section-head">
         <div class="section-title"><span class="bar"></span><h2>메일수집거부</h2></div>
       </div>
-      <p class="muted">
-        본 사이트에 게시된 이메일 주소가 무단 수집되는 것을 거부합니다.
+      <p>
+        본 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여
+        무단으로 수집되는 것을 거부합니다.
       </p>
+      <div class="note">
+        무단 수집 시 관련 법령에 따라 조치될 수 있습니다.
+      </div>
     </section>
   </main>
 
