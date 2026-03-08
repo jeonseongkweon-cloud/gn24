@@ -4,18 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <title>GN24 Article</title>
-  <meta name="description" content="GN24 기사 상세 페이지" />
+  <title>기사 | Global News24</title>
+  <meta name="description" content="Global News24 기사 상세 페이지" />
   <meta name="theme-color" content="#070a12" />
 
   <link rel="stylesheet" href="/gn24/assets/css/style.css" />
 
   <style>
     .article-shell{
-      max-width:980px;
+      max-width:1180px;
       margin:0 auto;
-      padding:20px 16px 40px;
+      padding:20px 16px 44px;
     }
+
     .article-topbar{
       display:flex;
       justify-content:space-between;
@@ -33,16 +34,27 @@
       font-size:13px;
     }
     .crumb a:hover{color:var(--text)}
+
+    .article-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:18px;
+    }
+
     .article-card{
-      background:rgba(15,23,42,.72);
+      background:rgba(15,23,42,.74);
       border:1px solid var(--line);
-      border-radius:22px;
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
+      border-radius:26px;
+      box-shadow:0 22px 60px rgba(0,0,0,.28);
       overflow:hidden;
     }
+
     .article-head{
-      padding:30px 28px 22px;
+      padding:32px 30px 24px;
       border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(900px 240px at 100% 0%, rgba(59,130,246,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
     }
     .article-meta{
       display:flex;
@@ -53,14 +65,14 @@
     }
     .article-title{
       margin:0;
-      font-size:40px;
-      line-height:1.23;
-      letter-spacing:-0.03em;
+      font-size:clamp(2rem,4vw,3rem);
+      line-height:1.22;
+      letter-spacing:-0.04em;
     }
     .article-subtitle{
       margin:12px 0 0;
       font-size:19px;
-      line-height:1.6;
+      line-height:1.75;
       color:var(--muted);
       font-weight:700;
     }
@@ -71,23 +83,26 @@
       margin-top:18px;
       color:var(--muted);
       font-size:14px;
+      line-height:1.6;
     }
+
     .article-hero{
-      padding:22px 28px 0;
+      padding:22px 30px 0;
     }
     .article-hero img{
       width:100%;
       display:block;
-      border-radius:18px;
+      border-radius:20px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
     }
+
     .article-body{
-      padding:30px 28px 34px;
+      padding:30px 30px 34px;
     }
     .summary-box{
-      margin-bottom:26px;
-      padding:18px 18px;
+      margin-bottom:28px;
+      padding:20px 18px;
       border-radius:18px;
       border:1px dashed rgba(255,255,255,.16);
       background:rgba(255,255,255,.03);
@@ -100,15 +115,19 @@
     .summary-box p{
       margin:0;
       color:var(--muted);
-      line-height:1.8;
+      line-height:1.82;
       font-size:15px;
     }
-    .article-body p{
-      margin:0 0 18px;
+
+    .article-content{
       font-size:18px;
-      line-height:1.95;
+      line-height:2;
       letter-spacing:-0.01em;
     }
+    .article-content p{
+      margin:0 0 18px;
+    }
+
     .article-linkbox{
       margin-top:28px;
       padding:18px;
@@ -126,6 +145,7 @@
       font-weight:900;
       word-break:break-all;
     }
+
     .tags{
       display:flex;
       flex-wrap:wrap;
@@ -143,8 +163,30 @@
       font-size:13px;
       font-weight:900;
     }
+
+    .bottom-nav{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:30px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+    }
+    .bottom-nav a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 16px;
+      border-radius:14px;
+      border:1px solid var(--chipLine);
+      background:rgba(255,255,255,.04);
+      font-weight:900;
+    }
+
     .related{
-      margin-top:28px;
+      margin-top:30px;
     }
     .related-grid{
       display:grid;
@@ -158,8 +200,12 @@
       border-radius:16px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
+      transition:.18s ease;
     }
-    .related-card:hover{border-color:rgba(59,130,246,.28)}
+    .related-card:hover{
+      border-color:rgba(59,130,246,.28);
+      transform:translateY(-1px);
+    }
     .related-card .cat{
       display:inline-flex;
       margin-bottom:10px;
@@ -170,14 +216,61 @@
     .related-card h3{
       margin:0 0 8px;
       font-size:16px;
-      line-height:1.5;
+      line-height:1.55;
     }
     .related-card p{
       margin:0;
       color:var(--muted);
       font-size:13px;
-      line-height:1.65;
+      line-height:1.7;
     }
+
+    .article-side{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .side-card{
+      padding:18px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(15,23,42,.74);
+      box-shadow:0 18px 50px rgba(0,0,0,.18);
+    }
+    .side-meta-grid{
+      display:grid;
+      gap:12px;
+    }
+    .side-meta{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .side-meta .label{
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:6px;
+    }
+    .side-meta .value{
+      font-size:14px;
+      line-height:1.65;
+      word-break:break-word;
+    }
+
+    .quick-links{
+      display:grid;
+      gap:10px;
+    }
+    .quick-links a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      font-weight:800;
+    }
+
     .empty-state{
       max-width:860px;
       margin:28px auto;
@@ -190,13 +283,15 @@
       line-height:1.8;
     }
 
+    @media (max-width: 1020px){
+      .article-layout{grid-template-columns:1fr}
+    }
+
     @media (max-width: 860px){
-      .article-title{font-size:30px}
-      .article-subtitle{font-size:17px}
       .article-head,
       .article-hero,
       .article-body{padding-left:18px;padding-right:18px}
-      .article-body p{font-size:17px}
+      .article-content{font-size:17px}
       .related-grid{grid-template-columns:1fr}
     }
   </style>
@@ -215,7 +310,7 @@
             <span class="meta-dot">•</span>
             <span class="meta-update">Update <strong id="today">—</strong></span>
           </div>
-          <div class="brand-sub">자동 기사 상세 출력 시스템</div>
+          <div class="brand-sub">전문 기사 상세 출력 시스템</div>
         </div>
       </a>
 
@@ -237,6 +332,7 @@
         <a class="mp" href="/gn24/pages/newsroom/">뉴스룸</a>
         <a class="mp" href="/gn24/pages/press/">보도자료</a>
         <a class="mp" href="/gn24/pages/archive/">아카이브</a>
+        <a class="mp" href="/gn24/pages/contact/">문의</a>
       </div>
     </div>
   </header>
@@ -306,13 +402,16 @@
         }
       }
 
-      if (!id) {
+      function renderEmpty(message) {
         app.innerHTML = `
           <div class="empty-state">
-            기사 ID가 없습니다.<br>
-            뉴스룸에서 기사를 선택해 주세요.
+            ${message}
           </div>
         `;
+      }
+
+      if (!id) {
+        renderEmpty(`기사 ID가 없습니다.<br>뉴스룸에서 기사를 선택해 주세요.`);
         return;
       }
 
@@ -338,12 +437,7 @@
         }
 
         if (!article) {
-          app.innerHTML = `
-            <div class="empty-state">
-              요청한 기사를 찾을 수 없습니다.<br>
-              기사 ID: <strong>${escapeHtml(id)}</strong>
-            </div>
-          `;
+          renderEmpty(`요청한 기사를 찾을 수 없습니다.<br>기사 ID: <strong>${escapeHtml(id)}</strong>`);
           return;
         }
 
@@ -368,7 +462,7 @@
                 ? [article.body]
                 : [];
 
-        document.title = `${title} | GN24`;
+        document.title = `${title} | Global News24`;
 
         const mergedPoolMap = new Map();
         [...indexItems, ...legacyItems].forEach(item => {
@@ -377,6 +471,8 @@
         const mergedPool = Array.from(mergedPoolMap.values());
 
         const currentTags = tags.map(tag => String(tag).toLowerCase());
+        const sameCategoryPool = mergedPool.filter(item => item.id !== article.id && normalizeCategory(item) === category);
+
         const related = mergedPool
           .filter(item => item.id !== article.id)
           .map(item => {
@@ -393,6 +489,10 @@
             return String(b.date || '').localeCompare(String(a.date || ''));
           })
           .slice(0, 4);
+
+        const currentIndex = mergedPool.findIndex(item => item.id === article.id);
+        const newer = currentIndex > 0 ? mergedPool[currentIndex - 1] : null;
+        const older = currentIndex >= 0 && currentIndex < mergedPool.length - 1 ? mergedPool[currentIndex + 1] : null;
 
         const contentHtml = content.length
           ? content.map(p => `<p>${escapeHtml(p)}</p>`).join('')
@@ -434,64 +534,136 @@
                 <span>›</span>
                 <a href="/gn24/pages/newsroom/?cat=${encodeURIComponent(category)}">${escapeHtml(category)}</a>
               </div>
-              <a class="more" href="/gn24/pages/newsroom/">목록으로 →</a>
+              <a class="toolbar-btn" href="/gn24/pages/newsroom/">목록으로 →</a>
             </div>
 
-            <article class="article-card">
-              <header class="article-head">
-                <div class="article-meta">
-                  <span class="badge">${escapeHtml(category)}</span>
-                  <span class="muted">${formatDate(date)}</span>
-                </div>
+            <div class="article-layout">
+              <article class="article-card">
+                <header class="article-head">
+                  <div class="article-meta">
+                    <span class="badge">${escapeHtml(category)}</span>
+                    <span class="muted">${formatDate(date)}</span>
+                  </div>
 
-                <h1 class="article-title">${escapeHtml(title)}</h1>
-                ${subtitle ? `<p class="article-subtitle">${escapeHtml(subtitle)}</p>` : ''}
+                  <h1 class="article-title">${escapeHtml(title)}</h1>
+                  ${subtitle ? `<p class="article-subtitle">${escapeHtml(subtitle)}</p>` : ''}
 
-                <div class="article-info">
-                  <span>작성: ${escapeHtml(author)}</span>
-                  <span>${escapeHtml(estimateReadMinutes(content))}</span>
-                  ${sourceName ? `<span>출처: ${escapeHtml(sourceName)}</span>` : ''}
-                </div>
-              </header>
+                  <div class="article-info">
+                    <span>작성: ${escapeHtml(author)}</span>
+                    <span>${escapeHtml(estimateReadMinutes(content))}</span>
+                    ${sourceName ? `<span>출처: ${escapeHtml(sourceName)}</span>` : ''}
+                  </div>
+                </header>
 
-              ${image ? `
-                <div class="article-hero">
-                  <img src="${escapeHtml(image)}" alt="${escapeHtml(title)}">
-                </div>
-              ` : ''}
-
-              <div class="article-body">
-                ${summary ? `
-                  <div class="summary-box">
-                    <strong>핵심 요약</strong>
-                    <p>${escapeHtml(summary)}</p>
+                ${image ? `
+                  <div class="article-hero">
+                    <img src="${escapeHtml(image)}" alt="${escapeHtml(title)}">
                   </div>
                 ` : ''}
 
-                ${contentHtml}
+                <div class="article-body">
+                  ${summary ? `
+                    <div class="summary-box">
+                      <strong>핵심 요약</strong>
+                      <p>${escapeHtml(summary)}</p>
+                    </div>
+                  ` : ''}
 
-                ${sourceUrl ? `
-                  <div class="article-linkbox">
-                    <strong>${escapeHtml(sourceName || '관련 링크')}</strong>
-                    <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(sourceUrl)}</a>
+                  <div class="article-content">
+                    ${contentHtml}
                   </div>
+
+                  ${sourceUrl ? `
+                    <div class="article-linkbox">
+                      <strong>${escapeHtml(sourceName || '관련 링크')}</strong>
+                      <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(sourceUrl)}</a>
+                    </div>
+                  ` : ''}
+
+                  ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
+
+                  <div class="bottom-nav">
+                    ${newer ? `<a href="/gn24/pages/article/?id=${encodeURIComponent(newer.id)}">← 최신 기사</a>` : `<a href="/gn24/pages/newsroom/">← 뉴스룸</a>`}
+                    ${older ? `<a href="/gn24/pages/article/?id=${encodeURIComponent(older.id)}">이전 기사 →</a>` : `<a href="/gn24/pages/newsroom/">목록 보기 →</a>`}
+                  </div>
+
+                  ${relatedHtml}
+                </div>
+              </article>
+
+              <aside class="article-side">
+                <section class="side-card">
+                  <div class="section-head">
+                    <div class="section-title">
+                      <span class="bar"></span>
+                      <h2>기사 정보</h2>
+                    </div>
+                  </div>
+                  <div class="side-meta-grid">
+                    <div class="side-meta">
+                      <div class="label">분류</div>
+                      <div class="value">${escapeHtml(category)}</div>
+                    </div>
+                    <div class="side-meta">
+                      <div class="label">발행일</div>
+                      <div class="value">${escapeHtml(formatDate(date))}</div>
+                    </div>
+                    <div class="side-meta">
+                      <div class="label">작성자</div>
+                      <div class="value">${escapeHtml(author)}</div>
+                    </div>
+                    <div class="side-meta">
+                      <div class="label">예상 읽기 시간</div>
+                      <div class="value">${escapeHtml(estimateReadMinutes(content))}</div>
+                    </div>
+                    ${sourceName ? `
+                      <div class="side-meta">
+                        <div class="label">출처명</div>
+                        <div class="value">${escapeHtml(sourceName)}</div>
+                      </div>
+                    ` : ''}
+                  </div>
+                </section>
+
+                <section class="side-card">
+                  <div class="section-head">
+                    <div class="section-title">
+                      <span class="bar"></span>
+                      <h2>바로가기</h2>
+                    </div>
+                  </div>
+                  <div class="quick-links">
+                    <a href="/gn24/pages/newsroom/">뉴스룸 전체 보기</a>
+                    <a href="/gn24/pages/newsroom/?cat=${encodeURIComponent(category)}">${escapeHtml(category)} 기사 더 보기</a>
+                    <a href="/gn24/pages/press/">보도자료 보기</a>
+                    <a href="/gn24/pages/contact/">제보·문의</a>
+                  </div>
+                </section>
+
+                ${sameCategoryPool.length ? `
+                  <section class="side-card">
+                    <div class="section-head">
+                      <div class="section-title">
+                        <span class="bar"></span>
+                        <h2>같은 분류 기사</h2>
+                      </div>
+                    </div>
+                    <div class="quick-links">
+                      ${sameCategoryPool.slice(0,4).map(item => `
+                        <a href="/gn24/pages/article/?id=${encodeURIComponent(item.id)}">
+                          ${escapeHtml(item.title || '')}
+                        </a>
+                      `).join('')}
+                    </div>
+                  </section>
                 ` : ''}
-
-                ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
-
-                ${relatedHtml}
-              </div>
-            </article>
+              </aside>
+            </div>
           </div>
         `;
       } catch (err) {
         console.error(err);
-        app.innerHTML = `
-          <div class="empty-state">
-            기사 데이터를 불러오는 중 문제가 발생했습니다.<br>
-            news-index.json, articles/news, news.json 경로를 확인해 주세요.
-          </div>
-        `;
+        renderEmpty(`기사 데이터를 불러오는 중 문제가 발생했습니다.<br>news-index.json, articles/news, news.json 경로를 확인해 주세요.`);
       }
     })();
   </script>
