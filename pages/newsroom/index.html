@@ -4,67 +4,211 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <title>GN24 Newsroom</title>
-  <meta name="description" content="GN24 뉴스룸 자동 목록 페이지" />
+  <title>뉴스룸 | Global News24</title>
+  <meta name="description" content="Global News24 뉴스룸. 최신 기사, 카테고리별 기사, 검색 기반 자동 목록 시스템." />
   <meta name="theme-color" content="#070a12" />
 
   <link rel="stylesheet" href="/gn24/assets/css/style.css" />
 
   <style>
     .newsroom-shell{
-      max-width:1200px;
+      max-width:1280px;
       margin:0 auto;
-      padding:20px 16px 40px;
+      padding:22px 16px 44px;
     }
-    .hero-box{
+
+    .news-hero{
+      position:relative;
+      overflow:hidden;
       display:grid;
-      grid-template-columns:1.15fr .85fr;
+      grid-template-columns:1.2fr .8fr;
       gap:18px;
       margin-bottom:18px;
-      padding:24px;
-      border-radius:22px;
+      padding:28px;
+      border-radius:28px;
       border:1px solid var(--line);
-      background:rgba(15,23,42,.72);
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
+      background:
+        radial-gradient(1100px 420px at 100% 0%, rgba(59,130,246,.16), transparent 55%),
+        radial-gradient(900px 360px at 0% 100%, rgba(201,162,39,.12), transparent 55%),
+        linear-gradient(180deg, rgba(15,23,42,.78), rgba(15,23,42,.68));
+      box-shadow:0 22px 60px rgba(0,0,0,.30);
     }
-    .hero-box h1{
-      margin:12px 0 10px;
-      font-size:36px;
-      line-height:1.2;
+    .news-hero::after{
+      content:"";
+      position:absolute;
+      right:-60px; bottom:-60px;
+      width:220px; height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(201,162,39,.14), transparent 62%);
+      pointer-events:none;
     }
-    .hero-box p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.75;
-      font-size:15px;
-    }
-    .kicker{
+    .hero-kicker{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:6px 10px;
+      padding:7px 12px;
       border-radius:999px;
       border:1px solid rgba(201,162,39,.28);
       background:rgba(201,162,39,.08);
       color:#f2d783;
       font-size:12px;
       font-weight:900;
+      letter-spacing:.08em;
     }
-    .hero-panel{
+    .news-hero h1{
+      margin:14px 0 10px;
+      font-size:clamp(2rem,4.2vw,3.3rem);
+      line-height:1.13;
+      letter-spacing:-.04em;
+    }
+    .news-hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.82;
+      font-size:15px;
+      max-width:760px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .hero-actions .hero-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 16px;
+      border-radius:14px;
+      border:1px solid var(--chipLine);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:900;
+    }
+    .hero-actions .hero-btn.primary{
+      border-color:rgba(59,130,246,.28);
+      background:rgba(59,130,246,.12);
+    }
+
+    .hero-right{
       display:grid;
       gap:12px;
+      align-content:start;
     }
     .hero-stat{
-      padding:16px;
-      border-radius:16px;
+      padding:16px 16px;
+      border-radius:18px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.035);
     }
-    .hero-stat strong{
-      display:block;
+    .hero-stat .label{
+      color:var(--muted);
+      font-size:12px;
       margin-bottom:8px;
+    }
+    .hero-stat .value{
+      font-size:1.32rem;
+      font-weight:900;
+      line-height:1.2;
+    }
+    .hero-stat .desc{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.65;
+    }
+
+    .featured-wrap{
+      margin-bottom:18px;
+    }
+    .featured-card{
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:rgba(15,23,42,.76);
+      box-shadow:0 22px 60px rgba(0,0,0,.24);
+    }
+    .featured-media{
+      min-height:360px;
+      background:#111827 center/cover no-repeat;
+      position:relative;
+    }
+    .featured-media.placeholder{
+      background:
+        linear-gradient(135deg, rgba(59,130,246,.12), rgba(201,162,39,.08)),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,.02),
+          rgba(255,255,255,.02) 12px,
+          rgba(255,255,255,.05) 12px,
+          rgba(255,255,255,.05) 24px
+        );
+    }
+    .featured-badge{
+      position:absolute;
+      top:18px; left:18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(201,162,39,.28);
+      background:rgba(7,10,18,.62);
+      backdrop-filter:blur(8px);
+      font-size:12px;
+      font-weight:900;
+      color:#f2d783;
+    }
+    .featured-body{
+      padding:28px 26px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .featured-meta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .featured-title{
+      margin:12px 0 10px;
+      font-size:clamp(1.6rem,2.7vw,2.3rem);
+      line-height:1.28;
+      letter-spacing:-.03em;
+    }
+    .featured-summary{
+      margin:0;
+      color:var(--muted);
+      line-height:1.85;
       font-size:15px;
     }
+    .featured-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .featured-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 16px;
+      border-radius:14px;
+      border:1px solid rgba(201,162,39,.28);
+      background:rgba(201,162,39,.08);
+      font-weight:900;
+      white-space:nowrap;
+    }
+
     .toolbar{
       display:grid;
       grid-template-columns:1fr auto;
@@ -78,7 +222,7 @@
       align-items:center;
       padding:12px 14px;
       border:1px solid var(--chipLine);
-      border-radius:16px;
+      border-radius:18px;
       background:rgba(255,255,255,.04);
     }
     .toolbar-search input{
@@ -106,6 +250,7 @@
       border-color:rgba(59,130,246,.28);
       background:rgba(59,130,246,.10);
     }
+
     .filters{
       display:flex;
       flex-wrap:wrap;
@@ -123,23 +268,34 @@
       font-size:13px;
       font-weight:900;
       cursor:pointer;
+      transition:.18s ease;
     }
     .chip.active,
     .chip:hover{
       border-color:rgba(59,130,246,.30);
       background:rgba(59,130,246,.12);
+      transform:translateY(-1px);
     }
+
     .layout{
       display:grid;
-      grid-template-columns:1fr 330px;
+      grid-template-columns:minmax(0,1fr) 340px;
       gap:16px;
     }
+
     .status{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .status-left{
       display:flex;
       align-items:center;
       gap:10px;
       flex-wrap:wrap;
-      margin-bottom:12px;
       color:var(--muted);
       font-size:13px;
     }
@@ -155,20 +311,32 @@
       font-weight:900;
       font-size:12px;
     }
+    .sort-hint{
+      color:var(--muted);
+      font-size:12px;
+    }
+
     .feed{
       display:flex;
       flex-direction:column;
       gap:14px;
     }
+
     .card-news{
       display:grid;
-      grid-template-columns:220px 1fr;
+      grid-template-columns:250px 1fr;
       gap:0;
       border:1px solid var(--line);
-      border-radius:20px;
+      border-radius:22px;
       overflow:hidden;
-      background:rgba(15,23,42,.72);
+      background:rgba(15,23,42,.74);
       box-shadow:0 18px 50px rgba(0,0,0,.18);
+      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .card-news:hover{
+      transform:translateY(-2px);
+      border-color:rgba(59,130,246,.18);
+      box-shadow:0 24px 60px rgba(0,0,0,.22);
     }
     .card-thumb{
       min-height:100%;
@@ -189,7 +357,7 @@
         );
     }
     .card-body{
-      padding:20px;
+      padding:22px 22px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -204,14 +372,17 @@
     .card-title{
       margin:10px 0 8px;
       font-size:24px;
-      line-height:1.35;
+      line-height:1.38;
       letter-spacing:-0.02em;
+    }
+    .card-title a:hover{
+      color:#9bc8ff;
     }
     .card-summary{
       margin:0;
       color:var(--muted);
       font-size:15px;
-      line-height:1.75;
+      line-height:1.82;
     }
     .card-bottom{
       display:flex;
@@ -223,6 +394,7 @@
     .meta-inline{
       color:var(--muted);
       font-size:13px;
+      line-height:1.65;
     }
     .read-more{
       display:inline-flex;
@@ -235,6 +407,7 @@
       font-weight:900;
       white-space:nowrap;
     }
+
     .side-stack{
       display:flex;
       flex-direction:column;
@@ -242,9 +415,9 @@
     }
     .side-card{
       padding:18px;
-      border-radius:20px;
+      border-radius:22px;
       border:1px solid var(--line);
-      background:rgba(15,23,42,.72);
+      background:rgba(15,23,42,.74);
       box-shadow:0 18px 50px rgba(0,0,0,.18);
     }
     .side-list{
@@ -267,28 +440,81 @@
     .side-item span{
       color:var(--muted);
       font-size:13px;
-      line-height:1.6;
+      line-height:1.65;
     }
+
+    .mini-ranking{
+      display:grid;
+      gap:10px;
+    }
+    .mini-rank{
+      display:grid;
+      grid-template-columns:28px 1fr;
+      gap:10px;
+      align-items:start;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .mini-rank .num{
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:rgba(59,130,246,.12);
+      border:1px solid rgba(59,130,246,.24);
+      font-size:12px;
+      font-weight:900;
+    }
+    .mini-rank strong{
+      display:block;
+      font-size:14px;
+      line-height:1.5;
+      margin-bottom:4px;
+    }
+    .mini-rank span{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.55;
+    }
+
     .empty{
-      padding:30px 18px;
+      padding:34px 18px;
       text-align:center;
       color:var(--muted);
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       background:rgba(15,23,42,.72);
+      line-height:1.8;
     }
 
-    @media (max-width: 980px){
-      .hero-box,
-      .layout{grid-template-columns:1fr}
+    @media (max-width: 1080px){
+      .news-hero,
+      .layout,
+      .featured-card{
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width: 860px){
       .toolbar{grid-template-columns:1fr}
       .card-news{grid-template-columns:1fr}
-      .card-thumb{min-height:220px;border-right:0;border-bottom:1px solid var(--line)}
-      .hero-box h1{font-size:28px}
+      .card-thumb{
+        min-height:220px;
+        border-right:0;
+        border-bottom:1px solid var(--line);
+      }
       .card-title{font-size:20px}
+      .featured-media{min-height:240px}
+    }
+
+    @media (max-width: 640px){
+      .newsroom-shell{padding-top:16px}
+      .news-hero{padding:22px}
+      .featured-body{padding:22px 18px}
+      .card-body{padding:18px}
     }
   </style>
 </head>
@@ -306,7 +532,7 @@
             <span class="meta-dot">•</span>
             <span class="meta-update">Update <strong id="today">—</strong></span>
           </div>
-          <div class="brand-sub">자동 기사 목록 시스템</div>
+          <div class="brand-sub">전문 뉴스 운영형 자동 기사 목록 시스템</div>
         </div>
       </a>
 
@@ -327,37 +553,51 @@
         <a class="mp" href="/gn24/">홈</a>
         <a class="mp" href="/gn24/pages/press/">보도자료</a>
         <a class="mp" href="/gn24/pages/archive/">아카이브</a>
+        <a class="mp" href="/gn24/pages/policy/">정책</a>
         <a class="mp" href="/gn24/pages/contact/">문의</a>
       </div>
     </div>
   </header>
 
   <main class="newsroom-shell">
-    <section class="hero-box">
+    <section class="news-hero">
       <div>
-        <span class="kicker">GN24 NEWSROOM</span>
-        <h1>기사 목록과 상세가 <br>새 구조로 자동 연결됩니다</h1>
+        <span class="hero-kicker">GN24 NEWSROOM</span>
+        <h1>기사 목록과 상세가<br>유기적으로 연결되는 뉴스 데스크</h1>
         <p>
-          GN24는 news-index.json에서 목록을 관리하고,
-          기사 본문은 data/articles/news 폴더의 개별 JSON 파일로 불러오는 구조입니다.
-          기존 news.json 기사도 함께 호환되도록 설계했습니다.
+          GN24 뉴스룸은 자동 목록, 카테고리 정리, 검색 기반 탐색, 개별 기사 상세 연결까지 한 흐름으로 설계되어 있습니다.
+          기존 <strong>news.json</strong> 기사와 새로운 <strong>news-index.json</strong> 구조를 함께 호환해,
+          뉴스가 늘어나도 정리와 확장이 쉬운 편집 시스템으로 운영됩니다.
         </p>
+
+        <div class="hero-actions">
+          <a class="hero-btn primary" href="/gn24/">홈으로</a>
+          <a class="hero-btn" href="/gn24/pages/press/">보도자료</a>
+          <a class="hero-btn" href="/gn24/pages/archive/">아카이브</a>
+        </div>
       </div>
 
-      <div class="hero-panel">
+      <div class="hero-right">
         <div class="hero-stat">
-          <strong>운영 방식</strong>
-          <div class="muted">이미지 업로드 → news-index.json 추가 → 필요 시 articles/news 본문 파일 생성</div>
+          <div class="label">현재 기사 수</div>
+          <div class="value" id="heroTotalCount">0건</div>
+          <div class="desc">news-index.json + legacy news.json 통합 기준</div>
         </div>
         <div class="hero-stat">
-          <strong>중점 분야</strong>
-          <div class="muted">생활 안전 · 청소년 교육 · AI·혁신기술 · 무도·스포츠</div>
+          <div class="label">카테고리 수</div>
+          <div class="value" id="heroCategoryCount">0개</div>
+          <div class="desc">자동 추출된 뉴스 분류 기준</div>
         </div>
         <div class="hero-stat">
-          <strong>핵심 장점</strong>
-          <div class="muted">기사가 많아져도 목록과 본문을 분리해 관리할 수 있음</div>
+          <div class="label">운영 초점</div>
+          <div class="value">구조형 뉴스 운영</div>
+          <div class="desc">생활 안전 · 청소년 교육 · AI·혁신기술 · 무도·스포츠</div>
         </div>
       </div>
+    </section>
+
+    <section id="featuredWrap" class="featured-wrap" hidden>
+      <article id="featuredCard" class="featured-card"></article>
     </section>
 
     <section class="toolbar">
@@ -366,7 +606,7 @@
         <button class="toolbar-btn primary" type="submit">검색</button>
       </form>
 
-      <a class="toolbar-btn" href="/gn24/">홈으로</a>
+      <a class="toolbar-btn" href="/gn24/pages/contact/">제보·문의</a>
     </section>
 
     <div id="filters" class="filters"></div>
@@ -374,8 +614,11 @@
     <section class="layout">
       <section>
         <div class="status">
-          <span id="statusLabel">전체 기사</span>
-          <span id="resultCount" class="count-badge">0건</span>
+          <div class="status-left">
+            <span id="statusLabel">전체 기사</span>
+            <span id="resultCount" class="count-badge">0건</span>
+          </div>
+          <div class="sort-hint">최신 날짜 기준 자동 정렬</div>
         </div>
 
         <div id="feed" class="feed"></div>
@@ -392,15 +635,15 @@
           <div class="side-list">
             <div class="side-item">
               <strong>기사 추가</strong>
-              <span>news-index.json에 새 객체 1개를 추가하고, 필요하면 articles/news에 본문 파일을 생성합니다.</span>
+              <span>news-index.json에 새 항목을 추가하고, 필요 시 articles/news 폴더에 개별 본문 JSON을 생성합니다.</span>
             </div>
             <div class="side-item">
               <strong>이미지 연결</strong>
-              <span>assets/images/news 폴더에 업로드한 파일 경로를 image에 넣습니다.</span>
+              <span>assets/images/news에 업로드한 이미지를 image 경로에 연결하면 목록과 상세에 자동 반영됩니다.</span>
             </div>
             <div class="side-item">
               <strong>상세 출력</strong>
-              <span>article/index.html이 id 값을 읽어 개별 본문 파일 또는 기존 기사 데이터를 자동으로 출력합니다.</span>
+              <span>article 페이지는 id 값을 읽어 개별 JSON 본문과 legacy 기사 데이터를 순차적으로 확인해 자동 출력합니다.</span>
             </div>
           </div>
         </section>
@@ -415,21 +658,31 @@
           <div class="side-list">
             <div class="side-item">
               <strong>안전·구조</strong>
-              <span>공익성과 현장성이 강한 핵심 분야</span>
+              <span>공익성과 현장성이 강한 GN24 핵심 분야</span>
             </div>
             <div class="side-item">
-              <strong>청소년·문화</strong>
-              <span>교육, 보호, 성장 관련 기사 확장에 적합</span>
+              <strong>청소년·교육·문화</strong>
+              <span>보호, 성장, 지역사회 기반 기사 확장에 적합</span>
             </div>
             <div class="side-item">
               <strong>AI·혁신기술</strong>
-              <span>브리핑형 정리 기사와 잘 맞는 분야</span>
+              <span>브리핑형 구조 기사와 높은 궁합</span>
             </div>
             <div class="side-item">
               <strong>무도·스포츠</strong>
-              <span>GN24만의 차별화 정체성을 보여줄 수 있는 분야</span>
+              <span>GN24만의 차별화 정체성을 보여주는 분야</span>
             </div>
           </div>
+        </section>
+
+        <section class="side-card">
+          <div class="section-head">
+            <div class="section-title">
+              <span class="bar"></span>
+              <h2>최신 기사 TOP</h2>
+            </div>
+          </div>
+          <div id="miniRanking" class="mini-ranking"></div>
         </section>
       </aside>
     </section>
@@ -461,6 +714,11 @@
       const resultCount = document.getElementById('resultCount');
       const statusLabel = document.getElementById('statusLabel');
       const keywordInput = document.getElementById('keywordInput');
+      const heroTotalCount = document.getElementById('heroTotalCount');
+      const heroCategoryCount = document.getElementById('heroCategoryCount');
+      const featuredWrap = document.getElementById('featuredWrap');
+      const featuredCard = document.getElementById('featuredCard');
+      const miniRanking = document.getElementById('miniRanking');
 
       const params = new URLSearchParams(window.location.search);
       const q = (params.get('q') || '').trim();
@@ -489,6 +747,10 @@
         return item?.category || item?.cat || '뉴스';
       }
 
+      function getArticleUrl(id) {
+        return `/gn24/pages/article/?id=${encodeURIComponent(id)}`;
+      }
+
       async function fetchJsonSafe(url) {
         try {
           const res = await fetch(url, { cache: 'no-store' });
@@ -511,16 +773,16 @@
           if (item && item.id) mergedMap.set(item.id, item);
         });
 
-        let items = Array.from(mergedMap.values());
-
-        items = items.map(item => ({
+        let allItems = Array.from(mergedMap.values()).map(item => ({
           ...item,
           category: getCategory(item)
         }));
 
-        items.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+        allItems.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
 
-        const categories = ['전체', ...new Set(items.map(item => item.category).filter(Boolean))];
+        const categories = ['전체', ...new Set(allItems.map(item => item.category).filter(Boolean))];
+        heroTotalCount.textContent = `${allItems.length}건`;
+        heroCategoryCount.textContent = `${Math.max(0, categories.length - 1)}개`;
 
         filters.innerHTML = categories.map(name => {
           const active = (!cat && name === '전체') || (cat === name);
@@ -529,6 +791,50 @@
             : `/gn24/pages/newsroom/?cat=${encodeURIComponent(name)}`;
           return `<a class="chip ${active ? 'active' : ''}" href="${href}">${escapeHtml(name)}</a>`;
         }).join('');
+
+        const featuredItem = allItems[0];
+        if (featuredItem) {
+          const imageStyle = featuredItem.image
+            ? `style="background-image:url('${String(featuredItem.image).replace(/'/g, "%27")}')"`
+            : '';
+          featuredCard.innerHTML = `
+            <div class="featured-media ${featuredItem.image ? '' : 'placeholder'}" ${imageStyle}>
+              <span class="featured-badge">대표 기사</span>
+            </div>
+            <div class="featured-body">
+              <div>
+                <div class="featured-meta">
+                  <span class="badge">${escapeHtml(featuredItem.category || '뉴스')}</span>
+                  <span class="muted">${formatDate(featuredItem.date)}</span>
+                </div>
+                <h2 class="featured-title">
+                  <a href="${getArticleUrl(featuredItem.id)}">${escapeHtml(featuredItem.title || '')}</a>
+                </h2>
+                <p class="featured-summary">${escapeHtml(featuredItem.summary || '')}</p>
+              </div>
+              <div class="featured-bottom">
+                <div class="meta-inline">
+                  ${escapeHtml(featuredItem.author || 'GN24')}
+                  ${featuredItem.sourceName ? ` · ${escapeHtml(featuredItem.sourceName)}` : ''}
+                </div>
+                <a class="featured-link" href="${getArticleUrl(featuredItem.id)}">대표 기사 읽기 →</a>
+              </div>
+            </div>
+          `;
+          featuredWrap.hidden = false;
+        }
+
+        miniRanking.innerHTML = allItems.slice(0, 5).map((item, idx) => `
+          <a class="mini-rank" href="${getArticleUrl(item.id)}">
+            <div class="num">${idx + 1}</div>
+            <div>
+              <strong>${escapeHtml(item.title || '')}</strong>
+              <span>${escapeHtml(item.category || '뉴스')} · ${escapeHtml(formatDate(item.date || ''))}</span>
+            </div>
+          </a>
+        `).join('') || `<div class="muted">표시할 기사가 없습니다.</div>`;
+
+        let items = [...allItems];
 
         if (cat) {
           items = items.filter(item => item.category === cat);
@@ -576,7 +882,7 @@
             <article class="card-news">
               <a class="card-thumb ${item.image ? '' : 'placeholder'}"
                  ${imageStyle}
-                 href="/gn24/pages/article/?id=${encodeURIComponent(item.id)}"
+                 href="${getArticleUrl(item.id)}"
                  aria-label="${escapeHtml(item.title)}"></a>
 
               <div class="card-body">
@@ -587,7 +893,7 @@
                   </div>
 
                   <h2 class="card-title">
-                    <a href="/gn24/pages/article/?id=${encodeURIComponent(item.id)}">
+                    <a href="${getArticleUrl(item.id)}">
                       ${escapeHtml(item.title)}
                     </a>
                   </h2>
@@ -601,7 +907,7 @@
                     ${item.sourceName ? ` · ${escapeHtml(item.sourceName)}` : ''}
                   </div>
 
-                  <a class="read-more" href="/gn24/pages/article/?id=${encodeURIComponent(item.id)}">자세히 보기 →</a>
+                  <a class="read-more" href="${getArticleUrl(item.id)}">자세히 보기 →</a>
                 </div>
               </div>
             </article>
