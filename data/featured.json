@@ -1,57 +1,38 @@
-{
-  "featured": [
-    {[
+[
   {
     "id": "gn24-featured-001",
     "type": "featured",
-    "title": "GN24 독립 뉴스 플랫폼 구축 본격화",
-    "date": "2026-03-07",
-    "category": "공지",
-    "summary": "GN24는 기존 Global News24 콘텐츠를 기반으로, 핵심 요약과 재정리를 거쳐 독립적인 뉴스 플랫폼 구조를 단계적으로 구축한다.",
-    "image": "",
-    "href": "/gn24/pages/newsroom/",
-    "sourceName": "GN24 내부 기획",
-    "sourceUrl": ""
+    "title": "DOUBLE CROSS KOREA 제1기 공식지정도장 모집",
+    "date": "2026-02-18",
+    "category": "무도·스포츠",
+    "summary": "DOUBLE CROSS KOREA가 2026년 상반기 제1기 공식지정도장 50개를 한정 선발한다고 공식 발표했다.",
+    "image": "/assets/images/news/double-cross-class01.jpg",
+    "href": "/pages/article/?id=gn24-001",
+    "sourceName": "DOUBLE CROSS KOREA",
+    "sourceUrl": "https://doublecross.kr"
   },
   {
     "id": "gn24-featured-002",
     "type": "featured",
-    "title": "생활 안전·청소년 교육·AI·무도 중심 편집 방향 설정",
-    "date": "2026-03-07",
-    "category": "편집방향",
-    "summary": "GN24는 일반 종합 뉴스보다 생활 안전, 청소년 교육, AI 및 미래기술, 무도·스포츠 분야를 중점적으로 다루는 플랫폼으로 운영 방향을 정리하고 있다.",
-    "image": "",
-    "href": "/gn24/pages/newsroom/?cat=안전·구조",
-    "sourceName": "GN24 운영 방향",
+    "title": "세계 안전 교육 프로그램 확대",
+    "date": "2026-02-19",
+    "category": "교육",
+    "summary": "세계 안전 교육 프로그램이 확대되며 국제 협력 기반의 교육 체계가 구축되고 있다.",
+    "image": "/assets/images/news/gn24-003.jpg",
+    "href": "/pages/article/?id=gn24-003",
+    "sourceName": "GN24",
     "sourceUrl": ""
   },
   {
     "id": "gn24-featured-003",
     "type": "featured",
-    "title": "기존 기사 복사 대신 요약·재작성·출처 표기 원칙 확정",
-    "date": "2026-03-07",
-    "category": "운영원칙",
-    "summary": "기존 콘텐츠를 그대로 복사하지 않고, 핵심 내용을 정리해 새 기사 형식으로 재작성하고 출처를 명확히 표기하는 원칙을 적용한다.",
-    "image": "",
-    "href": "/gn24/pages/press/",
-    "sourceName": "GN24 기사 운영 원칙",
-    "sourceUrl": ""
+    "title": "DOUBLE CROSS KOREA 공식 프로그램 발표",
+    "date": "2026-02-20",
+    "category": "무도·스포츠",
+    "summary": "DOUBLE CROSS KOREA가 교차원리 기반 무도 프로그램을 공식 발표하며 새로운 무도 교육 체계를 제시했다.",
+    "image": "/assets/images/news/gn24-004.jpg",
+    "href": "/pages/article/?id=gn24-004",
+    "sourceName": "DOUBLE CROSS KOREA",
+    "sourceUrl": "https://doublecross.kr"
   }
 ]
-      "title": "Global News24 독립형 본부(허브) 구축 시작",
-      "summary": "공식 보도자료·아카이브·자료실 중심으로 독립형 본부를 구축합니다.",
-      "category": "공지",
-      "publish_date": "2026-02-27",
-      "url": "/gn24/pages/policy/",
-      "image": "https://static.wixstatic.com/media/abf917_32f71f4337204bb9b67b7e4ebf5423bd~mv2.png"
-    },
-    {
-      "title": "안전·구조 캠페인: 생활 안전 브리핑 강화",
-      "summary": "공공기관 자료 기반으로 안전 정보를 요약·정리해 제공합니다.",
-      "category": "안전·구조",
-      "publish_date": "2026-02-27",
-      "url": "/gn24/pages/newsroom/",
-      "image": ""
-    }
-  ]
-}
