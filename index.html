@@ -10,7 +10,6 @@
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://news24.ai.kr/" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Global News24 | 공익·안전·교육 중심 뉴스 플랫폼" />
   <meta property="og:description" content="생활 안전 · 청소년 교육 · AI·혁신기술 · 무도·스포츠 중심 브리핑 뉴스" />
@@ -22,7 +21,6 @@
 
   <link rel="icon" href="/assets/images/logos/gn24-icon.jpg" />
   <link rel="apple-touch-icon" href="/assets/images/logos/gn24-icon.jpg" />
-
   <link rel="stylesheet" href="/assets/css/style.css" />
 
   <style>
@@ -36,9 +34,7 @@
       --ease:.24s ease;
     }
 
-    html{
-      scroll-behavior:smooth;
-    }
+    html{ scroll-behavior:smooth; }
 
     body{
       background:
@@ -388,6 +384,13 @@
     .cat-card{
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.02);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      padding:18px;
+      border-radius:18px;
+      text-decoration:none;
+      color:inherit;
     }
 
     .cat-card:hover{
@@ -395,14 +398,41 @@
       background:rgba(255,255,255,.04);
     }
 
+    .cat-name{
+      font-size:1.02rem;
+      font-weight:800;
+      color:#f5f8ff;
+    }
+
+    .cat-desc{
+      color:rgba(255,255,255,.72);
+      font-size:.93rem;
+      line-height:1.55;
+    }
+
     .focus-card{
       border:1px solid rgba(255,255,255,.07);
       background:rgba(255,255,255,.02);
+      border-radius:18px;
+      padding:18px;
     }
 
     .focus-card:hover{
       border-color:rgba(246,211,107,.22);
       background:rgba(255,255,255,.04);
+    }
+
+    .focus-card h3{
+      margin:0 0 10px;
+      color:#f8fbff;
+      font-size:1rem;
+    }
+
+    .focus-card p{
+      margin:0;
+      color:rgba(255,255,255,.74);
+      line-height:1.7;
+      font-size:.95rem;
     }
 
     .rank a{
@@ -446,6 +476,385 @@
       box-shadow:0 16px 28px rgba(0,0,0,.24);
     }
 
+    .wrap{
+      max-width:1280px;
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    .main{
+      padding-top:28px;
+      padding-bottom:40px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 16px 38px rgba(0,0,0,.18);
+    }
+
+    .card + .card{
+      margin-top:22px;
+    }
+
+    .hero-intro{
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:22px;
+      margin-bottom:24px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#ffe69a;
+      font-weight:800;
+      letter-spacing:.08em;
+      font-size:.8rem;
+      margin-bottom:14px;
+    }
+
+    .hero-intro-copy h1{
+      margin:0 0 14px;
+      font-size:clamp(1.8rem, 3vw, 3rem);
+      line-height:1.18;
+      color:#f8fbff;
+    }
+
+    .hero-intro-copy p{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      line-height:1.8;
+      font-size:1rem;
+    }
+
+    .hero-intro-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:800;
+      transition:.24s ease;
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .cta.primary{
+      background:linear-gradient(135deg, rgba(246,211,107,.18), rgba(255,255,255,.08));
+      color:#fff0b9;
+      border-color:rgba(246,211,107,.28);
+    }
+
+    .cta.secondary{
+      background:rgba(255,255,255,.04);
+      color:#eef3ff;
+    }
+
+    .cta:hover{
+      transform:translateY(-2px);
+    }
+
+    .hero-intro-panel{
+      display:grid;
+      gap:14px;
+    }
+
+    .mini-stat{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-stat-label{
+      display:block;
+      margin-bottom:8px;
+      color:#ffe69a;
+      font-size:.83rem;
+      font-weight:700;
+      letter-spacing:.04em;
+    }
+
+    .mini-stat strong{
+      color:#f7fbff;
+      font-size:1rem;
+      line-height:1.6;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.8fr) minmax(320px, .9fr);
+      gap:24px;
+      align-items:start;
+    }
+
+    .left > section + section{
+      margin-top:22px;
+    }
+
+    .right > section + section{
+      margin-top:22px;
+    }
+
+    .headline-top,
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:1.2rem;
+      color:#f7fbff;
+    }
+
+    .bar{
+      width:5px;
+      height:22px;
+      border-radius:999px;
+      background:linear-gradient(180deg, #ffe08a, #b88a1f);
+      box-shadow:0 0 18px rgba(246,211,107,.24);
+    }
+
+    .headline-controls{
+      display:flex;
+      gap:8px;
+    }
+
+    .btn-ghost{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:#eef3ff;
+      cursor:pointer;
+      font-size:1.2rem;
+      transition:.24s ease;
+    }
+
+    .btn-ghost:hover{
+      transform:translateY(-1px);
+      border-color:rgba(246,211,107,.3);
+      color:#ffe69a;
+      background:rgba(255,255,255,.06);
+    }
+
+    .hero-meta,
+    .brief-meta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:28px;
+      padding:5px 12px;
+      border-radius:999px;
+      background:rgba(246,211,107,.14);
+      border:1px solid rgba(246,211,107,.26);
+      color:#ffe69a;
+      font-size:.82rem;
+      font-weight:800;
+    }
+
+    .muted{
+      color:rgba(255,255,255,.62);
+      font-size:.92rem;
+    }
+
+    .hero h3{
+      margin:0 0 10px;
+      font-size:1.45rem;
+      line-height:1.4;
+      color:#f6faff;
+    }
+
+    .hero-cta{
+      margin-top:14px;
+      color:#ffe69a;
+      font-weight:800;
+    }
+
+    .more{
+      text-decoration:none;
+      color:#ffe69a;
+      font-weight:700;
+    }
+
+    .list{
+      display:block;
+    }
+
+    .brief-body{
+      padding:2px 2px 2px 0;
+    }
+
+    .brief-title{
+      margin:0 0 8px;
+      font-size:1.04rem;
+      line-height:1.5;
+      color:#f4f8ff;
+    }
+
+    .brief-summary{
+      margin:0;
+      color:rgba(255,255,255,.72);
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .note{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(246,211,107,.08);
+      border:1px solid rgba(246,211,107,.18);
+      color:#f3f6ff;
+      line-height:1.7;
+      font-size:.94rem;
+    }
+
+    .category-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .focus-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .rank{
+      margin:0;
+      padding-left:22px;
+      color:#dde7ff;
+    }
+
+    .rank li + li{
+      margin-top:8px;
+    }
+
+    .quick{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .qbtn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:12px 14px;
+      border-radius:16px;
+      text-decoration:none;
+      color:#f3f7ff;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      font-weight:800;
+      text-align:center;
+    }
+
+    .qbtn.ghost{
+      background:rgba(255,255,255,.025);
+    }
+
+    .side-list{
+      display:block;
+    }
+
+    .floating{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:1200;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .float-btn{
+      min-width:68px;
+      min-height:48px;
+      border:none;
+      border-radius:16px;
+      padding:12px 14px;
+      cursor:pointer;
+      text-decoration:none;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.08);
+      color:#f5f9ff;
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .float-btn.tip{
+      color:#fff0b9;
+      border-color:rgba(246,211,107,.3);
+    }
+
+    .footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(7,10,18,.7), rgba(5,7,13,.95));
+      margin-top:48px;
+    }
+
+    .foot{
+      padding-top:24px;
+      padding-bottom:30px;
+    }
+
+    .foot-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 18px;
+      margin-bottom:18px;
+    }
+
+    .foot-links a{
+      color:rgba(255,255,255,.78);
+      text-decoration:none;
+      font-size:.94rem;
+    }
+
+    .foot-meta{
+      color:rgba(255,255,255,.58);
+      line-height:1.85;
+      font-size:.9rem;
+    }
+
     @media (max-width: 980px){
       .header-tools-row .wrap{
         flex-direction:column;
@@ -466,6 +875,14 @@
 
       .brief-link{
         grid-template-columns:110px 1fr;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-intro{
+        grid-template-columns:1fr;
       }
     }
 
@@ -490,7 +907,8 @@
 
       .header-tools-row .wrap,
       .menu-panel-inner,
-      .nav-inner{
+      .nav-inner,
+      .wrap{
         padding-left:14px;
         padding-right:14px;
       }
@@ -535,6 +953,26 @@
 
       .hero-img{
         min-height:220px;
+      }
+
+      .category-grid,
+      .focus-grid,
+      .quick{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        padding:18px;
+        border-radius:22px;
+      }
+
+      .hero h3{
+        font-size:1.18rem;
+      }
+
+      .floating{
+        right:12px;
+        bottom:12px;
       }
     }
   </style>
@@ -652,17 +1090,16 @@
             </div>
           </div>
 
-          <a id="heroLink" class="hero" href="#">
+          <a id="heroLink" class="hero" href="/pages/newsroom/">
             <div class="hero-img placeholder" id="heroImg"></div>
             <div class="hero-body">
               <div class="hero-meta">
                 <span id="heroCat" class="badge">주요뉴스</span>
                 <span id="heroDate" class="muted"></span>
               </div>
-              <h3 id="heroTitle">Global News24 독립 뉴스 플랫폼 구축 준비</h3>
+              <h3 id="heroTitle">헤드라인 기사를 불러오는 중입니다.</h3>
               <p id="heroSummary" class="muted">
-                Global News24는 기존 콘텐츠를 단순 복사하지 않고 핵심 요약과 재정리를 바탕으로
-                독립적인 뉴스 플랫폼 구조를 구축합니다.
+                기사 데이터를 연결하면 이 영역에 대표 헤드라인이 자동으로 표시됩니다.
               </p>
               <div class="hero-cta">자세히 보기 →</div>
             </div>
@@ -728,47 +1165,12 @@
                 <div class="brief-thumb placeholder"></div>
                 <div class="brief-body">
                   <div class="brief-meta">
-                    <span class="badge">준비중</span>
-                    <span class="muted">2026.03.07</span>
+                    <span class="badge">로딩중</span>
+                    <span class="muted">잠시만 기다려 주세요</span>
                   </div>
-                  <h3 class="brief-title">Global News24 뉴스 아카이브 구조 정비 시작</h3>
+                  <h3 class="brief-title">최신 기사를 불러오는 중입니다.</h3>
                   <p class="brief-summary">
-                    Global News24 독립 뉴스 사이트 구축을 위해 카테고리 구조, 기사 템플릿,
-                    기사 목록 페이지와 아카이브 시스템을 단계적으로 정비합니다.
-                  </p>
-                </div>
-              </a>
-            </article>
-
-            <article class="brief-item">
-              <a class="brief-link" href="/pages/press/">
-                <div class="brief-thumb placeholder"></div>
-                <div class="brief-body">
-                  <div class="brief-meta">
-                    <span class="badge">보도자료</span>
-                    <span class="muted">2026.03.07</span>
-                  </div>
-                  <h3 class="brief-title">공식 자료 기반 정리형 기사 운영 방향 설정</h3>
-                  <p class="brief-summary">
-                    기존 기사를 그대로 복사하지 않고 핵심 내용을 재정리해 독립 기사로
-                    게시하는 방향으로 운영 원칙을 확정합니다.
-                  </p>
-                </div>
-              </a>
-            </article>
-
-            <article class="brief-item">
-              <a class="brief-link" href="/pages/archive/">
-                <div class="brief-thumb placeholder"></div>
-                <div class="brief-body">
-                  <div class="brief-meta">
-                    <span class="badge">아카이브</span>
-                    <span class="muted">2026.03.07</span>
-                  </div>
-                  <h3 class="brief-title">분야별 30~40개 초기 기사 확보 목표 수립</h3>
-                  <p class="brief-summary">
-                    국제뉴스, 국내소식, 사회, 경제, 안전·구조, 청소년·문화,
-                    AI·혁신기술, 무도·스포츠 분야별 초기 기사 수를 확보합니다.
+                    data/news-index.json 또는 data/news.json의 기사 정보를 연결해 메인에 자동 표시합니다.
                   </p>
                 </div>
               </a>
@@ -819,13 +1221,7 @@
             </div>
           </div>
           <ol id="popular" class="rank">
-            <li><a href="/pages/newsroom/">Global News24 독립 뉴스 플랫폼 구축 준비</a></li>
-            <li><a href="/pages/press/">공식 자료 기반 기사 운영 원칙 수립</a></li>
-            <li><a href="/pages/archive/">분야별 초기 기사 아카이브 준비</a></li>
-            <li><a href="/pages/newsroom/?cat=안전·구조">안전·구조 분야 특화 콘텐츠 확장</a></li>
-            <li><a href="/pages/newsroom/?cat=AI·혁신기술">AI·혁신기술 브리핑 강화</a></li>
-            <li><a href="/pages/newsroom/?cat=청소년·문화">청소년·문화 공익 기사 준비</a></li>
-            <li><a href="/pages/newsroom/?cat=무도·스포츠">무도·스포츠 전문 영역 구축</a></li>
+            <li><a href="/pages/newsroom/">기사를 불러오는 중입니다.</a></li>
           </ol>
         </section>
 
@@ -890,20 +1286,281 @@
 
   <script>
     (function () {
-      const btn = document.getElementById('menuBtn');
-      const panel = document.getElementById('menuPanel');
-      if (!btn || !panel) return;
+      const menuBtn = document.getElementById('menuBtn');
+      const menuPanel = document.getElementById('menuPanel');
 
-      btn.addEventListener('click', function () {
-        const isHidden = panel.hasAttribute('hidden');
-        if (isHidden) {
-          panel.removeAttribute('hidden');
-          btn.setAttribute('aria-expanded', 'true');
+      if (menuBtn && menuPanel) {
+        menuBtn.addEventListener('click', function () {
+          const isHidden = menuPanel.hasAttribute('hidden');
+          if (isHidden) {
+            menuPanel.removeAttribute('hidden');
+            menuBtn.setAttribute('aria-expanded', 'true');
+          } else {
+            menuPanel.setAttribute('hidden', '');
+            menuBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      const heroLink = document.getElementById('heroLink');
+      const heroImg = document.getElementById('heroImg');
+      const heroCat = document.getElementById('heroCat');
+      const heroDate = document.getElementById('heroDate');
+      const heroTitle = document.getElementById('heroTitle');
+      const heroSummary = document.getElementById('heroSummary');
+      const latestBriefs = document.getElementById('latestBriefs');
+      const popular = document.getElementById('popular');
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+
+      let featuredItems = [];
+      let currentHero = 0;
+      let heroTimer = null;
+
+      function safeArray(data) {
+        if (Array.isArray(data)) return data;
+        if (Array.isArray(data?.items)) return data.items;
+        if (Array.isArray(data?.data)) return data.data;
+        if (Array.isArray(data?.articles)) return data.articles;
+        if (Array.isArray(data?.news)) return data.news;
+        return [];
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}.${m}.${day}`;
+      }
+
+      function escapeHtml(str = '') {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function resolveArticleUrl(item = {}) {
+        if (item.url) return item.url;
+        if (item.link) return item.link;
+        if (item.href) return item.href;
+        if (item.id) return `/pages/article/?id=${encodeURIComponent(item.id)}`;
+        if (item.slug) return `/pages/article/?id=${encodeURIComponent(item.slug)}`;
+        return '/pages/newsroom/';
+      }
+
+      function normalizeArticle(item = {}) {
+        const title = item.title || item.headline || '제목 없음';
+        const category = item.category || item.cat || '뉴스';
+        const date = item.date || item.publishedAt || item.created_at || '';
+        const summary =
+          item.summary ||
+          item.description ||
+          item.excerpt ||
+          (Array.isArray(item.content) ? item.content[0] : '') ||
+          '기사 요약이 준비 중입니다.';
+        const image =
+          item.image ||
+          item.thumbnail ||
+          item.thumb ||
+          item.cover ||
+          item.photo ||
+          '';
+        const url = resolveArticleUrl(item);
+
+        return {
+          id: item.id || item.slug || '',
+          title,
+          category,
+          date,
+          summary,
+          image,
+          url
+        };
+      }
+
+      function setBgImage(el, imageUrl) {
+        if (!el) return;
+        if (imageUrl) {
+          el.style.backgroundImage = `url("${imageUrl}")`;
+          el.classList.remove('placeholder');
         } else {
-          panel.setAttribute('hidden', '');
-          btn.setAttribute('aria-expanded', 'false');
+          el.style.backgroundImage = '';
+          el.classList.add('placeholder');
         }
-      });
+      }
+
+      function renderHero(index) {
+        if (!featuredItems.length) return;
+        const item = featuredItems[index];
+
+        if (heroLink) heroLink.href = item.url || '/pages/newsroom/';
+        if (heroCat) heroCat.textContent = item.category || '주요뉴스';
+        if (heroDate) heroDate.textContent = formatDate(item.date);
+        if (heroTitle) heroTitle.textContent = item.title || '제목 없음';
+        if (heroSummary) heroSummary.textContent = item.summary || '기사 요약이 준비 중입니다.';
+        setBgImage(heroImg, item.image);
+      }
+
+      function renderLatest(items) {
+        if (!latestBriefs) return;
+
+        if (!items.length) {
+          latestBriefs.innerHTML = `
+            <article class="brief-item">
+              <a class="brief-link" href="/pages/newsroom/">
+                <div class="brief-thumb placeholder"></div>
+                <div class="brief-body">
+                  <div class="brief-meta">
+                    <span class="badge">안내</span>
+                    <span class="muted">데이터 없음</span>
+                  </div>
+                  <h3 class="brief-title">아직 표시할 최신 기사가 없습니다.</h3>
+                  <p class="brief-summary">data/news-index.json 또는 data/news.json 내용을 확인해 주세요.</p>
+                </div>
+              </a>
+            </article>
+          `;
+          return;
+        }
+
+        latestBriefs.innerHTML = items.slice(0, 6).map(item => `
+          <article class="brief-item">
+            <a class="brief-link" href="${escapeHtml(item.url)}">
+              <div class="brief-thumb ${item.image ? '' : 'placeholder'}" style="${item.image ? `background-image:url('${escapeHtml(item.image)}')` : ''}"></div>
+              <div class="brief-body">
+                <div class="brief-meta">
+                  <span class="badge">${escapeHtml(item.category || '뉴스')}</span>
+                  <span class="muted">${escapeHtml(formatDate(item.date))}</span>
+                </div>
+                <h3 class="brief-title">${escapeHtml(item.title)}</h3>
+                <p class="brief-summary">${escapeHtml(item.summary || '기사 요약이 준비 중입니다.')}</p>
+              </div>
+            </a>
+          </article>
+        `).join('');
+      }
+
+      function renderPopular(items) {
+        if (!popular) return;
+
+        if (!items.length) {
+          popular.innerHTML = `<li><a href="/pages/newsroom/">표시할 인기 뉴스가 없습니다.</a></li>`;
+          return;
+        }
+
+        popular.innerHTML = items.slice(0, 7).map(item => `
+          <li><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></li>
+        `).join('');
+      }
+
+      async function fetchJson(path) {
+        const res = await fetch(path, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${path} 로딩 실패`);
+        return res.json();
+      }
+
+      function sortByDateDesc(items) {
+        return [...items].sort((a, b) => {
+          const da = new Date(a.date || 0).getTime();
+          const db = new Date(b.date || 0).getTime();
+          return db - da;
+        });
+      }
+
+      function nextHero() {
+        if (!featuredItems.length) return;
+        currentHero = (currentHero + 1) % featuredItems.length;
+        renderHero(currentHero);
+      }
+
+      function prevHero() {
+        if (!featuredItems.length) return;
+        currentHero = (currentHero - 1 + featuredItems.length) % featuredItems.length;
+        renderHero(currentHero);
+      }
+
+      function startHeroAuto() {
+        if (heroTimer) clearInterval(heroTimer);
+        if (featuredItems.length > 1) {
+          heroTimer = setInterval(nextHero, 5000);
+        }
+      }
+
+      async function loadHomeData() {
+        try {
+          const results = await Promise.allSettled([
+            fetchJson('/data/featured.json'),
+            fetchJson('/data/news-index.json'),
+            fetchJson('/data/news.json')
+          ]);
+
+          const featuredRaw = results[0].status === 'fulfilled' ? results[0].value : null;
+          const newsIndexRaw = results[1].status === 'fulfilled' ? results[1].value : null;
+          const newsRaw = results[2].status === 'fulfilled' ? results[2].value : null;
+
+          let featured = safeArray(featuredRaw).map(normalizeArticle);
+          let newsIndex = safeArray(newsIndexRaw).map(normalizeArticle);
+          let news = safeArray(newsRaw).map(normalizeArticle);
+
+          const combinedNews = sortByDateDesc([...newsIndex, ...news]);
+
+          if (!featured.length) {
+            featured = combinedNews.slice(0, 5);
+          }
+
+          featuredItems = featured.length ? featured : [{
+            title: '표시할 헤드라인 기사가 없습니다.',
+            category: '안내',
+            date: '',
+            summary: 'data/featured.json 또는 data/news-index.json에 기사 데이터가 필요합니다.',
+            image: '',
+            url: '/pages/newsroom/'
+          }];
+
+          renderHero(0);
+          renderLatest(combinedNews);
+          renderPopular(combinedNews);
+
+          startHeroAuto();
+        } catch (err) {
+          console.error(err);
+
+          featuredItems = [{
+            title: '기사 데이터를 불러오지 못했습니다.',
+            category: '오류',
+            date: '',
+            summary: 'JSON 경로 또는 파일 형식을 확인해 주세요.',
+            image: '',
+            url: '/pages/newsroom/'
+          }];
+
+          renderHero(0);
+          renderLatest([]);
+          renderPopular([]);
+        }
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          prevHero();
+          startHeroAuto();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          nextHero();
+          startHeroAuto();
+        });
+      }
+
+      loadHomeData();
     })();
   </script>
 </body>
