@@ -5,7 +5,6 @@
   const menuPanel = document.getElementById("menuPanel");
   const todayEl = document.getElementById("today");
 
-  // 오늘 날짜 표시
   if (todayEl) {
     const d = new Date();
     const yyyy = d.getFullYear();
@@ -14,7 +13,6 @@
     todayEl.textContent = `${yyyy}.${mm}.${dd}`;
   }
 
-  // 햄버거 메뉴
   if (menuBtn && menuPanel) {
     menuBtn.addEventListener("click", function () {
       const isHidden = menuPanel.hasAttribute("hidden");
@@ -39,7 +37,6 @@
     });
   }
 
-  // 현재 경로 기준 네비 활성화
   const navLinks = document.querySelectorAll(".nav-link");
   const currentUrl = new URL(window.location.href);
   const currentPath = currentUrl.pathname;
@@ -64,7 +61,6 @@
     }
   });
 
-  // 안전한 JSON fetch helper
   window.GN24 = window.GN24 || {};
 
   window.GN24.fetchJSON = async function (path) {
